@@ -83,21 +83,29 @@ function renderTopBar() {
       </div>
 
       <nav class="top-bar__nav" id="topBarNav">
-        <button class="top-bar__nav-link ${state.currentView === 'home' ? 'active' : ''}" data-view="home" id="topNavHome">Inicio</button>
-        <button class="top-bar__nav-link ${state.currentView === 'explore' ? 'active' : ''}" data-view="explore" id="topNavExplore">Explorar</button>
-        <button class="top-bar__nav-link ${state.currentView === 'chat' ? 'active' : ''}" data-view="chat" id="topNavChat">Chat</button>
-        <button class="top-bar__nav-link ${state.currentView === 'profile' ? 'active' : ''}" data-view="profile" id="topNavProfile">Mi Perfil</button>
+        <button class="top-bar__nav-link ${state.currentView === 'home' ? 'active' : ''}" data-view="home" id="topNavHome">
+          <img class="icon-nav-img" src="/iconos/transparent/icon-nav-inicio.png" alt="Inicio" /> Inicio
+        </button>
+        <button class="top-bar__nav-link ${state.currentView === 'explore' ? 'active' : ''}" data-view="explore" id="topNavExplore">
+          <img class="icon-nav-img" src="/iconos/transparent/icon-nav-explorar.png" alt="Explorar" /> Explorar
+        </button>
+        <button class="top-bar__nav-link ${state.currentView === 'chat' ? 'active' : ''}" data-view="chat" id="topNavChat">
+          <img class="icon-nav-img" src="/iconos/transparent/icon-nav-chat.png" alt="Chat" /> Chat
+        </button>
+        <button class="top-bar__nav-link ${state.currentView === 'profile' ? 'active' : ''}" data-view="profile" id="topNavProfile">
+          <img class="icon-nav-img" src="/iconos/transparent/icon-nav-perfil.png" alt="Mi Perfil" /> Mi Perfil
+        </button>
       </nav>
 
       <div class="role-switcher" id="roleSwitcher">
         <button class="role-switcher__btn ${state.currentRole === 'sevaka' ? 'active' : ''}" data-role="sevaka" id="btnRoleSevaka" title="Modo Prestador">
-          <span>🛠️</span> Sevaka
+          <img class="role-switcher__icon" src="/iconos/transparent/icon-rol-sevaka.png" alt="Sevaka" /> Sevaka
         </button>
         <button class="role-switcher__btn ${state.currentRole === 'yajamana' ? 'active' : ''}" data-role="yajamana" id="btnRoleYajamana" title="Modo Solicitante">
-          <span>🤝</span> Yajamāna
+          <img class="role-switcher__icon" src="/iconos/transparent/icon-rol-yajamana.png" alt="Yajamāna" /> Yajamāna
         </button>
         <button class="role-switcher__btn ${state.currentRole === 'shramana' ? 'active' : ''}" data-role="shramana" id="btnRoleShramana" title="Modo Aprendiz">
-          <span>🌱</span> Śramaṇa
+          <img class="role-switcher__icon" src="/iconos/transparent/icon-rol-sramana.png" alt="Śramaṇa" /> Śramaṇa
         </button>
       </div>
     </header>
@@ -108,9 +116,10 @@ function renderTopBar() {
 function renderKavachaBar() {
   return `
     <div class="kavacha-bar" id="kavachaBar">
-      <div>
+      <div style="display:flex; align-items:center; gap:8px;">
         <span class="kavacha-bar__pulse"></span>
-        🛡️ Modo Escudo Kavacha activo — Seguimiento en vivo compartido con tu contacto de confianza
+        <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-escudo-kavacha.png" alt="Kavacha" />
+        <span>Modo Escudo Kavacha activo — Seguimiento en vivo compartido con tu contacto de confianza</span>
       </div>
       <button onclick="document.getElementById('kavachaBar').remove(); window.__state.kavachaActive = false;" style="background:transparent;color:var(--bg-chandan);font-weight:700;font-size:0.9rem;padding:2px 8px;">✕</button>
     </div>
@@ -120,17 +129,17 @@ function renderKavachaBar() {
 // ─── Navegación Inferior ───
 function renderBottomNav() {
   const items = [
-    { id: 'home', icon: '🏠', label: 'Inicio' },
-    { id: 'explore', icon: '🔍', label: 'Explorar' },
-    { id: 'chat', icon: '💬', label: 'Chat' },
-    { id: 'profile', icon: '👤', label: 'Perfil' },
+    { id: 'home', iconImg: '/iconos/transparent/icon-nav-inicio.png', label: 'Inicio' },
+    { id: 'explore', iconImg: '/iconos/transparent/icon-nav-explorar.png', label: 'Explorar' },
+    { id: 'chat', iconImg: '/iconos/transparent/icon-nav-chat.png', label: 'Chat' },
+    { id: 'profile', iconImg: '/iconos/transparent/icon-nav-perfil.png', label: 'Perfil' },
   ];
   return `
     <nav class="bottom-nav" id="bottomNav">
       ${items.map(item => `
         <button class="bottom-nav__item ${state.currentView === item.id ? 'active' : ''}" data-view="${item.id}" id="nav-${item.id}">
-          <span class="bottom-nav__icon">${item.icon}</span>
-          ${item.label}
+          <img class="icon-nav-img" src="${item.iconImg}" alt="${item.label}" />
+          <span>${item.label}</span>
         </button>
       `).join('')}
     </nav>
@@ -198,8 +207,9 @@ function renderHomeView() {
       </div>
 
       <div class="hero-user-name">${user.displayName}</div>
-      <div class="hero-level-chip ${level.level >= 4 ? 'hero-level-chip--kamsya' : 'hero-level-chip--sindhoor'}">
-        <span>${level.emoji}</span> Nivel ${level.level} · ${level.name} (${level.title})
+      <div class="hero-level-chip ${level.level >= 4 ? 'hero-level-chip--kamsya' : 'hero-level-chip--sindhoor'}" style="display:inline-flex; align-items:center; gap:6px;">
+        <img class="icon-img icon-img--xs" src="${level.iconImg || '/iconos/transparent/icon-rol-sevaka.png'}" alt="${level.name}" />
+        <span>Nivel ${level.level} · ${level.name} (${level.title})</span>
       </div>
 
       <p class="hero-mantra-subtext">
@@ -211,27 +221,38 @@ function renderHomeView() {
       </p>
 
       ${nextLevel ? `
-        <div style="background: rgba(35, 57, 77, 0.04); border: 1px dashed var(--border-mitti); border-radius: var(--radius-md); padding: 8px 14px; margin-top: var(--space-xs); font-size: 0.75rem; color: var(--text-vibhuti); display: inline-flex; align-items: center; gap: 6px;">
-          <span>🎯</span> Próximo rango: <strong>${nextLevel.name}</strong> a los ${nextLevel.min} pts (+3 Llaves Dīkṣā)
+        <div style="background: rgba(35, 57, 77, 0.04); border: 1px dashed var(--border-mitti); border-radius: var(--radius-md); padding: 8px 14px; margin-top: var(--space-xs); font-size: 0.75rem; color: var(--text-vibhuti); display: inline-flex; align-items: center; gap: 8px;">
+          <img class="icon-img icon-img--xs" src="${nextLevel.iconImg || '/iconos/transparent/icon-nivel-acarya.png'}" alt="${nextLevel.name}" />
+          <span>Próximo rango: <strong>${nextLevel.name}</strong> a los ${nextLevel.min} pts (+3 Llaves Dīkṣā)</span>
         </div>
       ` : `
-        <div style="background: rgba(166, 124, 55, 0.08); border: 1px solid var(--prestige-kamsya); border-radius: var(--radius-md); padding: 8px 14px; font-size: 0.75rem; color: var(--prestige-kamsya); font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
-          <span>🕉️</span> Rango Máximo: Miembro del Consejo de Mediación Panchayat
+        <div style="background: rgba(166, 124, 55, 0.08); border: 1px solid var(--prestige-kamsya); border-radius: var(--radius-md); padding: 8px 14px; font-size: 0.75rem; color: var(--prestige-kamsya); font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+          <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-nivel-acarya.png" alt="Consejo" />
+          <span>Rango Máximo: Miembro del Consejo de Mediación Panchayat</span>
         </div>
       `}
 
       <!-- TRIO DE MÉTRICAS BENTO -->
       <div class="bento-metrics-grid">
         <div class="bento-metric-card">
-          <div class="bento-metric-card__value">${user.completedSevas}</div>
+          <div class="bento-metric-card__value" style="display:flex; align-items:center; justify-content:center; gap:6px;">
+            <img class="bento-icon-img" src="/iconos/transparent/icon-mudra-loto-servicio.png" alt="Favores" />
+            <span>${user.completedSevas}</span>
+          </div>
           <div class="bento-metric-card__label">Favores Sevā</div>
         </div>
         <div class="bento-metric-card">
-          <div class="bento-metric-card__value"><span style="color:var(--prestige-kamsya); font-size:1rem;">★</span> ${user.avgRating.toFixed(1)}</div>
+          <div class="bento-metric-card__value" style="display:flex; align-items:center; justify-content:center; gap:4px;">
+            <span style="color:var(--prestige-kamsya); font-size:1.15rem;">★</span>
+            <span>${user.avgRating.toFixed(1)}</span>
+          </div>
           <div class="bento-metric-card__label">Honor Comunitario</div>
         </div>
         <div class="bento-metric-card">
-          <div class="bento-metric-card__value"><span style="color:var(--accent-geru); font-size:1rem;">🔑</span> ${user.dikshaKeys.filter(k => k.status === 'available').length}</div>
+          <div class="bento-metric-card__value" style="display:flex; align-items:center; justify-content:center; gap:6px;">
+            <img class="bento-icon-img" src="/iconos/transparent/icon-llave-diksha.png" alt="Llaves" />
+            <span>${user.dikshaKeys.filter(k => k.status === 'available').length}</span>
+          </div>
           <div class="bento-metric-card__label">Llaves Dīkṣā</div>
         </div>
       </div>
@@ -241,14 +262,18 @@ function renderHomeView() {
     <div class="action-deck action-deck--dual">
       ${state.currentRole === 'yajamana' ? `
         <div class="action-tile action-tile--hero" id="btnNewSeva">
-          <div class="action-tile__icon-box">🙏</div>
+          <div class="action-tile__icon-box">
+            <img class="icon-img icon-img--md" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Solicitar" />
+          </div>
           <div class="action-tile__body">
             <h3 class="action-tile__title">Solicitar un Favor</h3>
             <p class="action-tile__desc">Emite una necesidad al radar comunitario de confianza.</p>
           </div>
         </div>
         <div class="action-tile" id="btnExploreQuick">
-          <div class="action-tile__icon-box">🔍</div>
+          <div class="action-tile__icon-box">
+            <img class="icon-img icon-img--md" src="/iconos/transparent/icon-arbol-parampara.png" alt="Linajes" />
+          </div>
           <div class="action-tile__body">
             <h3 class="action-tile__title">Explorar Linajes</h3>
             <p class="action-tile__desc">Descubre maestros y discípulos con habilidades avaladas.</p>
@@ -256,14 +281,18 @@ function renderHomeView() {
         </div>
       ` : state.currentRole === 'sevaka' ? `
         <div class="action-tile action-tile--hero" id="btnSimulateNotification">
-          <div class="action-tile__icon-box">📡</div>
+          <div class="action-tile__icon-box">
+            <img class="icon-img icon-img--md" src="/iconos/transparent/icon-doble-ciego.png" alt="Radar" />
+          </div>
           <div class="action-tile__body">
             <h3 class="action-tile__title">Radar de Sevā</h3>
             <p class="action-tile__desc">Simular favor entrante estilo Uber Wave en tu zona.</p>
           </div>
         </div>
         <div class="action-tile" id="btnProfileQuick">
-          <div class="action-tile__icon-box">🔑</div>
+          <div class="action-tile__icon-box">
+            <img class="icon-img icon-img--md" src="/iconos/transparent/icon-llave-diksha.png" alt="Llaves" />
+          </div>
           <div class="action-tile__body">
             <h3 class="action-tile__title">Tus Llaves Dīkṣā</h3>
             <p class="action-tile__desc">Invita y apadrina miembros bajo tu prestigio solidario.</p>
@@ -271,14 +300,18 @@ function renderHomeView() {
         </div>
       ` : `
         <div class="action-tile action-tile--hero" id="btnRegister">
-          <div class="action-tile__icon-box">🔑</div>
+          <div class="action-tile__icon-box">
+            <img class="icon-img icon-img--md" src="/iconos/transparent/icon-llave-diksha.png" alt="Código" />
+          </div>
           <div class="action-tile__body">
             <h3 class="action-tile__title">Ingresar Código Dīkṣā</h3>
             <p class="action-tile__desc">Redime tu llave de invitación e iníciate con un Guru.</p>
           </div>
         </div>
         <div class="action-tile" id="btnExploreQuick">
-          <div class="action-tile__icon-box">🏛️</div>
+          <div class="action-tile__icon-box">
+            <img class="icon-img icon-img--md" src="/iconos/transparent/icon-nivel-acarya.png" alt="Maestros" />
+          </div>
           <div class="action-tile__body">
             <h3 class="action-tile__title">Conocer Maestros</h3>
             <p class="action-tile__desc">Explora los Ācāryas activos en la red comunitaria.</p>
@@ -290,7 +323,10 @@ function renderHomeView() {
     <!-- LIBRO MAYOR DE KARMA (HISTORIAL VERIFICADO) -->
     <div class="card mb-md">
       <div class="flex justify-between items-center mb-md">
-        <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Libro Mayor de Honor</h3>
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; display:flex; align-items:center; gap:8px;">
+          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-palabra-sagrada.png" alt="Libro Mayor" />
+          <span>Libro Mayor de Honor</span>
+        </h3>
         <span class="text-vibhuti font-mono" style="font-size:0.7rem;">HASH COMUNITARIO</span>
       </div>
       ${state.karmaLedger
@@ -299,8 +335,8 @@ function renderHomeView() {
         .map(entry => `
           <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border-delicate);">
             <div style="display:flex; align-items:center; gap:12px;">
-              <div style="width:36px; height:36px; border-radius:var(--radius-sm); background:var(--surface-khadi); border:1px solid var(--border-mitti); display:flex; align-items:center; justify-content:center; font-size:1.1rem;">
-                ${entry.event === 'seva_completed' ? '🤝' : entry.event === 'shishya_bonus' ? '🎁' : entry.event === 'shishya_penalty' ? '⚖️' : '⚡'}
+              <div style="width:36px; height:36px; border-radius:var(--radius-sm); background:var(--surface-khadi); border:1px solid var(--border-mitti); display:flex; align-items:center; justify-content:center;">
+                ${entry.event === 'seva_completed' ? '<img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-loto-servicio.png" alt="Completado" />' : entry.event === 'shishya_bonus' ? '<img class="icon-img icon-img--sm" src="/iconos/transparent/icon-llave-diksha.png" alt="Bono" />' : entry.event === 'shishya_penalty' ? '<img class="icon-img icon-img--sm" src="/iconos/transparent/icon-doble-ciego.png" alt="Penalización" />' : '<img class="icon-img icon-img--xs" src="/iconos/transparent/icon-escudo-kavacha.png" alt="Evento" />'}
               </div>
               <div>
                 <div style="font-size:0.85rem; font-weight:600; color:var(--primary-nila); line-height:1.2;">${entry.detail}</div>
@@ -317,8 +353,9 @@ function renderHomeView() {
     <!-- ÁRBOL PARAMPARĀ (MAPA DE LINAJE SAGRADO) -->
     ${user.parampara.length > 0 ? `
       <div class="card">
-        <div class="parampara-tree__title">
-          <span>🌳</span> Linaje Sagrado Paramparā
+        <div class="parampara-tree__title" style="display:flex; align-items:center; gap:8px;">
+          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-arbol-parampara.png" alt="Linaje" />
+          <span>Linaje Sagrado Paramparā</span>
         </div>
         <div class="parampara-thread">
           ${user.parampara.map((ancestor, i) => `
@@ -331,7 +368,9 @@ function renderHomeView() {
                   <div class="parampara-node__name">${ancestor}</div>
                   <div class="parampara-node__tier-tag">Ascendencia nivel ${i + 1}</div>
                 </div>
-                <span style="font-size:0.8rem; color:var(--prestige-kamsya);">🏛️ Guru</span>
+                <span style="font-size:0.8rem; color:var(--prestige-kamsya); display:flex; align-items:center; gap:4px;">
+                  <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-nivel-acarya.png" alt="Guru" /> Guru
+                </span>
               </div>
             </div>
           `).join('')}
@@ -343,7 +382,10 @@ function renderHomeView() {
             <div class="parampara-node__card">
               <div>
                 <div class="parampara-node__name">${user.displayName} (Tú)</div>
-                <div class="parampara-node__tier-tag">${level.emoji} ${level.name} (${level.title}) · ${user.karmaPoints} pts</div>
+                <div class="parampara-node__tier-tag" style="display:flex; align-items:center; gap:4px;">
+                  <img class="icon-img icon-img--xs" src="${level.iconImg || '/iconos/transparent/icon-rol-sevaka.png'}" alt="${level.name}" />
+                  <span>${level.name} (${level.title}) · ${user.karmaPoints} pts</span>
+                </div>
               </div>
               <span class="badge active" style="font-size:0.7rem; padding:3px 8px;">Activo</span>
             </div>
@@ -363,7 +405,9 @@ function renderHomeView() {
                     <div class="parampara-node__name">${s.displayName}</div>
                     <div class="parampara-node__tier-tag">Discípulo · ${sLevel.name} · ${s.karmaPoints} pts</div>
                   </div>
-                  <span style="font-size:0.75rem; color:var(--success-tulsi); font-weight:600;">🌿 Ahijado</span>
+                  <span style="font-size:0.75rem; color:var(--success-tulsi); font-weight:600; display:flex; align-items:center; gap:4px;">
+                    <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-rol-sramana.png" alt="Ahijado" /> Ahijado
+                  </span>
                 </div>
               </div>
             `;
@@ -392,8 +436,14 @@ function renderExploreView() {
 
     <div class="filter-chips mb-md" id="filterChips">
       <button class="filter-chip active" data-filter="all">Todos</button>
-      <button class="filter-chip" data-filter="tan_seva">🛠️ Tan-Sevā</button>
-      <button class="filter-chip" data-filter="man_seva">🧠 Man-Sevā</button>
+      <button class="filter-chip" data-filter="tan_seva" style="display:inline-flex; align-items:center; gap:6px;">
+        <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-skill-tan-seva.png" alt="Tan" />
+        <span>Tan-Sevā</span>
+      </button>
+      <button class="filter-chip" data-filter="man_seva" style="display:inline-flex; align-items:center; gap:6px;">
+        <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-skill-man-seva.png" alt="Man" />
+        <span>Man-Sevā</span>
+      </button>
       <button class="filter-chip" data-filter="available">🟢 Disponibles</button>
     </div>
 
@@ -409,7 +459,10 @@ function renderExploreView() {
                 ${user.skills.map(s => s.icon + ' ' + s.name).join(' · ')}
               </div>
               <div class="seva-list-item__meta">
-                <span class="profile-level level-${level.level}">${level.emoji} ${level.name}</span>
+                <span class="profile-level level-${level.level}" style="display:inline-flex; align-items:center; gap:4px;">
+                  <img class="icon-img icon-img--xs" src="${level.iconImg || '/iconos/transparent/icon-rol-sevaka.png'}" alt="${level.name}" />
+                  <span>${level.name}</span>
+                </span>
                 <span>★ ${user.avgRating.toFixed(1)}</span>
                 <span class="seva-list-item__status">
                   <span class="status-dot ${user.isAvailable ? 'status-dot--available' : 'status-dot--offline'}"></span>
@@ -443,8 +496,9 @@ function renderProfileDetailView() {
         <div class="profile-avatar">${user.avatar}</div>
         <div class="profile-info">
           <div class="profile-name">${user.displayName}</div>
-          <span class="profile-level level-${level.level}">
-            ${level.emoji} Nivel ${level.level} · ${level.name} (${level.title})
+          <span class="profile-level level-${level.level}" style="display:inline-flex; align-items:center; gap:6px;">
+            <img class="icon-img icon-img--xs" src="${level.iconImg || '/iconos/transparent/icon-rol-sevaka.png'}" alt="${level.name}" />
+            <span>Nivel ${level.level} · ${level.name} (${level.title})</span>
           </span>
           <div class="profile-zone">${user.zone} · ~1.5 km</div>
         </div>
@@ -468,15 +522,24 @@ function renderProfileDetailView() {
       <!-- Stats -->
       <div class="stats-grid mt-md">
         <div class="stat-card">
-          <div class="stat-card__value">${user.completedSevas}</div>
+          <div class="stat-card__value" style="display:flex; align-items:center; justify-content:center; gap:4px;">
+            <img class="bento-icon-img" src="/iconos/transparent/icon-mudra-loto-servicio.png" alt="Favores" />
+            <span>${user.completedSevas}</span>
+          </div>
           <div class="stat-card__label">Favores</div>
         </div>
         <div class="stat-card">
-          <div class="stat-card__value">★ ${user.avgRating.toFixed(1)}</div>
+          <div class="stat-card__value" style="display:flex; align-items:center; justify-content:center; gap:4px;">
+            <span style="color:var(--prestige-kamsya); font-size:1.15rem;">★</span>
+            <span>${user.avgRating.toFixed(1)}</span>
+          </div>
           <div class="stat-card__label">Calificación</div>
         </div>
         <div class="stat-card">
-          <div class="stat-card__value">${user.shishyas.length}</div>
+          <div class="stat-card__value" style="display:flex; align-items:center; justify-content:center; gap:4px;">
+            <img class="bento-icon-img" src="/iconos/transparent/icon-arbol-parampara.png" alt="Discípulos" />
+            <span>${user.shishyas.length}</span>
+          </div>
           <div class="stat-card__label">Discípulos</div>
         </div>
       </div>
@@ -498,11 +561,14 @@ function renderProfileDetailView() {
       <!-- Insignias -->
       ${user.badges.length > 0 ? `
         <div class="skills-section mt-sm">
-          <div class="skills-section__title">Insignias (Mudrās)</div>
+          <div class="skills-section__title" style="display:flex; align-items:center; gap:6px;">
+            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-ojo-sabiduria.png" alt="Mudras" />
+            <span>Insignias (Mudrās)</span>
+          </div>
           <div class="badges-row">
             ${user.badges.map(bId => {
               const b = MUDRAS[bId];
-              return b ? `<span class="badge"><span class="badge__icon">${b.icon}</span> ${b.name}</span>` : '';
+              return b ? `<span class="badge" style="display:inline-flex; align-items:center; gap:6px;"><img class="mudra-icon-img" src="${b.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="${b.name}" /> <span>${b.name}</span></span>` : '';
             }).join('')}
           </div>
         </div>
@@ -510,7 +576,10 @@ function renderProfileDetailView() {
 
       <!-- Linaje Paramparā -->
       <div class="parampara-tree">
-        <div class="parampara-tree__title">🌳 Linaje Paramparā</div>
+        <div class="parampara-tree__title" style="display:flex; align-items:center; gap:8px;">
+          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-arbol-parampara.png" alt="Linaje" />
+          <span>Linaje Paramparā</span>
+        </div>
         ${user.parampara.map((ancestor, i) => `
           <div class="parampara-node">
             <div class="parampara-node__dot guru"></div>
@@ -524,7 +593,10 @@ function renderProfileDetailView() {
           <div class="parampara-node__dot current"></div>
           <div class="parampara-node__info">
             <div class="parampara-node__name">${user.displayName}</div>
-            <div class="parampara-node__role">${level.name} · Nivel ${level.level}</div>
+            <div class="parampara-node__role" style="display:flex; align-items:center; gap:4px;">
+              <img class="icon-img icon-img--xs" src="${level.iconImg || '/iconos/transparent/icon-rol-sevaka.png'}" alt="${level.name}" />
+              <span>${level.name} · Nivel ${level.level}</span>
+            </div>
           </div>
         </div>
         ${user.shishyas.map(sid => {
@@ -546,8 +618,9 @@ function renderProfileDetailView() {
 
     <!-- Botón de contacto -->
     ${!isOwnProfile ? `
-      <button class="btn btn--primary btn--full mt-md" id="btnContactSeva">
-        🙏 Contactar para un Favor
+      <button class="btn btn--primary btn--full mt-md" id="btnContactSeva" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+        <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-loto-servicio.png" alt="Contactar" />
+        <span>Contactar para un Favor</span>
       </button>
     ` : ''}
 
@@ -560,8 +633,9 @@ function renderProfileDetailView() {
       if (verified.length === 0) return '';
       return `
         <div class="card mt-md">
-          <div class="skills-section__title" style="margin-bottom: var(--space-sm);">
-            🔐 Reseñas Comunitarias (Doble Ciego Verificado)
+          <div class="skills-section__title" style="margin-bottom: var(--space-sm); display:flex; align-items:center; gap:8px;">
+            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-doble-ciego.png" alt="Doble Ciego" />
+            <span>Reseñas Comunitarias (Doble Ciego Verificado)</span>
           </div>
           ${verified.map(r => {
             const isProv = r.providerId === user.id;
@@ -578,7 +652,7 @@ function renderProfileDetailView() {
                 </p>
                 <div class="flex justify-between items-center" style="font-size:0.72rem; color:var(--text-vibhuti);">
                   <span>${r.skillIcon} ${r.skillName} · ${rev.date || r.createdAt}</span>
-                  ${rev.badge ? `<span class="badge" style="padding:2px 8px; font-size:0.7rem;"><span class="badge__icon">${MUDRAS[rev.badge]?.icon || '✨'}</span> ${MUDRAS[rev.badge]?.name || ''}</span>` : ''}
+                  ${rev.badge ? `<span class="badge" style="padding:2px 8px; font-size:0.7rem; display:inline-flex; align-items:center; gap:4px;"><img class="mudra-icon-img" src="${MUDRAS[rev.badge]?.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="Mudra" /> <span>${MUDRAS[rev.badge]?.name || ''}</span></span>` : ''}
                 </div>
               </div>
             `;
@@ -590,13 +664,17 @@ function renderProfileDetailView() {
     <!-- Llaves Dīkṣā (solo propio perfil) -->
     ${isOwnProfile && user.dikshaKeys.length > 0 ? `
       <div class="diksha-section mt-md">
-        <div class="skills-section__title">🔑 Llaves de Invitación Dīkṣā</div>
+        <div class="skills-section__title" style="display:flex; align-items:center; gap:8px;">
+          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-llave-diksha.png" alt="Llaves" />
+          <span>Llaves de Invitación Dīkṣā</span>
+        </div>
         <p class="text-vibhuti" style="font-size:0.78rem; margin-bottom:var(--space-sm);">
           Cada llave invita a un nuevo miembro bajo tu padrinazgo. Tu Karma responde por ellos.
         </p>
         ${user.dikshaKeys.map(key => `
-          <span class="diksha-key ${key.status === 'available' ? 'diksha-key--available' : 'diksha-key--used'}">
-            🔑 ${key.code}
+          <span class="diksha-key ${key.status === 'available' ? 'diksha-key--available' : 'diksha-key--used'}" style="display:inline-flex; align-items:center; gap:6px;">
+            <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-llave-diksha.png" alt="Llave" />
+            <span>${key.code}</span>
             ${key.redeemedBy ? ` → ${getUserById(key.redeemedBy)?.displayName || ''}` : ''}
           </span>
         `).join('')}
@@ -622,7 +700,9 @@ function renderChatView() {
   if (!activeRequest) {
     return `
       <div class="empty-state">
-        <div class="empty-state__icon">💬</div>
+        <div class="empty-state__icon">
+          <img class="icon-img icon-img--hero" src="/iconos/transparent/icon-nav-chat.png" alt="Chat" />
+        </div>
         <div class="empty-state__title">Sin conversaciones activas</div>
         <div class="empty-state__text">
           Cuando aceptes o solicites un favor, aquí aparecerá el chat seguro con filtro anti-fuga.
@@ -647,14 +727,16 @@ function renderChatView() {
           <div class="chat-header-avatar">${otherUser?.avatar || '👤'}</div>
           <div>
             <div style="font-weight:700; font-size:0.95rem; color:var(--primary-nila); font-family:var(--font-heading);">${otherUser?.displayName || 'Usuario'}</div>
-            <div class="chat-security-status-badge">
-              <span>🛡️</span> ${isSankalpaAgreed ? 'Acuerdo Sankalpa Sellado · Datos Abiertos' : 'Escudo Anti-Fuga Activo · Canal Cifrado'}
+            <div class="chat-security-status-badge" style="display:inline-flex; align-items:center; gap:6px;">
+              <img class="icon-img icon-img--xs" src="${isSankalpaAgreed ? '/iconos/transparent/icon-pacto-sankalpa.png' : '/iconos/transparent/icon-escudo-kavacha.png'}" alt="Seguridad" />
+              <span>${isSankalpaAgreed ? 'Acuerdo Sankalpa Sellado · Datos Abiertos' : 'Escudo Anti-Fuga Activo · Canal Cifrado'}</span>
             </div>
           </div>
         </div>
         <div class="flex gap-sm">
-          <button class="btn btn--danger btn--sm" id="btnKavacha" title="Modo Escudo Kavacha" style="padding:6px 12px; font-size:0.75rem;">
-            🛡️ Kavacha
+          <button class="btn btn--danger btn--sm" id="btnKavacha" title="Modo Escudo Kavacha" style="padding:6px 12px; font-size:0.75rem; display:inline-flex; align-items:center; gap:6px;">
+            <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-escudo-kavacha.png" alt="Kavacha" />
+            <span>Kavacha</span>
           </button>
         </div>
       </div>
@@ -663,10 +745,10 @@ function renderChatView() {
       <div class="chat-messages" id="chatMessages">
         ${messages.map(msg => {
           if (msg.type === 'sankalpa') {
-            return `<div class="chat-bubble chat-bubble--system">📜 ${msg.text}</div>`;
+            return `<div class="chat-bubble chat-bubble--system" style="display:flex; align-items:flex-start; gap:8px;"><img class="icon-img icon-img--xs" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Sankalpa" style="margin-top:2px;" /> <span>${msg.text}</span></div>`;
           }
           if (msg.type === 'blocked') {
-            return `<div class="chat-bubble chat-bubble--blocked">🚫 ${msg.text}</div>`;
+            return `<div class="chat-bubble chat-bubble--blocked" style="display:flex; align-items:flex-start; gap:8px;"><img class="icon-img icon-img--xs" src="/iconos/transparent/icon-escudo-kavacha.png" alt="Escudo" style="margin-top:2px;" /> <span>${msg.text}</span></div>`;
           }
           const isSent = msg.senderId === state.currentUser.id;
           return `
@@ -683,32 +765,36 @@ function renderChatView() {
       <!-- Acciones de estado del flujo -->
       ${!isSankalpaAgreed && activeRequest.status === 'negotiating' ? `
         <div style="padding: var(--space-sm) var(--space-md); border-top: 1px solid var(--border-mitti); background: var(--surface-khadi);">
-          <button class="btn btn--geru btn--full btn--sm" id="btnConfirmSankalpa">
-            🤝 Confirmar Acuerdo Sankalpa
+          <button class="btn btn--geru btn--full btn--sm" id="btnConfirmSankalpa" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Sankalpa" />
+            <span>Confirmar Acuerdo Sankalpa</span>
           </button>
         </div>
       ` : ''}
 
       ${isSankalpaAgreed && activeRequest.status === 'sankalpa_agreed' ? `
         <div style="padding: var(--space-sm) var(--space-md); border-top: 1px solid var(--border-mitti); background: var(--surface-khadi);">
-          <button class="btn btn--primary btn--full btn--sm" id="btnStartPin">
-            🔢 Verificar PIN de Inicio (Llegada)
+          <button class="btn btn--primary btn--full btn--sm" id="btnStartPin" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-doble-ciego.png" alt="PIN" />
+            <span>Verificar PIN de Inicio (Llegada)</span>
           </button>
         </div>
       ` : ''}
 
       ${activeRequest.status === 'in_progress' ? `
         <div style="padding: var(--space-sm) var(--space-md); border-top: 1px solid var(--border-mitti); background: var(--surface-khadi);">
-          <button class="btn btn--geru btn--full btn--sm" id="btnEndPin">
-            ✅ Ingresar PIN de Finalización (Cierre y Pago)
+          <button class="btn btn--geru btn--full btn--sm" id="btnEndPin" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-doble-ciego.png" alt="PIN" />
+            <span>Ingresar PIN de Finalización (Cierre y Pago)</span>
           </button>
         </div>
       ` : ''}
 
       ${activeRequest.status === 'completed' ? `
         <div style="padding: var(--space-sm) var(--space-md); border-top: 1px solid var(--border-mitti); background: var(--surface-khadi);">
-          <button class="btn btn--geru btn--full btn--sm" id="btnGoToReview">
-            ⭐ Ver / Gestionar Evaluación Doble Ciego
+          <button class="btn btn--geru btn--full btn--sm" id="btnGoToReview" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-doble-ciego.png" alt="Evaluación" />
+            <span>Ver / Gestionar Evaluación Doble Ciego</span>
           </button>
         </div>
       ` : ''}
@@ -726,8 +812,9 @@ function renderChatView() {
 function renderSankalpaCard(request) {
   return `
     <div class="sankalpa-card">
-      <div class="sankalpa-card__title">
-        <span>📜</span> Pacto de Honor Digital (Sankalpa)
+      <div class="sankalpa-card__title" style="display:flex; align-items:center; gap:8px;">
+        <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Sankalpa" />
+        <span>Pacto de Honor Digital (Sankalpa)</span>
       </div>
       <div style="margin-bottom:8px;">
         <div style="font-size:0.68rem; text-transform:uppercase; color:var(--text-vibhuti); font-weight:700; letter-spacing:0.04em;">Descripción del Favor</div>
@@ -739,16 +826,25 @@ function renderSankalpaCard(request) {
       </div>
       <div style="margin-bottom:8px;">
         <div style="font-size:0.68rem; text-transform:uppercase; color:var(--text-vibhuti); font-weight:700; letter-spacing:0.04em;">Modalidad Comunitaria</div>
-        <div style="font-size:0.8rem; color:var(--text-vibhuti); font-weight:600;">${request.category === 'tan_seva' ? '🛠️ Tan-Sevā (Oficio Manual)' : '🧠 Man-Sevā (Gestión y Asesoría)'}</div>
+        <div style="font-size:0.8rem; color:var(--text-vibhuti); font-weight:600; display:flex; align-items:center; gap:6px;">
+          <img class="icon-img icon-img--xs" src="${request.category === 'tan_seva' ? '/iconos/transparent/icon-skill-tan-seva.png' : '/iconos/transparent/icon-skill-man-seva.png'}" alt="Categoría" />
+          <span>${request.category === 'tan_seva' ? 'Tan-Sevā (Oficio Manual)' : 'Man-Sevā (Gestión y Asesoría)'}</span>
+        </div>
       </div>
       <div class="sankalpa-card__signatures">
         <div class="sankalpa-sig">
           <div class="sankalpa-sig__label">Sello Solicitante</div>
-          <div class="sankalpa-sig__status">✓ Sancionado</div>
+          <div class="sankalpa-sig__status" style="display:inline-flex; align-items:center; gap:4px;">
+            <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Sello" />
+            <span>✓ Sancionado</span>
+          </div>
         </div>
         <div class="sankalpa-sig">
           <div class="sankalpa-sig__label">Sello Prestador</div>
-          <div class="sankalpa-sig__status">✓ Sancionado</div>
+          <div class="sankalpa-sig__status" style="display:inline-flex; align-items:center; gap:4px;">
+            <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Sello" />
+            <span>✓ Sancionado</span>
+          </div>
         </div>
       </div>
       <div style="text-align:center; margin-top:10px; font-size:0.68rem; color:var(--prestige-kamsya); font-family:var(--font-mono); letter-spacing:0.05em;">
@@ -767,7 +863,10 @@ function renderSevaFlowView() {
   
   return `
     <div class="text-center" style="padding: var(--space-xl) 0;">
-      <h2>${isStart ? '🔢 PIN de Inicio' : '✅ PIN de Finalización'}</h2>
+      <div style="margin-bottom:var(--space-sm);">
+        <img class="icon-img icon-img--hero" src="/iconos/transparent/icon-doble-ciego.png" alt="PIN" />
+      </div>
+      <h2>${isStart ? 'PIN de Inicio (Llegada)' : 'PIN de Finalización (Cierre)'}</h2>
       <p class="text-vibhuti mt-sm" style="font-size:0.85rem; max-width:300px; margin:var(--space-sm) auto;">
         ${isStart 
           ? 'El prestador debe ingresar el PIN que aparece en la pantalla del solicitante para confirmar su llegada.'
@@ -827,15 +926,18 @@ function renderReviewView() {
     const rRev = activeSeva.reviews.requesterReview;
     return `
       <div class="review-section">
-        <div style="font-size:2.4rem; margin-bottom:var(--space-xs);">✨</div>
+        <div style="margin-bottom:var(--space-sm);">
+          <img class="icon-img icon-img--hero" src="/iconos/transparent/icon-doble-ciego.png" alt="Doble Ciego" />
+        </div>
         <h2>Revelación Simultánea Doble Ciego</h2>
         <p class="text-vibhuti mt-xs" style="font-size:0.85rem; max-width:360px; margin:0 auto var(--space-md);">
           Ambas partes han enviado su evaluación. Conforme al principio de ecuanimidad de SevaSetu, las reseñas se revelan juntas e indelebles.
         </p>
 
         <div class="karma-impact-banner">
-          <div class="karma-impact-banner__title">
-            <span>⚖️</span> Impacto en el Libro Mayor de Karma
+          <div class="karma-impact-banner__title" style="display:flex; align-items:center; gap:8px;">
+            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-palabra-sagrada.png" alt="Impacto" />
+            <span>Impacto en el Libro Mayor de Karma</span>
           </div>
           <ul class="karma-impact-banner__list">
             <li>• <strong>${providerUser.displayName}</strong>: +${calculateKarmaForRating(rRev.rating)} pts por calificación ${rRev.rating}★ de su servicio.</li>
@@ -855,11 +957,12 @@ function renderReviewView() {
             <p class="double-blind-card__comment">"${rRev.comment}"</p>
             ${rRev.badge ? `
               <div class="badges-row mt-xs">
-                <span class="badge"><span class="badge__icon">${MUDRAS[rRev.badge]?.icon || '✨'}</span> ${MUDRAS[rRev.badge]?.name || ''}</span>
+                <span class="badge" style="display:inline-flex; align-items:center; gap:4px;"><img class="mudra-icon-img" src="${MUDRAS[rRev.badge]?.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="Mudra" /> <span>${MUDRAS[rRev.badge]?.name || ''}</span></span>
               </div>
             ` : ''}
-            <div class="double-blind-card__security mt-xs">
-              <span>🔒 3/3 respuestas de seguridad verificadas</span>
+            <div class="double-blind-card__security mt-xs" style="display:flex; align-items:center; gap:6px;">
+              <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-doble-ciego.png" alt="Seguro" />
+              <span>3/3 respuestas de seguridad verificadas</span>
             </div>
           </div>
 
@@ -873,11 +976,12 @@ function renderReviewView() {
             <p class="double-blind-card__comment">"${pRev.comment}"</p>
             ${pRev.badge ? `
               <div class="badges-row mt-xs">
-                <span class="badge"><span class="badge__icon">${MUDRAS[pRev.badge]?.icon || '✨'}</span> ${MUDRAS[pRev.badge]?.name || ''}</span>
+                <span class="badge" style="display:inline-flex; align-items:center; gap:4px;"><img class="mudra-icon-img" src="${MUDRAS[pRev.badge]?.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="Mudra" /> <span>${MUDRAS[pRev.badge]?.name || ''}</span></span>
               </div>
             ` : ''}
-            <div class="double-blind-card__security mt-xs">
-              <span>🔒 3/3 respuestas de seguridad verificadas</span>
+            <div class="double-blind-card__security mt-xs" style="display:flex; align-items:center; gap:6px;">
+              <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-doble-ciego.png" alt="Seguro" />
+              <span>3/3 respuestas de seguridad verificadas</span>
             </div>
           </div>
         </div>
@@ -893,15 +997,17 @@ function renderReviewView() {
   if (myReview && !revealed) {
     return `
       <div class="empty-state">
-        <div class="empty-state__icon">🔒</div>
+        <div class="empty-state__icon">
+          <img class="icon-img icon-img--hero" src="/iconos/transparent/icon-doble-ciego.png" alt="Sellado" />
+        </div>
         <div class="empty-state__title">Evaluación Sellada en Doble Ciego</div>
         <div class="empty-state__text">
           Tu calificación para <strong>${counterparty.displayName}</strong> y tus 3 respuestas privadas han sido encriptadas.
           La reseña de la contraparte permanece estrictamente bloqueada hasta que ambas partes hayan enviado su evaluación.
         </div>
-        <div class="review-blind-notice mt-md">
-          <span class="review-blind-notice__icon">🔐</span>
-          Mecanismo Doble Ciego: Ninguna parte lee antes de calificar para garantizar total imparcialidad
+        <div class="review-blind-notice mt-md" style="display:flex; align-items:center; gap:8px;">
+          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-doble-ciego.png" alt="Doble Ciego" />
+          <span>Mecanismo Doble Ciego: Ninguna parte lee antes de calificar para garantizar total imparcialidad</span>
         </div>
 
         <div style="background:var(--surface-khadi); border:1px dashed var(--border-mitti); border-radius:var(--radius-md); padding:var(--space-md); margin:var(--space-md) 0; text-align:left;">
@@ -932,9 +1038,9 @@ function renderReviewView() {
         Evaluando a <strong>${counterparty.displayName}</strong> (${isProvider ? 'Solicitante' : 'Prestador'})
       </p>
 
-      <div class="review-blind-notice mt-md">
-        <span class="review-blind-notice__icon">🔐</span>
-        Evaluación Doble Ciego — La contraparte no verá tu calificación hasta que también envíe la suya
+      <div class="review-blind-notice mt-md" style="display:flex; align-items:center; gap:8px;">
+        <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-doble-ciego.png" alt="Doble Ciego" />
+        <span>Evaluación Doble Ciego — La contraparte no verá tu calificación hasta que también envíe la suya</span>
       </div>
 
       <!-- Estrellas -->
@@ -955,8 +1061,9 @@ function renderReviewView() {
 
       <!-- Preguntas Privadas de Seguridad (Community Standing) -->
       <div class="review-private-questions">
-        <div class="skills-section__title" style="margin-bottom: var(--space-sm);">
-          🔒 Preguntas Privadas de Seguridad (Community Standing)
+        <div class="skills-section__title" style="margin-bottom: var(--space-sm); display:flex; align-items:center; gap:8px;">
+          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-doble-ciego.png" alt="Seguridad" />
+          <span>Preguntas Privadas de Seguridad (Community Standing)</span>
         </div>
         <p class="text-vibhuti" style="font-size:0.75rem; margin-bottom: var(--space-md);">
           Estas respuestas son 100% confidenciales. Nunca se muestran a la contraparte ni en su perfil. Alimentan anónimamente el motor de Karma y confianza.
@@ -989,11 +1096,15 @@ function renderReviewView() {
 
       <!-- Insignias opcionales (Mudrās) -->
       <div class="mt-lg" style="text-align:left;">
-        <div class="skills-section__title">Otorgar Insignia de Reconocimiento (Mudrā)</div>
+        <div class="skills-section__title" style="display:flex; align-items:center; gap:8px;">
+          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-ojo-sabiduria.png" alt="Mudras" />
+          <span>Otorgar Insignia de Reconocimiento (Mudrā)</span>
+        </div>
         <div class="badges-row mt-sm">
           ${Object.values(MUDRAS).map(m => `
-            <button class="badge ${rev.selectedBadge === m.id ? 'active' : ''}" id="badge-${m.id}" data-badge="${m.id}" style="cursor:pointer; border:${rev.selectedBadge === m.id ? '2px solid var(--primary-nila)' : '1px solid var(--border-mitti)'};">
-              <span class="badge__icon">${m.icon}</span> ${m.name}
+            <button class="badge ${rev.selectedBadge === m.id ? 'active' : ''}" id="badge-${m.id}" data-badge="${m.id}" style="cursor:pointer; border:${rev.selectedBadge === m.id ? '2px solid var(--primary-nila)' : '1px solid var(--border-mitti)'}; display:inline-flex; align-items:center; gap:6px;">
+              <img class="mudra-icon-img" src="${m.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="${m.name}" />
+              <span>${m.name}</span>
             </button>
           `).join('')}
         </div>
@@ -1012,7 +1123,9 @@ function renderReviewView() {
 function renderRegistrationView() {
   return `
     <div class="text-center" style="padding: var(--space-xl) 0;">
-      <img src="/logo.jpg" alt="SevaSetu" style="width:64px; height:64px; border-radius:var(--radius-md); margin:0 auto var(--space-md); display:block;" />
+      <div style="margin-bottom:var(--space-sm);">
+        <img class="icon-img icon-img--hero" src="/iconos/transparent/icon-llave-diksha.png" alt="Dīkṣā" />
+      </div>
       <h2>Registro por Invitación</h2>
       <p class="text-vibhuti mt-sm" style="font-size:0.85rem; max-width:320px; margin:var(--space-sm) auto;">
         SevaSetu es una red cerrada de confianza. Necesitas un código de invitación Dīkṣā emitido por un miembro activo con Karma suficiente.
@@ -1054,8 +1167,9 @@ function renderRegistrationView() {
           </label>
         </div>
 
-        <button class="btn btn--primary btn--full" id="btnCompleteRegister">
-          🔑 Completar Registro
+        <button class="btn btn--primary btn--full" id="btnCompleteRegister" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+          <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-llave-diksha.png" alt="Llave" />
+          <span>Completar Registro</span>
         </button>
       </div>
 
@@ -1080,7 +1194,9 @@ function renderRegisterModal() {
           por un miembro activo con nivel de Karma suficiente.
         </div>
         <div style="text-align:center; padding: var(--space-md); background: var(--bg-chandan); border-radius:var(--radius-md); border: 1px solid var(--border-mitti);">
-          <div style="font-size:2.5rem; margin-bottom:var(--space-sm);">🔑</div>
+          <div style="margin-bottom:var(--space-sm);">
+            <img class="icon-img icon-img--hero" src="/iconos/transparent/icon-llave-diksha.png" alt="Llave" />
+          </div>
           <p class="text-vibhuti" style="font-size:0.82rem;">
             Cada miembro recibe <strong>+3 llaves Dīkṣā</strong> al subir de nivel de Karma. 
             Solicita una a alguien de confianza en tu comunidad.
@@ -1138,7 +1254,8 @@ function renderUberNotification() {
           <span>⭐</span> <span>${notif.requesterKarma} pts · ${notif.requesterLevel}</span>
         </div>
         <div class="uber-notification__meta-item">
-          <span>${notif.categoryIcon}</span> <span>${notif.categoryLabel}</span>
+          <img class="icon-img icon-img--xs" src="${notif.category === 'tan_seva' ? '/iconos/transparent/icon-skill-tan-seva.png' : '/iconos/transparent/icon-skill-man-seva.png'}" alt="Categoría" />
+          <span>${notif.categoryLabel}</span>
         </div>
       </div>
 
@@ -1146,8 +1263,9 @@ function renderUberNotification() {
         <button class="btn btn--secondary btn--sm" id="btnRejectSeva">
           Dejar Pasar
         </button>
-        <button class="btn btn--geru btn--sm pulse-geru" id="btnAcceptSeva">
-          🙏 Aceptar Favor
+        <button class="btn btn--geru btn--sm pulse-geru" id="btnAcceptSeva" style="display:inline-flex; align-items:center; gap:6px;">
+          <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-mudra-maestro.png" alt="Aceptar" />
+          <span>Aceptar Favor</span>
         </button>
       </div>
     </div>

@@ -103,6 +103,10 @@ html {
 body {
   font-family: var(--font-body);
   background-color: var(--bg-chandan);
+  background-image: url('/fondo.jpg');
+  background-repeat: repeat;
+  background-size: 360px 360px;
+  background-attachment: fixed;
   color: var(--text-kajal);
   line-height: 1.6;
   min-height: 100vh;
@@ -111,17 +115,83 @@ body {
   position: relative;
 }
 
-/* Textura sutil orgánica de fondo */
+/* Velo sutil translúcido para asegurar contraste y legibilidad AAA */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.025;
-  background-image: radial-gradient(var(--primary-nila) 1px, transparent 1px), radial-gradient(var(--accent-geru) 1px, transparent 1px);
-  background-size: 32px 32px;
-  background-position: 0 0, 16px 16px;
+  background: radial-gradient(circle at 50% 15%, rgba(251, 248, 243, 0.72) 0%, rgba(251, 248, 243, 0.88) 100%);
+}
+
+/* ─── ICONOGRAFÍA SATTVA HERITAGE ─── */
+.icon-img {
+  display: inline-block;
+  vertical-align: middle;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.icon-img--xs {
+  width: 14px;
+  height: 14px;
+}
+
+.icon-img--sm {
+  width: 18px;
+  height: 18px;
+}
+
+.icon-img--md {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-img--lg {
+  width: 32px;
+  height: 32px;
+}
+
+.icon-img--hero {
+  width: 42px;
+  height: 42px;
+}
+
+.icon-nav-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  transition: transform var(--duration-fast) var(--ease-spring), filter var(--duration-fast) var(--ease-smooth);
+}
+
+.bottom-nav__item.active .icon-nav-img {
+  transform: translateY(-2px) scale(1.15);
+  filter: drop-shadow(0 2px 8px rgba(166, 124, 55, 0.45));
+}
+
+.top-bar__nav-link .icon-nav-img {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+}
+
+.role-switcher__icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.bento-icon-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.mudra-icon-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
 
 h1, h2, h3, h4 {

@@ -5,19 +5,20 @@
 
 // ─── Niveles de Karma ───
 export const KARMA_LEVELS = [
-  { level: 1, name: 'Śramaṇa', title: 'Aprendiz', min: 0, max: 99, invitations: 0, accumulated: 0, emoji: '🔰' },
-  { level: 2, name: 'Śiṣya', title: 'Discípulo', min: 100, max: 299, invitations: 3, accumulated: 3, emoji: '🌿' },
-  { level: 3, name: 'Sevaka', title: 'Artesano', min: 300, max: 699, invitations: 3, accumulated: 6, emoji: '🛠️' },
-  { level: 4, name: 'Ācārya', title: 'Maestro', min: 700, max: 1499, invitations: 3, accumulated: 9, emoji: '🏛️' },
-  { level: 5, name: 'Parama-Guru', title: 'Guardián', min: 1500, max: Infinity, invitations: 3, accumulated: 12, emoji: '🕉️' },
+  { level: 1, name: 'Śramaṇa', title: 'Aprendiz', min: 0, max: 99, invitations: 0, accumulated: 0, emoji: '🌱', iconImg: '/iconos/transparent/icon-rol-sramana.png' },
+  { level: 2, name: 'Śiṣya', title: 'Discípulo', min: 100, max: 299, invitations: 3, accumulated: 3, emoji: '🌿', iconImg: '/iconos/transparent/icon-rol-sramana.png' },
+  { level: 3, name: 'Sevaka', title: 'Artesano', min: 300, max: 699, invitations: 3, accumulated: 6, emoji: '🛠️', iconImg: '/iconos/transparent/icon-rol-sevaka.png' },
+  { level: 4, name: 'Ācārya', title: 'Maestro', min: 700, max: 1499, invitations: 3, accumulated: 9, emoji: '🏛️', iconImg: '/iconos/transparent/icon-nivel-acarya.png' },
+  { level: 5, name: 'Parama-Guru', title: 'Guardián', min: 1500, max: Infinity, invitations: 3, accumulated: 12, emoji: '🕉️', iconImg: '/iconos/transparent/icon-nivel-acarya.png' },
 ];
 
 // ─── Insignias (Mudrās) ───
 export const MUDRAS = {
-  manos_maestro: { id: 'manos_maestro', name: 'Manos de Maestro', icon: '🤲', description: 'Excelencia técnica demostrada' },
-  palabra_sagrada: { id: 'palabra_sagrada', name: 'Palabra Sagrada', icon: '📜', description: 'Cumplió exactamente lo pactado' },
-  hogar_hospitalario: { id: 'hogar_hospitalario', name: 'Hogar Hospitalario', icon: '🏠', description: 'Trato amable y seguro en su hogar' },
-  guia_paciente: { id: 'guia_paciente', name: 'Guía Paciente', icon: '🧭', description: 'Acompañamiento calmado en trámites' },
+  manos_maestro: { id: 'manos_maestro', name: 'Manos de Maestro', icon: '🤲', iconImg: '/iconos/transparent/icon-mudra-maestro.png', description: 'Excelencia técnica demostrada' },
+  palabra_sagrada: { id: 'palabra_sagrada', name: 'Palabra Sagrada', icon: '📜', iconImg: '/iconos/transparent/icon-mudra-palabra-sagrada.png', description: 'Cumplió exactamente lo pactado' },
+  ojo_sabiduria: { id: 'ojo_sabiduria', name: 'Ojo de Sabiduría', icon: '👁️', iconImg: '/iconos/transparent/icon-mudra-ojo-sabiduria.png', description: 'Acierto diagnóstico y discernimiento' },
+  loto_servicio: { id: 'loto_servicio', name: 'Loto de Servicio', icon: '🪷', iconImg: '/iconos/transparent/icon-mudra-loto-servicio.png', description: 'Entrega desinteresada y calidez' },
+  guia_paciente: { id: 'guia_paciente', name: 'Guía Paciente', icon: '🧭', iconImg: '/iconos/transparent/icon-mudra-guia.png', description: 'Acompañamiento calmado en trámites' },
 };
 
 // ─── Habilidades Disponibles ───

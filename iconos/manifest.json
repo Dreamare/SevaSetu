@@ -158,5 +158,45 @@
       "col": 4
     },
     "dimensions": "256x256"
+  },
+  {
+    "id": "icon-pacto-sankalpa",
+    "filename": "icon-pacto-sankalpa.png",
+    "description": "Pacto de Honor Digital (Pergamino Sagrado Sankalpa)",
+    "grid_position": {
+      "row": 5,
+      "col": 1
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-mudra-palabra-sagrada",
+    "filename": "icon-mudra-palabra-sagrada.png",
+    "description": "Insignia Mudrā: Palabra Sagrada (Caracola Sagrada Shankha)",
+    "grid_position": {
+      "row": 5,
+      "col": 2
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-mudra-ojo-sabiduria",
+    "filename": "icon-mudra-ojo-sabiduria.png",
+    "description": "Insignia Mudrā: Ojo de Sabiduría (Ajna Chakra)",
+    "grid_position": {
+      "row": 5,
+      "col": 3
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-mudra-loto-servicio",
+    "filename": "icon-mudra-loto-servicio.png",
+    "description": "Insignia Mudrā: Loto de Servicio (Padma en Manos Oferentes)",
+    "grid_position": {
+      "row": 5,
+      "col": 4
+    },
+    "dimensions": "256x256"
   }
 ]
