@@ -70,21 +70,35 @@ function render() {
 
 // ─── Barra Superior ───
 function renderTopBar() {
-  const roleLabels = {
-    sevaka: 'Sevaka',
-    yajamana: 'Yajamāna',
-    shramana: 'Śramaṇa',
-  };
   return `
     <header class="top-bar" id="topBar">
-      <div class="top-bar__logo">
-        <img src="/logo.jpg" alt="SevaSetu" />
-        <span>SevaSetu <span class="sanskrit">सेवासेतु</span></span>
+      <div class="top-bar__logo" id="brandLogoHome">
+        <div class="top-bar__logo-frame">
+          <img src="/logo.jpg" alt="SevaSetu" />
+        </div>
+        <div class="top-bar__brand-text">
+          <div class="top-bar__name">SEVASETU <span class="top-bar__sanskrit">सेवासेतु</span></div>
+          <div class="top-bar__tagline">El Puente del Servicio</div>
+        </div>
       </div>
+
+      <nav class="top-bar__nav" id="topBarNav">
+        <button class="top-bar__nav-link ${state.currentView === 'home' ? 'active' : ''}" data-view="home" id="topNavHome">Inicio</button>
+        <button class="top-bar__nav-link ${state.currentView === 'explore' ? 'active' : ''}" data-view="explore" id="topNavExplore">Explorar</button>
+        <button class="top-bar__nav-link ${state.currentView === 'chat' ? 'active' : ''}" data-view="chat" id="topNavChat">Chat</button>
+        <button class="top-bar__nav-link ${state.currentView === 'profile' ? 'active' : ''}" data-view="profile" id="topNavProfile">Mi Perfil</button>
+      </nav>
+
       <div class="role-switcher" id="roleSwitcher">
-        <button class="role-switcher__btn ${state.currentRole === 'sevaka' ? 'active' : ''}" data-role="sevaka" id="btnRoleSevaka">Sevaka</button>
-        <button class="role-switcher__btn ${state.currentRole === 'yajamana' ? 'active' : ''}" data-role="yajamana" id="btnRoleYajamana">Yajamāna</button>
-        <button class="role-switcher__btn ${state.currentRole === 'shramana' ? 'active' : ''}" data-role="shramana" id="btnRoleShramana">Śramaṇa</button>
+        <button class="role-switcher__btn ${state.currentRole === 'sevaka' ? 'active' : ''}" data-role="sevaka" id="btnRoleSevaka" title="Modo Prestador">
+          <span>🛠️</span> Sevaka
+        </button>
+        <button class="role-switcher__btn ${state.currentRole === 'yajamana' ? 'active' : ''}" data-role="yajamana" id="btnRoleYajamana" title="Modo Solicitante">
+          <span>🤝</span> Yajamāna
+        </button>
+        <button class="role-switcher__btn ${state.currentRole === 'shramana' ? 'active' : ''}" data-role="shramana" id="btnRoleShramana" title="Modo Aprendiz">
+          <span>🌱</span> Śramaṇa
+        </button>
       </div>
     </header>
   `;
@@ -94,8 +108,11 @@ function renderTopBar() {
 function renderKavachaBar() {
   return `
     <div class="kavacha-bar" id="kavachaBar">
-      🛡️ Modo Escudo Kavacha activo — Seguimiento compartido con tu contacto de confianza
-      <button onclick="document.getElementById('kavachaBar').remove(); window.__state.kavachaActive = false;" style="background:transparent;color:var(--bg-chandan);font-weight:700;margin-left:8px;">✕</button>
+      <div>
+        <span class="kavacha-bar__pulse"></span>
+        🛡️ Modo Escudo Kavacha activo — Seguimiento en vivo compartido con tu contacto de confianza
+      </div>
+      <button onclick="document.getElementById('kavachaBar').remove(); window.__state.kavachaActive = false;" style="background:transparent;color:var(--bg-chandan);font-weight:700;font-size:0.9rem;padding:2px 8px;">✕</button>
     </div>
   `;
 }
@@ -136,129 +153,222 @@ function renderCurrentView() {
 }
 
 // ═══════════════════════════════════════════════════════
-// VISTA: INICIO
+// VISTA: INICIO (MANDALA SAGRADO Y ACCIONES BENTO)
 // ═══════════════════════════════════════════════════════
 function renderHomeView() {
   const user = state.currentUser;
   const level = getKarmaLevel(user.karmaPoints);
   const progress = getKarmaProgress(user.karmaPoints);
-  const roleTitle = state.currentRole === 'yajamana' ? 'Solicitante' : 'Prestador';
+  const nextLevel = KARMA_LEVELS.find(l => l.level === level.level + 1);
+
+  // Cálculo para SVG Circular Mandala
+  const radius = 70;
+  const circumference = 2 * Math.PI * radius; // ~439.8
+  const strokeDashoffset = circumference - (circumference * progress) / 100;
 
   return `
-    <div class="welcome-hero">
-      <img src="/logo.jpg" alt="SevaSetu" class="welcome-hero__logo" />
-      <h1 class="welcome-hero__title">Namaste, ${user.displayName}</h1>
-      <p class="welcome-hero__subtitle">
-        ${state.currentRole === 'shramana' 
-          ? 'Bienvenido a la comunidad. Estás en observación como Aprendiz.'
-          : `Tu servicio fortalece el puente de confianza de la comunidad.`}
+    <!-- HERO: MANDALA SAGRADO DE KARMA -->
+    <div class="karma-mandala-hero">
+      <div class="hero-beacon-ribbon">
+        <span class="beacon-dot"></span>
+        <span>Red Paramparā Activa · ${user.zone}</span>
+      </div>
+
+      <!-- Medidor Circular Mandala SVG -->
+      <div class="mandala-gauge">
+        <svg viewBox="0 0 160 160">
+          <defs>
+            <linearGradient id="mandalaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#A67C37" />
+              <stop offset="50%" stop-color="#B85A3A" />
+              <stop offset="100%" stop-color="#38664B" />
+            </linearGradient>
+          </defs>
+          <circle class="mandala-track" cx="80" cy="80" r="${radius}" />
+          <circle class="mandala-fill" cx="80" cy="80" r="${radius}" 
+            stroke-dasharray="${circumference}" 
+            stroke-dashoffset="${strokeDashoffset}" />
+        </svg>
+
+        <div class="mandala-center">
+          <div class="mandala-avatar">${user.avatar}</div>
+          <div class="mandala-points">${user.karmaPoints}</div>
+          <div class="mandala-pts-label">Karma Pts</div>
+        </div>
+      </div>
+
+      <div class="hero-user-name">${user.displayName}</div>
+      <div class="hero-level-chip ${level.level >= 4 ? 'hero-level-chip--kamsya' : 'hero-level-chip--sindhoor'}">
+        <span>${level.emoji}</span> Nivel ${level.level} · ${level.name} (${level.title})
+      </div>
+
+      <p class="hero-mantra-subtext">
+        ${state.currentRole === 'shramana'
+          ? 'Iniciado en observación comunitaria. Tu conducta en tus primeros favores edifica tu Karma y honra a tu padrino.'
+          : state.currentRole === 'sevaka'
+          ? 'Tu servicio desinteresado (Sevā) teje el puente de honor. Cada favor impecable desbloquea prestigio y llaves Dīkṣā.'
+          : 'Solicitudes protegidas bajo honor digital Sankalpa. Calificaciones objetivas y sin intermediarios bancarios.'}
       </p>
-    </div>
 
-    <!-- Karma Meter -->
-    <div class="karma-meter yantra-pattern">
-      <div class="karma-meter__header">
-        <span class="karma-meter__label">Karma · ${level.emoji} ${level.name} (${level.title})</span>
-        <span class="karma-meter__value">${user.karmaPoints} pts</span>
-      </div>
-      <div class="karma-meter__bar">
-        <div class="karma-meter__fill" style="width: ${progress}%"></div>
-      </div>
-      <div class="karma-meter__range">
-        <span>${level.min} pts</span>
-        <span>Nivel ${level.level}</span>
-        <span>${level.max === Infinity ? '∞' : level.max} pts</span>
-      </div>
-    </div>
-
-    <!-- Estadísticas -->
-    <div class="stats-grid mt-md">
-      <div class="stat-card">
-        <div class="stat-card__value">${user.completedSevas}</div>
-        <div class="stat-card__label">Sevās</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">★ ${user.avgRating.toFixed(1)}</div>
-        <div class="stat-card__label">Promedio</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__value">${user.dikshaKeys.filter(k => k.status === 'available').length}</div>
-        <div class="stat-card__label">Llaves Dīkṣā</div>
-      </div>
-    </div>
-
-    <!-- Acciones rápidas -->
-    <div class="mt-lg">
-      ${state.currentRole === 'yajamana' ? `
-        <button class="btn btn--geru btn--full pulse-geru" id="btnNewSeva">
-          🙏 Solicitar un Favor (Sevā)
-        </button>
-      ` : state.currentRole === 'sevaka' ? `
-        <button class="btn btn--primary btn--full" id="btnSimulateNotification">
-          📡 Simular Notificación de Favor Entrante
-        </button>
+      ${nextLevel ? `
+        <div style="background: rgba(35, 57, 77, 0.04); border: 1px dashed var(--border-mitti); border-radius: var(--radius-md); padding: 8px 14px; margin-top: var(--space-xs); font-size: 0.75rem; color: var(--text-vibhuti); display: inline-flex; align-items: center; gap: 6px;">
+          <span>🎯</span> Próximo rango: <strong>${nextLevel.name}</strong> a los ${nextLevel.min} pts (+3 Llaves Dīkṣā)
+        </div>
       ` : `
-        <button class="btn btn--secondary btn--full" id="btnRegister">
-          🔑 Ingresar Código de Invitación Dīkṣā
-        </button>
+        <div style="background: rgba(166, 124, 55, 0.08); border: 1px solid var(--prestige-kamsya); border-radius: var(--radius-md); padding: 8px 14px; font-size: 0.75rem; color: var(--prestige-kamsya); font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+          <span>🕉️</span> Rango Máximo: Miembro del Consejo de Mediación Panchayat
+        </div>
+      `}
+
+      <!-- TRIO DE MÉTRICAS BENTO -->
+      <div class="bento-metrics-grid">
+        <div class="bento-metric-card">
+          <div class="bento-metric-card__value">${user.completedSevas}</div>
+          <div class="bento-metric-card__label">Favores Sevā</div>
+        </div>
+        <div class="bento-metric-card">
+          <div class="bento-metric-card__value"><span style="color:var(--prestige-kamsya); font-size:1rem;">★</span> ${user.avgRating.toFixed(1)}</div>
+          <div class="bento-metric-card__label">Honor Comunitario</div>
+        </div>
+        <div class="bento-metric-card">
+          <div class="bento-metric-card__value"><span style="color:var(--accent-geru); font-size:1rem;">🔑</span> ${user.dikshaKeys.filter(k => k.status === 'available').length}</div>
+          <div class="bento-metric-card__label">Llaves Dīkṣā</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DECK DE ACCIONES RÁPIDAS (BENTO TILES) -->
+    <div class="action-deck action-deck--dual">
+      ${state.currentRole === 'yajamana' ? `
+        <div class="action-tile action-tile--hero" id="btnNewSeva">
+          <div class="action-tile__icon-box">🙏</div>
+          <div class="action-tile__body">
+            <h3 class="action-tile__title">Solicitar un Favor</h3>
+            <p class="action-tile__desc">Emite una necesidad al radar comunitario de confianza.</p>
+          </div>
+        </div>
+        <div class="action-tile" id="btnExploreQuick">
+          <div class="action-tile__icon-box">🔍</div>
+          <div class="action-tile__body">
+            <h3 class="action-tile__title">Explorar Linajes</h3>
+            <p class="action-tile__desc">Descubre maestros y discípulos con habilidades avaladas.</p>
+          </div>
+        </div>
+      ` : state.currentRole === 'sevaka' ? `
+        <div class="action-tile action-tile--hero" id="btnSimulateNotification">
+          <div class="action-tile__icon-box">📡</div>
+          <div class="action-tile__body">
+            <h3 class="action-tile__title">Radar de Sevā</h3>
+            <p class="action-tile__desc">Simular favor entrante estilo Uber Wave en tu zona.</p>
+          </div>
+        </div>
+        <div class="action-tile" id="btnProfileQuick">
+          <div class="action-tile__icon-box">🔑</div>
+          <div class="action-tile__body">
+            <h3 class="action-tile__title">Tus Llaves Dīkṣā</h3>
+            <p class="action-tile__desc">Invita y apadrina miembros bajo tu prestigio solidario.</p>
+          </div>
+        </div>
+      ` : `
+        <div class="action-tile action-tile--hero" id="btnRegister">
+          <div class="action-tile__icon-box">🔑</div>
+          <div class="action-tile__body">
+            <h3 class="action-tile__title">Ingresar Código Dīkṣā</h3>
+            <p class="action-tile__desc">Redime tu llave de invitación e iníciate con un Guru.</p>
+          </div>
+        </div>
+        <div class="action-tile" id="btnExploreQuick">
+          <div class="action-tile__icon-box">🏛️</div>
+          <div class="action-tile__body">
+            <h3 class="action-tile__title">Conocer Maestros</h3>
+            <p class="action-tile__desc">Explora los Ācāryas activos en la red comunitaria.</p>
+          </div>
+        </div>
       `}
     </div>
 
-    <!-- Actividad reciente -->
-    <div class="card mt-lg">
-      <h3 style="margin-bottom: var(--space-md);">Actividad Reciente</h3>
+    <!-- LIBRO MAYOR DE KARMA (HISTORIAL VERIFICADO) -->
+    <div class="card mb-md">
+      <div class="flex justify-between items-center mb-md">
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Libro Mayor de Honor</h3>
+        <span class="text-vibhuti font-mono" style="font-size:0.7rem;">HASH COMUNITARIO</span>
+      </div>
       ${state.karmaLedger
         .filter(e => e.userId === user.id)
         .slice(0, 5)
         .map(entry => `
-          <div class="activity-item">
-            <div class="activity-item__icon activity-item__icon--${entry.event === 'seva_completed' ? 'seva' : entry.event === 'shishya_bonus' ? 'diksha' : 'karma'}">
-              ${entry.event === 'seva_completed' ? '🤝' : entry.event === 'shishya_bonus' ? '🎁' : '⚡'}
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border-delicate);">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:36px; height:36px; border-radius:var(--radius-sm); background:var(--surface-khadi); border:1px solid var(--border-mitti); display:flex; align-items:center; justify-content:center; font-size:1.1rem;">
+                ${entry.event === 'seva_completed' ? '🤝' : entry.event === 'shishya_bonus' ? '🎁' : entry.event === 'shishya_penalty' ? '⚖️' : '⚡'}
+              </div>
+              <div>
+                <div style="font-size:0.85rem; font-weight:600; color:var(--primary-nila); line-height:1.2;">${entry.detail}</div>
+                <div class="text-vibhuti font-mono" style="font-size:0.68rem; margin-top:2px;">${entry.date} · Id: ${entry.userId.slice(-6)}</div>
+              </div>
             </div>
-            <div class="activity-item__body">
-              <div class="activity-item__title">${entry.detail}</div>
-              <div class="activity-item__time">${entry.date}</div>
-            </div>
-            <span class="activity-item__points ${entry.points >= 0 ? 'activity-item__points--positive' : 'activity-item__points--negative'}">
+            <span class="font-mono" style="font-weight:700; font-size:0.92rem; color:${entry.points >= 0 ? 'var(--success-tulsi)' : 'var(--danger-sindoor)'}; padding:3px 8px; border-radius:var(--radius-pill); background:${entry.points >= 0 ? 'rgba(56,102,75,0.08)' : 'rgba(168,56,59,0.08)'};">
               ${entry.points >= 0 ? '+' : ''}${entry.points}
             </span>
           </div>
-        `).join('') || '<p class="text-vibhuti" style="font-size:0.85rem;">Aún no hay actividad registrada.</p>'}
+        `).join('') || '<p class="text-vibhuti" style="font-size:0.85rem;">Aún no hay transacciones en el libro mayor.</p>'}
     </div>
 
-    <!-- Linaje resumido -->
+    <!-- ÁRBOL PARAMPARĀ (MAPA DE LINAJE SAGRADO) -->
     ${user.parampara.length > 0 ? `
-      <div class="parampara-tree mt-md">
-        <div class="parampara-tree__title">🌳 Tu Linaje Paramparā</div>
-        ${user.parampara.map((ancestor, i) => `
-          <div class="parampara-node">
-            <div class="parampara-node__dot guru"></div>
-            <div class="parampara-node__info">
-              <div class="parampara-node__name">${ancestor}</div>
-              <div class="parampara-node__role">Ascendencia nivel ${i + 1}</div>
-            </div>
-          </div>
-        `).join('')}
-        <div class="parampara-node">
-          <div class="parampara-node__dot current"></div>
-          <div class="parampara-node__info">
-            <div class="parampara-node__name">${user.displayName}</div>
-            <div class="parampara-node__role">Tú · ${level.name} (${level.title})</div>
-          </div>
+      <div class="card">
+        <div class="parampara-tree__title">
+          <span>🌳</span> Linaje Sagrado Paramparā
         </div>
-        ${user.shishyas.length > 0 ? user.shishyas.map(sid => {
-          const s = getUserById(sid);
-          if (!s) return '';
-          return `
+        <div class="parampara-thread">
+          ${user.parampara.map((ancestor, i) => `
             <div class="parampara-node">
-              <div class="parampara-node__dot"></div>
-              <div class="parampara-node__info">
-                <div class="parampara-node__name">${s.displayName}</div>
-                <div class="parampara-node__role">Śiṣya · ${getKarmaLevel(s.karmaPoints).name}</div>
+              <div class="parampara-node__pin">
+                <div class="parampara-node__pin-inner"></div>
+              </div>
+              <div class="parampara-node__card">
+                <div>
+                  <div class="parampara-node__name">${ancestor}</div>
+                  <div class="parampara-node__tier-tag">Ascendencia nivel ${i + 1}</div>
+                </div>
+                <span style="font-size:0.8rem; color:var(--prestige-kamsya);">🏛️ Guru</span>
               </div>
             </div>
-          `;
-        }).join('') : ''}
+          `).join('')}
+          
+          <div class="parampara-node parampara-node--current">
+            <div class="parampara-node__pin">
+              <div class="parampara-node__pin-inner"></div>
+            </div>
+            <div class="parampara-node__card">
+              <div>
+                <div class="parampara-node__name">${user.displayName} (Tú)</div>
+                <div class="parampara-node__tier-tag">${level.emoji} ${level.name} (${level.title}) · ${user.karmaPoints} pts</div>
+              </div>
+              <span class="badge active" style="font-size:0.7rem; padding:3px 8px;">Activo</span>
+            </div>
+          </div>
+
+          ${user.shishyas.length > 0 ? user.shishyas.map(sid => {
+            const s = getUserById(sid);
+            if (!s) return '';
+            const sLevel = getKarmaLevel(s.karmaPoints);
+            return `
+              <div class="parampara-node">
+                <div class="parampara-node__pin" style="border-color:var(--success-tulsi);">
+                  <div class="parampara-node__pin-inner" style="background:var(--success-tulsi);"></div>
+                </div>
+                <div class="parampara-node__card">
+                  <div>
+                    <div class="parampara-node__name">${s.displayName}</div>
+                    <div class="parampara-node__tier-tag">Discípulo · ${sLevel.name} · ${s.karmaPoints} pts</div>
+                  </div>
+                  <span style="font-size:0.75rem; color:var(--success-tulsi); font-weight:600;">🌿 Ahijado</span>
+                </div>
+              </div>
+            `;
+          }).join('') : ''}
+        </div>
       </div>
     ` : ''}
   `;
@@ -532,20 +642,20 @@ function renderChatView() {
   return `
     <div class="chat-container">
       <!-- Header del chat -->
-      <div class="card" style="border-radius: var(--radius-md) var(--radius-md) 0 0; padding: var(--space-md);">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-sm">
-            <div style="font-size:1.5rem;">${otherUser?.avatar || '👤'}</div>
-            <div>
-              <div style="font-weight:600; font-size:0.9rem;">${otherUser?.displayName || 'Usuario'}</div>
-              <div class="text-vibhuti" style="font-size:0.72rem;">${activeRequest.skillIcon} ${activeRequest.skillName}</div>
+      <div class="chat-header-bar">
+        <div class="chat-header-user">
+          <div class="chat-header-avatar">${otherUser?.avatar || '👤'}</div>
+          <div>
+            <div style="font-weight:700; font-size:0.95rem; color:var(--primary-nila); font-family:var(--font-heading);">${otherUser?.displayName || 'Usuario'}</div>
+            <div class="chat-security-status-badge">
+              <span>🛡️</span> ${isSankalpaAgreed ? 'Acuerdo Sankalpa Sellado · Datos Abiertos' : 'Escudo Anti-Fuga Activo · Canal Cifrado'}
             </div>
           </div>
-          <div class="flex gap-sm">
-            <button class="btn btn--danger btn--sm" id="btnKavacha" title="Modo Escudo Kavacha">
-              🛡️
-            </button>
-          </div>
+        </div>
+        <div class="flex gap-sm">
+          <button class="btn btn--danger btn--sm" id="btnKavacha" title="Modo Escudo Kavacha" style="padding:6px 12px; font-size:0.75rem;">
+            🛡️ Kavacha
+          </button>
         </div>
       </div>
 
@@ -553,7 +663,7 @@ function renderChatView() {
       <div class="chat-messages" id="chatMessages">
         ${messages.map(msg => {
           if (msg.type === 'sankalpa') {
-            return `<div class="chat-bubble chat-bubble--system">${msg.text}</div>`;
+            return `<div class="chat-bubble chat-bubble--system">📜 ${msg.text}</div>`;
           }
           if (msg.type === 'blocked') {
             return `<div class="chat-bubble chat-bubble--blocked">🚫 ${msg.text}</div>`;
@@ -570,7 +680,7 @@ function renderChatView() {
         ${isSankalpaAgreed ? renderSankalpaCard(activeRequest) : ''}
       </div>
 
-      <!-- Acuerdo Sankalpa (si no se ha sellado) -->
+      <!-- Acciones de estado del flujo -->
       ${!isSankalpaAgreed && activeRequest.status === 'negotiating' ? `
         <div style="padding: var(--space-sm) var(--space-md); border-top: 1px solid var(--border-mitti); background: var(--surface-khadi);">
           <button class="btn btn--geru btn--full btn--sm" id="btnConfirmSankalpa">
@@ -582,7 +692,7 @@ function renderChatView() {
       ${isSankalpaAgreed && activeRequest.status === 'sankalpa_agreed' ? `
         <div style="padding: var(--space-sm) var(--space-md); border-top: 1px solid var(--border-mitti); background: var(--surface-khadi);">
           <button class="btn btn--primary btn--full btn--sm" id="btnStartPin">
-            🔢 Verificar PIN de Inicio
+            🔢 Verificar PIN de Inicio (Llegada)
           </button>
         </div>
       ` : ''}
@@ -590,51 +700,59 @@ function renderChatView() {
       ${activeRequest.status === 'in_progress' ? `
         <div style="padding: var(--space-sm) var(--space-md); border-top: 1px solid var(--border-mitti); background: var(--surface-khadi);">
           <button class="btn btn--geru btn--full btn--sm" id="btnEndPin">
-            ✅ Ingresar PIN de Finalización
+            ✅ Ingresar PIN de Finalización (Cierre y Pago)
+          </button>
+        </div>
+      ` : ''}
+
+      ${activeRequest.status === 'completed' ? `
+        <div style="padding: var(--space-sm) var(--space-md); border-top: 1px solid var(--border-mitti); background: var(--surface-khadi);">
+          <button class="btn btn--geru btn--full btn--sm" id="btnGoToReview">
+            ⭐ Ver / Gestionar Evaluación Doble Ciego
           </button>
         </div>
       ` : ''}
 
       <!-- Input del chat -->
       <div class="chat-input-bar" id="chatInputBar">
-        <input type="text" placeholder="Escribe un mensaje..." id="chatInput" />
+        <input type="text" placeholder="Escribe un mensaje de coordinación..." id="chatInput" />
         <button class="btn btn--primary btn--sm" id="btnSendChat">Enviar</button>
       </div>
     </div>
   `;
 }
 
-// ─── Tarjeta Sankalpa ───
+// ─── Tarjeta Sankalpa (Pergamino Sagrado Digital) ───
 function renderSankalpaCard(request) {
   return `
     <div class="sankalpa-card">
       <div class="sankalpa-card__title">
-        📜 Acuerdo de Honor Digital (Sankalpa)
+        <span>📜</span> Pacto de Honor Digital (Sankalpa)
       </div>
-      <div class="sankalpa-card__field">
-        <div class="sankalpa-card__label">Descripción del Favor</div>
-        <div class="sankalpa-card__value">${request.description}</div>
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.68rem; text-transform:uppercase; color:var(--text-vibhuti); font-weight:700; letter-spacing:0.04em;">Descripción del Favor</div>
+        <div style="font-size:0.85rem; font-weight:600; color:var(--text-kajal); line-height:1.3;">${request.description}</div>
       </div>
-      <div class="sankalpa-card__field">
-        <div class="sankalpa-card__label">Compensación Acordada</div>
-        <div class="sankalpa-card__value">${request.compensationNote}</div>
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.68rem; text-transform:uppercase; color:var(--text-vibhuti); font-weight:700; letter-spacing:0.04em;">Compensación Justa Acordada</div>
+        <div style="font-size:0.88rem; font-weight:700; color:var(--primary-nila); font-family:var(--font-mono);">${request.compensationNote}</div>
       </div>
-      <div class="sankalpa-card__field">
-        <div class="sankalpa-card__label">Categoría</div>
-        <div class="sankalpa-card__value">${request.category === 'tan_seva' ? '🛠️ Tan-Sevā (Oficio Manual)' : '🧠 Man-Sevā (Gestión)'}</div>
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.68rem; text-transform:uppercase; color:var(--text-vibhuti); font-weight:700; letter-spacing:0.04em;">Modalidad Comunitaria</div>
+        <div style="font-size:0.8rem; color:var(--text-vibhuti); font-weight:600;">${request.category === 'tan_seva' ? '🛠️ Tan-Sevā (Oficio Manual)' : '🧠 Man-Sevā (Gestión y Asesoría)'}</div>
       </div>
       <div class="sankalpa-card__signatures">
-        <div class="sankalpa-sig sankalpa-sig--confirmed">
-          <div class="sankalpa-sig__label">Solicitante</div>
-          <div class="sankalpa-sig__status sankalpa-sig__status--confirmed">✓ Confirmado</div>
+        <div class="sankalpa-sig">
+          <div class="sankalpa-sig__label">Sello Solicitante</div>
+          <div class="sankalpa-sig__status">✓ Sancionado</div>
         </div>
-        <div class="sankalpa-sig sankalpa-sig--confirmed">
-          <div class="sankalpa-sig__label">Prestador</div>
-          <div class="sankalpa-sig__status sankalpa-sig__status--confirmed">✓ Confirmado</div>
+        <div class="sankalpa-sig">
+          <div class="sankalpa-sig__label">Sello Prestador</div>
+          <div class="sankalpa-sig__status">✓ Sancionado</div>
         </div>
       </div>
-      <div class="sankalpa-card__id">
-        ID: <span class="font-mono">${request.id.toUpperCase()}</span> · ${request.createdAt}
+      <div style="text-align:center; margin-top:10px; font-size:0.68rem; color:var(--prestige-kamsya); font-family:var(--font-mono); letter-spacing:0.05em;">
+        SANKALPA-ID: ${request.id.toUpperCase()} · ${request.createdAt}
       </div>
     </div>
   `;
@@ -989,39 +1107,41 @@ function renderUberNotification() {
   return `
     <div class="uber-notification" id="uberNotification">
       <div class="uber-notification__header">
-        <div class="uber-notification__type">
-          📡 Nuevo Favor Compatible
+        <div class="uber-notification__radar-beacon">
+          <span class="radar-ping-ring"></span>
+          <span>Despacho Radar · Ola 1 de Confianza</span>
         </div>
-        <div class="uber-notification__timer-ring">
+        <div class="uber-notification__timer-gauge">
           <svg viewBox="0 0 42 42">
             <circle cx="21" cy="21" r="18" stroke-dasharray="113" stroke-dashoffset="0" id="timerCircle" />
           </svg>
-          <span class="uber-notification__timer" id="timerCount">${notif.timeLeft}</span>
+          <span class="uber-notification__countdown" id="timerCount">${notif.timeLeft}</span>
         </div>
       </div>
-      <div class="uber-notification__body">
-        <div class="uber-notification__title">${notif.skillIcon} ${notif.skillName}</div>
-        <div class="uber-notification__detail">
-          <span class="uber-notification__detail-icon">📍</span>
-          ${notif.zone} · ~${notif.distance}
+
+      <div class="uber-notification__skill-title">
+        ${notif.skillIcon} ${notif.skillName}
+      </div>
+
+      <p style="font-size:0.85rem; color:rgba(251,248,243,0.92); line-height:1.45; margin-bottom:var(--space-sm);">
+        ${notif.description}
+      </p>
+
+      <div class="uber-notification__meta-grid">
+        <div class="uber-notification__meta-item">
+          <span>📍</span> <span>${notif.zone} · ~${notif.distance}</span>
         </div>
-        <div class="uber-notification__detail">
-          <span class="uber-notification__detail-icon">⭐</span>
-          Karma del solicitante: ${notif.requesterKarma} pts · ${notif.requesterLevel}
+        <div class="uber-notification__meta-item">
+          <span>💰</span> <strong>${notif.compensation}</strong>
         </div>
-        <div class="uber-notification__detail">
-          <span class="uber-notification__detail-icon">📝</span>
-          ${notif.description}
+        <div class="uber-notification__meta-item">
+          <span>⭐</span> <span>${notif.requesterKarma} pts · ${notif.requesterLevel}</span>
         </div>
-        <div class="uber-notification__detail">
-          <span class="uber-notification__detail-icon">💰</span>
-          <strong>${notif.compensation}</strong>
-        </div>
-        <div class="uber-notification__detail" style="margin-top: var(--space-xs);">
-          <span class="uber-notification__detail-icon">${notif.categoryIcon}</span>
-          <em style="font-size:0.75rem; color:var(--text-vibhuti);">${notif.categoryLabel}</em>
+        <div class="uber-notification__meta-item">
+          <span>${notif.categoryIcon}</span> <span>${notif.categoryLabel}</span>
         </div>
       </div>
+
       <div class="uber-notification__actions">
         <button class="btn btn--secondary btn--sm" id="btnRejectSeva">
           Dejar Pasar
@@ -1140,6 +1260,28 @@ function attachEventListeners() {
       state.uberNotification = null;
       state.activeSeva = null;
       state.reviewState = { rating: 0, comment: '', privateAnswers: [null, null, null], submitted: false };
+      window.location.hash = 'home';
+      render();
+    });
+  });
+
+  // Click en Logo para volver al Inicio
+  const brandLogo = document.getElementById('brandLogoHome');
+  if (brandLogo) {
+    brandLogo.addEventListener('click', () => {
+      state.currentView = 'home';
+      window.location.hash = 'home';
+      render();
+    });
+  }
+
+  // Navegación Desktop Top Bar
+  document.querySelectorAll('.top-bar__nav-link').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const view = btn.dataset.view;
+      if (view === 'profile') state.selectedProfile = state.currentUser;
+      state.currentView = view;
+      window.location.hash = view;
       render();
     });
   });
@@ -1147,10 +1289,23 @@ function attachEventListeners() {
   // Navegación inferior
   document.querySelectorAll('.bottom-nav__item').forEach(btn => {
     btn.addEventListener('click', () => {
-      state.currentView = btn.dataset.view;
+      const view = btn.dataset.view;
+      if (view === 'profile') state.selectedProfile = state.currentUser;
+      state.currentView = view;
+      window.location.hash = view;
       render();
     });
   });
+
+  // Botón ir a reseña desde chat
+  const btnGoToReview = document.getElementById('btnGoToReview');
+  if (btnGoToReview) {
+    btnGoToReview.addEventListener('click', () => {
+      state.currentView = 'review';
+      window.location.hash = 'review';
+      render();
+    });
+  }
 
   // Botón de nueva Sevā (Yajamāna)
   const btnNewSeva = document.getElementById('btnNewSeva');
@@ -1192,6 +1347,24 @@ function attachEventListeners() {
         timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }),
         type: 'sankalpa',
       });
+      render();
+    });
+  }
+
+  // Acciones Rápidas Bento (Explorar / Perfil)
+  const btnExploreQuick = document.getElementById('btnExploreQuick');
+  if (btnExploreQuick) {
+    btnExploreQuick.addEventListener('click', () => {
+      state.currentView = 'explore';
+      render();
+    });
+  }
+
+  const btnProfileQuick = document.getElementById('btnProfileQuick');
+  if (btnProfileQuick) {
+    btnProfileQuick.addEventListener('click', () => {
+      state.selectedProfile = state.currentUser;
+      state.currentView = 'profile';
       render();
     });
   }
@@ -1960,8 +2133,27 @@ function playNotificationSound() {
   } catch(e) { /* silently fail */ }
 }
 
-// ─── Exponer estado global para debug ───
+// ─── Exponer estado global para debug y pruebas ───
 window.__state = state;
+window.__render = render;
+
+// ─── Enrutamiento por Hash en URL ───
+function handleHashRouting() {
+  const hash = window.location.hash.replace('#', '');
+  if (['home', 'explore', 'chat', 'profile', 'review', 'register', 'seva-flow'].includes(hash)) {
+    if (state.currentView !== hash) {
+      state.currentView = hash;
+      if (hash === 'profile') state.selectedProfile = state.currentUser;
+      render();
+    }
+  }
+}
+window.addEventListener('hashchange', handleHashRouting);
 
 // ─── Inicializar ───
-render();
+if (window.location.hash && ['#home', '#explore', '#chat', '#profile', '#review', '#register', '#seva-flow'].includes(window.location.hash)) {
+  handleHashRouting();
+} else {
+  window.location.hash = 'home';
+  render();
+}

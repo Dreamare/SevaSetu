@@ -1,0 +1,162 @@
+[
+  {
+    "id": "icon-rol-sevaka",
+    "filename": "icon-rol-sevaka.png",
+    "description": "Selector de rol: Sevaka (Manos con Loto)",
+    "grid_position": {
+      "row": 1,
+      "col": 1
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-rol-yajamana",
+    "filename": "icon-rol-yajamana.png",
+    "description": "Selector de rol: Yajamāna (Lámpara Diya)",
+    "grid_position": {
+      "row": 1,
+      "col": 2
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-rol-sramana",
+    "filename": "icon-rol-sramana.png",
+    "description": "Selector de rol: Śramaṇa (Brote de Loto)",
+    "grid_position": {
+      "row": 1,
+      "col": 3
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-nivel-acarya",
+    "filename": "icon-nivel-acarya.png",
+    "description": "Insignia de Nivel: Ācārya / Templo Mandir",
+    "grid_position": {
+      "row": 1,
+      "col": 4
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-llave-diksha",
+    "filename": "icon-llave-diksha.png",
+    "description": "Llave de Invitación Dīkṣā",
+    "grid_position": {
+      "row": 2,
+      "col": 1
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-arbol-parampara",
+    "filename": "icon-arbol-parampara.png",
+    "description": "Árbol Sagrado de Linaje Paramparā",
+    "grid_position": {
+      "row": 2,
+      "col": 2
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-doble-ciego",
+    "filename": "icon-doble-ciego.png",
+    "description": "Candado de Reseñas Doble Ciego / PIN",
+    "grid_position": {
+      "row": 2,
+      "col": 3
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-escudo-kavacha",
+    "filename": "icon-escudo-kavacha.png",
+    "description": "Escudo Protector Kavacha / Sri Yantra",
+    "grid_position": {
+      "row": 2,
+      "col": 4
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-skill-tan-seva",
+    "filename": "icon-skill-tan-seva.png",
+    "description": "Habilidad Tan-Sevā (Oficios Manuales / Electricidad)",
+    "grid_position": {
+      "row": 3,
+      "col": 1
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-skill-man-seva",
+    "filename": "icon-skill-man-seva.png",
+    "description": "Habilidad Man-Sevā (Trámites Bancarios / Visas)",
+    "grid_position": {
+      "row": 3,
+      "col": 2
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-mudra-maestro",
+    "filename": "icon-mudra-maestro.png",
+    "description": "Insignia Mudrā: Manos de Maestro / Aceptar Favor",
+    "grid_position": {
+      "row": 3,
+      "col": 3
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-mudra-guia",
+    "filename": "icon-mudra-guia.png",
+    "description": "Insignia Mudrā: Guía Paciente (Rueda Dharma)",
+    "grid_position": {
+      "row": 3,
+      "col": 4
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-nav-inicio",
+    "filename": "icon-nav-inicio.png",
+    "description": "Navegación: Inicio (Arco Tradicional)",
+    "grid_position": {
+      "row": 4,
+      "col": 1
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-nav-explorar",
+    "filename": "icon-nav-explorar.png",
+    "description": "Navegación: Explorar (Lupa con Mandala)",
+    "grid_position": {
+      "row": 4,
+      "col": 2
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-nav-chat",
+    "filename": "icon-nav-chat.png",
+    "description": "Navegación: Chat (Burbuja con Loto)",
+    "grid_position": {
+      "row": 4,
+      "col": 3
+    },
+    "dimensions": "256x256"
+  },
+  {
+    "id": "icon-nav-perfil",
+    "filename": "icon-nav-perfil.png",
+    "description": "Navegación: Perfil (Silueta con Halo Prabha)",
+    "grid_position": {
+      "row": 4,
+      "col": 4
+    },
+    "dimensions": "256x256"
+  }
+]

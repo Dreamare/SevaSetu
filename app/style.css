@@ -1,37 +1,52 @@
-/* ═══════════════════════════════════════════════════════
-   SEVASETU · Sistema de Diseño Visual Sattva
-   Paleta mineral hindú · Cero clichés de IA
-   ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════
+   SEVASETU · SISTEMA DE DISEÑO VISUAL SATTVA (EDICIÓN SUPREMA)
+   Identidad Védica Mineral Hindú · Arquitectura Editorial de Lujo
+   Cero plantillas genéricas · Cero clichés sintéticos de IA
+   ═══════════════════════════════════════════════════════════════════ */
 
-/* ─── Tokens de Diseño ─── */
+/* ─── TOKENS DE DISEÑO SATTVA ─── */
 :root {
-  /* Paleta Sattva — Pigmentos minerales de la India */
-  --bg-chandan: #FBF8F3;
-  --surface-khadi: #F2ECE1;
-  --border-mitti: #E0D5C1;
-  --primary-nila: #23394D;
-  --accent-geru: #B85A3A;
-  --success-tulsi: #38664B;
-  --prestige-kamsya: #A67C37;
-  --danger-sindoor: #A8383B;
-  --text-kajal: #1F2421;
-  --text-vibhuti: #5A5D58;
+  /* Paleta Mineral Sagrada de la India */
+  --bg-chandan: #FBF8F3;         /* Sándalo Suave · Lienzo Base */
+  --surface-khadi: #F2ECE1;      /* Algodón Crudo / Seda Khadi */
+  --surface-card: #FAF6EF;       /* Superficie Elevada con Calidez */
+  --border-mitti: #E0D5C1;       /* Arcilla Seca / Terracota Clara */
+  --border-delicate: rgba(224, 213, 193, 0.65);
+  --primary-nila: #23394D;       /* Índigo Real de Krishna */
+  --nila-deep: #192A3A;          /* Índigo Abisal Nocturno */
+  --nila-soft: #2D4860;          /* Índigo Medio Aterciopelado */
+  --accent-geru: #B85A3A;        /* Terracota Ocre Ritual */
+  --geru-soft: #CD6D4D;          /* Terracota Luminoso */
+  --geru-deep: #964227;          /* Terracota Envejecido */
+  --success-tulsi: #38664B;      /* Albahaca Sagrada Tulsī */
+  --tulsi-soft: #4C8262;         /* Verde Tulsī Fresco */
+  --prestige-kamsya: #A67C37;    /* Bronce de Templo Kāṃsya */
+  --kamsya-bright: #C99E52;      /* Oro de Templo Pulido */
+  --kamsya-soft: #8D6729;        /* Bronce Antiguo */
+  --danger-sindoor: #A8383B;     /* Cinabrio Ritual Sindoor */
+  --sindoor-soft: #C24A4D;       /* Vermellón Suave */
+  --text-kajal: #1F2421;         /* Carbón Mineral Kajal (15.1:1) */
+  --text-vibhuti: #5A5D58;       /* Ceniza Sagrada Vibhūti */
+  --text-muted: #7A7D77;         /* Ceniza Pálida */
 
-  /* Variantes derivadas */
-  --nila-soft: #2c4a63;
-  --geru-soft: #c87a5e;
-  --tulsi-soft: #4a7d5e;
-  --kamsya-soft: #c9a05e;
-  --surface-hover: #EDE7D9;
-  --overlay-dark: rgba(31, 36, 33, 0.55);
-  --overlay-light: rgba(251, 248, 243, 0.92);
+  /* Gradientes Sattva Auténticos */
+  --grad-nila: linear-gradient(135deg, #1C2E3E 0%, #23394D 60%, #2E4B66 100%);
+  --grad-nila-card: linear-gradient(145deg, #23394D 0%, #1A2A38 100%);
+  --grad-geru: linear-gradient(135deg, #B85A3A 0%, #CE6D4C 50%, #9F452A 100%);
+  --grad-kamsya: linear-gradient(135deg, #A67C37 0%, #C99E52 50%, #8C6426 100%);
+  --grad-tulsi: linear-gradient(135deg, #38664B 0%, #4A8060 60%, #2B523B 100%);
+  --grad-khadi: linear-gradient(180deg, #FBF8F3 0%, #F2ECE1 100%);
+  --grad-card: linear-gradient(160deg, #FAF6EE 0%, #F3EDE2 100%);
+  --grad-parchment: linear-gradient(135deg, #FAF5EB 0%, #F0E6D5 100%);
 
   /* Tipografía */
-  --font-heading: 'Cormorant Garamond', 'Georgia', serif;
-  --font-body: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+  --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  --font-heading: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
 
-  /* Espaciado */
+  /* Espaciado Armónico (Grid Védico de 4px) */
+  --space-2xs: 2px;
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -40,30 +55,36 @@
   --space-2xl: 48px;
   --space-3xl: 64px;
 
-  /* Radios */
+  /* Radios de Curvatura Táctil */
+  --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 9999px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-pill: 9999px;
 
-  /* Sombras cálidas */
-  --shadow-sm: 0 1px 3px rgba(35, 57, 77, 0.04);
-  --shadow-md: 0 4px 12px rgba(35, 57, 77, 0.06);
-  --shadow-lg: 0 8px 24px rgba(35, 57, 77, 0.08);
-  --shadow-xl: 0 12px 40px rgba(35, 57, 77, 0.10);
-  --shadow-card: 0 2px 8px rgba(35, 57, 77, 0.05), 0 0 0 1px rgba(224, 213, 193, 0.5);
-  --shadow-uber: 0 16px 48px rgba(35, 57, 77, 0.18), 0 0 0 1px rgba(224, 213, 193, 0.3);
+  /* Sombras y Luces Multicapa */
+  --shadow-subtle: 0 1px 2px rgba(35, 57, 77, 0.04);
+  --shadow-card: 0 2px 6px rgba(35, 57, 77, 0.04), 0 8px 24px rgba(35, 57, 77, 0.06);
+  --shadow-elevated: 0 4px 12px rgba(35, 57, 77, 0.06), 0 16px 36px rgba(35, 57, 77, 0.09);
+  --shadow-float: 0 12px 32px rgba(35, 57, 77, 0.12), 0 24px 64px rgba(35, 57, 77, 0.15);
+  --shadow-modal: 0 20px 60px -15px rgba(25, 42, 58, 0.35), 0 0 0 1px rgba(224, 213, 193, 0.4);
+  
+  /* Auras Resplandecientes (Glows) */
+  --glow-kamsya: 0 0 20px rgba(166, 124, 55, 0.28);
+  --glow-geru: 0 0 22px rgba(184, 90, 58, 0.32);
+  --glow-tulsi: 0 0 18px rgba(56, 102, 75, 0.25);
+  --glow-nila: 0 0 24px rgba(35, 57, 77, 0.22);
 
-  /* Transiciones */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Transiciones y Cinemática */
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --duration-slow: 400ms;
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 160ms;
+  --duration-normal: 260ms;
+  --duration-slow: 450ms;
 }
 
-/* ─── Reset y Base ─── */
+/* ─── RESET Y BASE EDITORIAL ─── */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -75,6 +96,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  background-color: var(--bg-chandan);
 }
 
 body {
@@ -82,129 +105,245 @@ body {
   background-color: var(--bg-chandan);
   color: var(--text-kajal);
   line-height: 1.6;
-  overflow-x: hidden;
   min-height: 100vh;
   min-height: 100dvh;
+  overflow-x: hidden;
+  position: relative;
 }
 
-h1, h2, h3, h4, h5 {
+/* Textura sutil orgánica de fondo */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image: radial-gradient(var(--primary-nila) 1px, transparent 1px), radial-gradient(var(--accent-geru) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--primary-nila);
+  letter-spacing: -0.015em;
 }
 
-h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
-h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); }
-h3 { font-size: clamp(1.1rem, 2.5vw, 1.4rem); }
+h1 { font-size: clamp(1.85rem, 4.5vw, 2.75rem); }
+h2 { font-size: clamp(1.4rem, 3.2vw, 2rem); }
+h3 { font-size: clamp(1.15rem, 2.5vw, 1.5rem); }
 
 button {
   font-family: var(--font-body);
   cursor: pointer;
   border: none;
   outline: none;
-  font-weight: 500;
-  transition: all var(--duration-normal) var(--ease-out);
+  background: transparent;
+  transition: all var(--duration-normal) var(--ease-smooth);
 }
 
 input, textarea, select {
   font-family: var(--font-body);
   border: 1px solid var(--border-mitti);
-  background: var(--surface-khadi);
+  background: var(--surface-card);
   border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  font-size: 0.9rem;
+  padding: 12px 16px;
+  font-size: 0.92rem;
   color: var(--text-kajal);
-  transition: border-color var(--duration-fast) var(--ease-out);
+  transition: all var(--duration-fast) var(--ease-smooth);
   width: 100%;
+  box-shadow: inset 0 1px 2px rgba(35, 57, 77, 0.03);
 }
 
 input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--primary-nila);
-  box-shadow: 0 0 0 3px rgba(35, 57, 77, 0.08);
+  background: var(--bg-chandan);
+  box-shadow: 0 0 0 3px rgba(35, 57, 77, 0.12), inset 0 1px 2px rgba(35, 57, 77, 0.02);
 }
 
-/* ─── Scrollbar personalizada ─── */
+/* ─── SCROLLBAR ELEGANTE ─── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-chandan); }
 ::-webkit-scrollbar-thumb { 
   background: var(--border-mitti); 
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-vibhuti); }
 
-/* ─── Layout Principal ─── */
+/* ─── ESTRUCTURA DE LA APLICACIÓN ─── */
 #app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
+  position: relative;
+  z-index: 1;
 }
 
-/* ─── Barra Superior ─── */
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-md) 92px;
+  position: relative;
+  animation: fadeIn 0.35s var(--ease-smooth);
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 10px 10px 88px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── BARRA SUPERIOR (HEADER ARQUITECTÓNICO) ─── */
 .top-bar {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: var(--primary-nila);
+  z-index: 120;
+  background: rgba(35, 57, 77, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(224, 213, 193, 0.25);
+  box-shadow: 0 4px 20px rgba(25, 42, 58, 0.2);
   padding: 0 var(--space-md);
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
-  box-shadow: 0 2px 12px rgba(35, 57, 77, 0.15);
+  gap: var(--space-sm);
 }
 
 .top-bar__logo {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.top-bar__logo-frame {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  background: var(--grad-kamsya);
+  box-shadow: var(--glow-kamsya);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .top-bar__logo img {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
   object-fit: cover;
+  display: block;
 }
 
-.top-bar__logo span {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
+.top-bar__brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 700;
+  letter-spacing: 0.05em;
   color: var(--bg-chandan);
-  letter-spacing: 0.02em;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1;
 }
 
-.top-bar__logo .sanskrit {
-  font-size: 0.75rem;
-  color: var(--kamsya-soft);
-  font-weight: 400;
-  margin-left: 2px;
+.top-bar__sanskrit {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--kamsya-bright);
+  font-weight: 500;
 }
 
-/* ─── Conmutador de Rol ─── */
+.top-bar__tagline {
+  font-size: 0.62rem;
+  color: rgba(251, 248, 243, 0.65);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ─── NAVEGACIÓN DESKTOP EN TOP BAR ─── */
+.top-bar__nav {
+  display: none;
+}
+
+@media (min-width: 820px) {
+  .top-bar__nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .top-bar__nav-link {
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(251, 248, 243, 0.75);
+    background: transparent;
+    transition: all var(--duration-fast) var(--ease-smooth);
+    border: 1px solid transparent;
+  }
+
+  .top-bar__nav-link:hover {
+    color: var(--bg-chandan);
+    background: rgba(251, 248, 243, 0.08);
+  }
+
+  .top-bar__nav-link.active {
+    color: var(--kamsya-bright);
+    background: rgba(166, 124, 55, 0.18);
+    border-color: rgba(166, 124, 55, 0.4);
+    box-shadow: 0 0 12px rgba(166, 124, 55, 0.2);
+  }
+}
+
+/* Conmutador de Rol Táctil Segmentado */
 .role-switcher {
   display: flex;
   align-items: center;
-  gap: 2px;
-  background: rgba(251, 248, 243, 0.12);
-  border-radius: var(--radius-full);
+  background: rgba(25, 42, 58, 0.7);
+  border: 1px solid rgba(224, 213, 193, 0.2);
+  border-radius: var(--radius-pill);
   padding: 3px;
+  gap: 2px;
 }
 
 .role-switcher__btn {
   padding: 6px 12px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
   font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(251, 248, 243, 0.6);
-  background: transparent;
-  transition: all var(--duration-normal) var(--ease-out);
-  white-space: nowrap;
-  letter-spacing: 0.02em;
+  color: rgba(251, 248, 243, 0.7);
+  letter-spacing: 0.03em;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  transition: all var(--duration-fast) var(--ease-smooth);
 }
 
 .role-switcher__btn:hover {
@@ -213,465 +352,503 @@ input:focus, textarea:focus, select:focus {
 }
 
 .role-switcher__btn.active {
-  background: var(--accent-geru);
+  background: var(--grad-geru);
   color: var(--bg-chandan);
-  box-shadow: 0 2px 8px rgba(184, 90, 58, 0.35);
+  box-shadow: var(--glow-geru);
+  font-weight: 700;
 }
 
-/* ─── Navegación Inferior ─── */
+@media (max-width: 640px) {
+  .top-bar {
+    padding: 0 10px;
+    height: 56px;
+    gap: 6px;
+  }
+
+  .top-bar__logo {
+    gap: 6px;
+  }
+
+  .top-bar__logo-frame {
+    width: 32px;
+    height: 32px;
+  }
+
+  .top-bar__name {
+    font-size: 0.95rem;
+  }
+
+  .top-bar__sanskrit,
+  .top-bar__tagline {
+    display: none !important;
+  }
+
+  .role-switcher {
+    padding: 2px;
+    gap: 1px;
+  }
+
+  .role-switcher__btn {
+    padding: 4px 8px;
+    font-size: 0.65rem;
+    gap: 3px;
+  }
+
+  .role-switcher__btn span {
+    font-size: 0.72rem;
+  }
+}
+
+/* ─── BARRA KAVACHA (MODO ESCUDO DE SEGURIDAD) ─── */
+.kavacha-bar {
+  background: linear-gradient(90deg, #96282B 0%, #A8383B 50%, #96282B 100%);
+  color: var(--bg-chandan);
+  padding: 8px var(--space-md);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(168, 56, 59, 0.35);
+  animation: slideDown 0.3s var(--ease-spring);
+  z-index: 110;
+}
+
+.kavacha-bar__pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFF;
+  box-shadow: 0 0 8px #FFF;
+  animation: beaconPing 1.4s infinite;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* ─── NAVEGACIÓN INFERIOR FLOTANTE ─── */
 .bottom-nav {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 100;
-  background: var(--primary-nila);
+  width: calc(100% - 24px);
+  max-width: 520px;
+  height: 64px;
+  background: rgba(35, 57, 77, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(224, 213, 193, 0.25);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px rgba(25, 42, 58, 0.3), 0 0 0 1px rgba(224, 213, 193, 0.15);
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  height: 60px;
-  padding-bottom: env(safe-area-inset-bottom, 0);
-  box-shadow: 0 -2px 16px rgba(35, 57, 77, 0.12);
+  justify-content: space-around;
+  padding: 0 var(--space-sm);
 }
 
 .bottom-nav__item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  background: transparent;
-  color: rgba(251, 248, 243, 0.5);
+  justify-content: center;
+  gap: 3px;
+  color: rgba(251, 248, 243, 0.55);
   font-size: 0.65rem;
-  font-weight: 500;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  transition: all var(--duration-fast) var(--ease-out);
-  letter-spacing: 0.03em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
   position: relative;
+  transition: all var(--duration-fast) var(--ease-smooth);
 }
 
-.bottom-nav__item:hover,
-.bottom-nav__item.active {
+.bottom-nav__item:hover {
   color: var(--bg-chandan);
+}
+
+.bottom-nav__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.bottom-nav__item.active {
+  color: var(--kamsya-bright);
+}
+
+.bottom-nav__item.active .bottom-nav__icon {
+  transform: translateY(-2px) scale(1.1);
 }
 
 .bottom-nav__item.active::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 2px;
-  background: var(--accent-geru);
-  border-radius: var(--radius-full);
+  bottom: 4px;
+  width: 14px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--kamsya-bright);
+  box-shadow: var(--glow-kamsya);
 }
 
-.bottom-nav__icon {
-  font-size: 1.3rem;
-  line-height: 1;
-}
-
-/* ─── Contenido Principal ─── */
-.main-content {
-  flex: 1;
-  padding: var(--space-md);
-  padding-bottom: calc(60px + var(--space-lg));
-  max-width: 540px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-/* ─── Tarjetas ─── */
+/* ─── TARJETAS Y CONTENEDORES EDITORIALES ─── */
 .card {
-  background: var(--surface-khadi);
-  border: 1px solid var(--border-mitti);
-  border-radius: var(--radius-md);
+  background: var(--grad-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-lg);
   padding: var(--space-lg);
   box-shadow: var(--shadow-card);
-  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-fast) var(--ease-smooth), box-shadow var(--duration-fast) var(--ease-smooth);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+  box-shadow: var(--shadow-elevated);
 }
 
-.card + .card {
-  margin-top: var(--space-md);
+/* ─── HERO: MANDALA SAGRADO DE KARMA ─── */
+.karma-mandala-hero {
+  position: relative;
+  background: var(--grad-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  box-shadow: var(--shadow-elevated);
+  margin-bottom: var(--space-lg);
+  overflow: hidden;
+  text-align: center;
 }
 
-/* ─── Perfil ─── */
-.profile-header {
-  display: flex;
-  gap: var(--space-md);
-  align-items: flex-start;
+/* Resplandor ambiental de fondo */
+.karma-mandala-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(166, 124, 55, 0.15) 0%, rgba(184, 90, 58, 0.08) 50%, transparent 75%);
+  pointer-events: none;
 }
 
-.profile-avatar {
-  width: 72px;
-  height: 72px;
-  border-radius: var(--radius-lg);
-  object-fit: cover;
-  border: 2px solid var(--border-mitti);
-  flex-shrink: 0;
-  background: var(--border-mitti);
+.hero-beacon-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(35, 57, 77, 0.06);
+  border: 1px solid var(--border-delicate);
+  font-size: 0.72rem;
+  color: var(--primary-nila);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  letter-spacing: 0.02em;
+}
+
+.beacon-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--success-tulsi);
+  box-shadow: 0 0 6px var(--success-tulsi);
+  animation: beaconPing 2s infinite;
+}
+
+@keyframes beaconPing {
+  0% { transform: scale(0.9); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.5; }
+  100% { transform: scale(0.9); opacity: 1; }
+}
+
+.mandala-gauge {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto var(--space-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  color: var(--primary-nila);
 }
 
-.profile-info {
-  flex: 1;
-  min-width: 0;
+.mandala-gauge svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
 }
 
-.profile-name {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
+.mandala-track {
+  fill: none;
+  stroke: var(--border-mitti);
+  stroke-width: 6;
+  opacity: 0.45;
+}
+
+.mandala-fill {
+  fill: none;
+  stroke: url(#mandalaGrad);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s var(--ease-smooth);
+}
+
+.mandala-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  text-align: center;
+}
+
+.mandala-avatar {
+  font-size: 2.2rem;
+  line-height: 1;
+  margin-bottom: 2px;
+  filter: drop-shadow(0 2px 6px rgba(35, 57, 77, 0.15));
+}
+
+.mandala-points {
+  font-family: var(--font-mono);
+  font-size: 1.7rem;
   font-weight: 700;
   color: var(--primary-nila);
-  line-height: 1.2;
+  line-height: 1;
 }
 
-.profile-level {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
-  margin-top: var(--space-xs);
-  letter-spacing: 0.03em;
-}
-
-.level-1 { background: var(--border-mitti); color: var(--text-kajal); }
-.level-2 { background: rgba(56, 102, 75, 0.12); color: var(--success-tulsi); }
-.level-3 { background: rgba(35, 57, 77, 0.1); color: var(--primary-nila); }
-.level-4 { background: rgba(166, 124, 55, 0.12); color: var(--prestige-kamsya); }
-.level-5 { background: rgba(166, 124, 55, 0.18); color: #8a6620; border: 1px solid rgba(166, 124, 55, 0.3); }
-
-.profile-zone {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: 0.8rem;
-  color: var(--text-vibhuti);
-  margin-top: var(--space-xs);
-}
-
-.profile-zone::before {
-  content: '◉';
-  font-size: 0.5rem;
-  color: var(--success-tulsi);
-}
-
-/* ─── Karma Meter ─── */
-.karma-meter {
-  margin-top: var(--space-md);
-  padding: var(--space-md);
-  background: var(--bg-chandan);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-mitti);
-}
-
-.karma-meter__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: var(--space-sm);
-}
-
-.karma-meter__label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-vibhuti);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.karma-meter__value {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--accent-geru);
-}
-
-.karma-meter__bar {
-  height: 6px;
-  background: var(--border-mitti);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  position: relative;
-}
-
-.karma-meter__fill {
-  height: 100%;
-  border-radius: var(--radius-full);
-  background: linear-gradient(90deg, var(--accent-geru), var(--prestige-kamsya));
-  transition: width 0.8s var(--ease-out);
-}
-
-.karma-meter__range {
-  display: flex;
-  justify-content: space-between;
+.mandala-pts-label {
   font-size: 0.65rem;
   color: var(--text-vibhuti);
-  margin-top: var(--space-xs);
-  font-family: var(--font-mono);
-}
-
-/* ─── Habilidades ─── */
-.skills-section {
-  margin-top: var(--space-md);
-}
-
-.skills-section__title {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-vibhuti);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: var(--space-sm);
-}
-
-.skill-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  padding: 5px 12px;
-  border-radius: var(--radius-full);
-  font-size: 0.78rem;
-  font-weight: 500;
-  margin: 2px;
-  transition: all var(--duration-fast) var(--ease-out);
-}
-
-.skill-tag--declared {
-  background: var(--bg-chandan);
-  color: var(--text-vibhuti);
-  border: 1px dashed var(--border-mitti);
-}
-
-.skill-tag--proven {
-  background: rgba(56, 102, 75, 0.1);
-  color: var(--success-tulsi);
-  border: 1px solid rgba(56, 102, 75, 0.2);
-}
-
-.skill-tag--certified {
-  background: rgba(166, 124, 55, 0.1);
-  color: #8a6620;
-  border: 1px solid rgba(166, 124, 55, 0.25);
-}
-
-.skill-tag__icon {
-  font-size: 0.7rem;
-}
-
-.skill-tag__category {
-  font-size: 0.6rem;
+  letter-spacing: 0.08em;
   font-weight: 600;
-  opacity: 0.7;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
-/* ─── Insignias (Mudrās) ─── */
-.badges-row {
-  display: flex;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-  margin-top: var(--space-sm);
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  font-size: 0.7rem;
-  font-weight: 600;
-  background: rgba(35, 57, 77, 0.06);
+.hero-user-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--primary-nila);
-  border: 1px solid rgba(35, 57, 77, 0.1);
+  margin-bottom: var(--space-2xs);
 }
 
-.badge__icon { font-size: 0.85rem; }
-
-/* ─── Árbol Paramparā ─── */
-.parampara-tree {
-  margin-top: var(--space-md);
-  padding: var(--space-md);
-  background: var(--bg-chandan);
+.hero-level-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-khadi);
   border: 1px solid var(--border-mitti);
-  border-radius: var(--radius-md);
-}
-
-.parampara-tree__title {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-vibhuti);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+  box-shadow: var(--shadow-subtle);
   margin-bottom: var(--space-sm);
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
 }
 
-.parampara-node {
-  display: flex;
-  align-items: center;
+.hero-level-chip--sindhoor { border-color: var(--accent-geru); color: var(--accent-geru); }
+.hero-level-chip--kamsya { border-color: var(--prestige-kamsya); color: var(--prestige-kamsya); background: rgba(166, 124, 55, 0.08); }
+
+.hero-mantra-subtext {
+  font-size: 0.82rem;
+  color: var(--text-vibhuti);
+  max-width: 380px;
+  margin: 0 auto var(--space-md);
+  line-height: 1.5;
+}
+
+/* ─── TRIO DE MÉTRICAS BENTO ─── */
+.bento-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-sm);
-  padding: 6px 0;
-  position: relative;
+  margin-top: var(--space-md);
 }
 
-.parampara-node + .parampara-node {
-  margin-top: 2px;
+.bento-metric-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-sm);
+  text-align: center;
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--duration-fast) var(--ease-spring);
 }
 
-.parampara-node::before {
-  content: '';
-  width: 2px;
-  height: 100%;
-  background: var(--border-mitti);
-  position: absolute;
-  left: 10px;
-  top: -50%;
-}
-
-.parampara-node:first-child::before { display: none; }
-
-.parampara-node__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: var(--radius-full);
-  flex-shrink: 0;
-  z-index: 1;
-  border: 2px solid var(--border-mitti);
-  background: var(--bg-chandan);
-}
-
-.parampara-node__dot.current {
-  background: var(--accent-geru);
+.bento-metric-card:hover {
+  transform: translateY(-2px);
   border-color: var(--accent-geru);
-  box-shadow: 0 0 0 3px rgba(184, 90, 58, 0.2);
 }
 
-.parampara-node__dot.guru {
-  background: var(--prestige-kamsya);
+.bento-metric-card__value {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.bento-metric-card__label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-vibhuti);
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* ─── DECK DE ACCIONES RÁPIDAS (BENTO TILES) ─── */
+.action-deck {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 480px) {
+  .action-deck--dual {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.action-tile {
+  background: var(--grad-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.action-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elevated);
   border-color: var(--prestige-kamsya);
 }
 
-.parampara-node__info {
+.action-tile--hero {
+  background: var(--grad-nila);
+  color: var(--bg-chandan);
+  border: 1px solid rgba(224, 213, 193, 0.3);
+  box-shadow: var(--shadow-elevated), var(--glow-nila);
+}
+
+.action-tile--hero h3,
+.action-tile--hero p {
+  color: var(--bg-chandan);
+}
+
+.action-tile--hero p {
+  opacity: 0.85;
+}
+
+.action-tile__icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  background: rgba(35, 57, 77, 0.06);
+  border: 1px solid var(--border-delicate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.action-tile--hero .action-tile__icon-box {
+  background: rgba(251, 248, 243, 0.12);
+  border-color: rgba(251, 248, 243, 0.25);
+}
+
+.action-tile__body {
   flex: 1;
 }
 
-.parampara-node__name {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-kajal);
+.action-tile__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 2px;
 }
 
-.parampara-node__role {
-  font-size: 0.68rem;
+.action-tile__desc {
+  font-size: 0.8rem;
   color: var(--text-vibhuti);
-  font-style: italic;
+  line-height: 1.45;
 }
 
-/* ─── Llaves Dīkṣā ─── */
-.diksha-section {
-  margin-top: var(--space-md);
-  padding: var(--space-md);
-  background: var(--bg-chandan);
-  border: 1px solid var(--border-mitti);
-  border-radius: var(--radius-md);
-}
-
-.diksha-key {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin: 2px;
-}
-
-.diksha-key--available {
-  background: rgba(166, 124, 55, 0.1);
-  color: var(--prestige-kamsya);
-  border: 1px solid rgba(166, 124, 55, 0.2);
-}
-
-.diksha-key--used {
-  background: var(--border-mitti);
-  color: var(--text-vibhuti);
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-
-/* ─── Botones ─── */
+/* ─── BOTONES PRIMARIOS Y SECUNDARIOS ─── */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
   font-weight: 600;
-  transition: all var(--duration-normal) var(--ease-out);
   letter-spacing: 0.02em;
+  transition: all var(--duration-fast) var(--ease-smooth);
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 .btn--primary {
-  background: var(--primary-nila);
+  background: var(--grad-nila);
   color: var(--bg-chandan);
-  box-shadow: 0 2px 8px rgba(35, 57, 77, 0.2);
+  border: 1px solid rgba(224, 213, 193, 0.25);
+  box-shadow: 0 4px 14px rgba(35, 57, 77, 0.25);
 }
 
 .btn--primary:hover {
-  background: var(--nila-soft);
-  box-shadow: 0 4px 16px rgba(35, 57, 77, 0.25);
+  box-shadow: 0 6px 20px rgba(35, 57, 77, 0.35);
   transform: translateY(-1px);
-}
-
-.btn--primary:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(35, 57, 77, 0.2);
-}
-
-.btn--secondary {
-  background: transparent;
-  color: var(--primary-nila);
-  border: 1.5px solid var(--border-mitti);
-}
-
-.btn--secondary:hover {
-  background: var(--surface-khadi);
-  border-color: var(--primary-nila);
 }
 
 .btn--geru {
-  background: var(--accent-geru);
+  background: var(--grad-geru);
   color: var(--bg-chandan);
-  box-shadow: 0 2px 8px rgba(184, 90, 58, 0.25);
+  border: 1px solid rgba(251, 248, 243, 0.3);
+  box-shadow: var(--glow-geru);
 }
 
 .btn--geru:hover {
-  background: var(--geru-soft);
-  box-shadow: 0 4px 16px rgba(184, 90, 58, 0.3);
+  box-shadow: 0 6px 22px rgba(184, 90, 58, 0.45);
   transform: translateY(-1px);
+}
+
+.btn--secondary {
+  background: var(--surface-khadi);
+  color: var(--primary-nila);
+  border: 1px solid var(--border-mitti);
+}
+
+.btn--secondary:hover {
+  background: #EDE6D8;
+  border-color: var(--text-vibhuti);
 }
 
 .btn--danger {
@@ -679,24 +856,290 @@ input:focus, textarea:focus, select:focus {
   color: var(--bg-chandan);
 }
 
-.btn--danger:hover {
-  box-shadow: 0 4px 16px rgba(168, 56, 59, 0.3);
-  transform: translateY(-1px);
+.btn--full {
+  width: 100%;
 }
-
-.btn--full { width: 100%; }
 
 .btn--sm {
   padding: 8px 16px;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── ÁRBOL PARAMPARĀ (MAPA DE LINAJE SAGRADO) ─── */
+.parampara-tree {
+  margin: var(--space-md) 0;
+  padding: var(--space-md) var(--space-sm);
+  position: relative;
+}
+
+.parampara-tree__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.parampara-thread {
+  position: relative;
+  padding-left: 28px;
+}
+
+/* Espina dorada vertical */
+.parampara-thread::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 14px;
+  bottom: 24px;
+  width: 3px;
+  background: linear-gradient(180deg, var(--prestige-kamsya) 0%, var(--accent-geru) 50%, var(--success-tulsi) 100%);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 8px rgba(166, 124, 55, 0.3);
+}
+
+.parampara-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.parampara-node__pin {
+  position: absolute;
+  left: -28px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-chandan);
+  border: 3px solid var(--prestige-kamsya);
+  box-shadow: 0 0 10px rgba(166, 124, 55, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.parampara-node--current .parampara-node__pin {
+  border-color: var(--accent-geru);
+  box-shadow: var(--glow-geru);
+}
+
+.parampara-node__pin-inner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--prestige-kamsya);
+}
+
+.parampara-node--current .parampara-node__pin-inner {
+  background: var(--accent-geru);
+}
+
+.parampara-node__card {
+  flex: 1;
+  background: var(--surface-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.parampara-node__card:hover {
+  transform: translateX(4px);
+  border-color: var(--prestige-kamsya);
+}
+
+.parampara-node--current .parampara-node__card {
+  background: rgba(184, 90, 58, 0.06);
+  border: 1.5px solid var(--accent-geru);
+}
+
+.parampara-node__name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--primary-nila);
+}
+
+.parampara-node__tier-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-vibhuti);
+}
+
+/* ─── DESPACHO UBER WAVE (TARJETA EMERGENTE RADAR) ─── */
+.uber-notification {
+  position: fixed;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 150;
+  width: calc(100% - 24px);
+  max-width: 520px;
+  background: var(--grad-nila-card);
+  color: var(--bg-chandan);
+  border: 1.5px solid var(--accent-geru);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 16px 48px rgba(18, 30, 42, 0.65), var(--glow-geru);
+  padding: var(--space-lg);
+  animation: slideUp 0.4s var(--ease-spring);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translate(-50%, 40px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.uber-notification__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.uber-notification__radar-beacon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--geru-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.radar-ping-ring {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-geru);
+  box-shadow: 0 0 10px var(--accent-geru);
+  animation: beaconPing 1s infinite;
+}
+
+.uber-notification__timer-gauge {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uber-notification__timer-gauge svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.uber-notification__timer-gauge circle {
+  fill: none;
+  stroke: var(--accent-geru);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.uber-notification__countdown {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--bg-chandan);
+}
+
+.uber-notification__skill-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--bg-chandan);
+  margin-bottom: var(--space-xs);
+}
+
+.uber-notification__meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  background: rgba(251, 248, 243, 0.08);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  margin: var(--space-md) 0;
   font-size: 0.78rem;
 }
 
-/* ─── Chat ─── */
+.uber-notification__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(251, 248, 243, 0.9);
+}
+
+.uber-notification__actions {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+/* ─── CHAT SEGURO Y CERTIFICADO SANKALPA ─── */
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: calc(100dvh - 56px - 60px);
-  max-height: 600px;
+  height: calc(100vh - 160px);
+  height: calc(100dvh - 160px);
+  background: var(--surface-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.chat-header-bar {
+  background: var(--surface-khadi);
+  border-bottom: 1px solid var(--border-mitti);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-header-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-header-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-chandan);
+  border: 1.5px solid var(--prestige-kamsya);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.chat-security-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(35, 57, 77, 0.06);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--primary-nila);
 }
 
 .chat-messages {
@@ -705,444 +1148,323 @@ input:focus, textarea:focus, select:focus {
   padding: var(--space-md);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: 12px;
 }
 
 .chat-bubble {
-  max-width: 80%;
-  padding: 10px 14px;
-  border-radius: var(--radius-md);
+  max-width: 82%;
+  padding: 10px 16px;
+  border-radius: var(--radius-lg);
   font-size: 0.88rem;
-  line-height: 1.5;
+  line-height: 1.45;
   position: relative;
-  animation: bubbleIn 0.3s var(--ease-spring);
-}
-
-@keyframes bubbleIn {
-  from { opacity: 0; transform: translateY(8px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .chat-bubble--sent {
+  align-self: flex-end;
   background: var(--primary-nila);
   color: var(--bg-chandan);
-  align-self: flex-end;
   border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 8px rgba(35, 57, 77, 0.15);
 }
 
 .chat-bubble--received {
-  background: var(--surface-khadi);
-  color: var(--text-kajal);
   align-self: flex-start;
+  background: var(--bg-chandan);
+  color: var(--text-kajal);
+  border: 1px solid var(--border-delicate);
   border-bottom-left-radius: 4px;
-  border: 1px solid var(--border-mitti);
+  box-shadow: var(--shadow-subtle);
 }
 
 .chat-bubble--system {
-  background: rgba(184, 90, 58, 0.08);
-  color: var(--accent-geru);
   align-self: center;
+  background: rgba(166, 124, 55, 0.1);
+  border: 1px dashed var(--prestige-kamsya);
+  color: var(--prestige-kamsya);
   font-size: 0.78rem;
-  font-weight: 500;
-  border: 1px solid rgba(184, 90, 58, 0.15);
+  font-weight: 600;
   text-align: center;
   max-width: 90%;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
 }
 
 .chat-bubble--blocked {
-  background: rgba(168, 56, 59, 0.08);
-  color: var(--danger-sindoor);
   align-self: center;
+  background: rgba(168, 56, 59, 0.08);
+  border: 1px solid var(--danger-sindoor);
+  color: var(--danger-sindoor);
   font-size: 0.78rem;
-  font-weight: 500;
-  border: 1px solid rgba(168, 56, 59, 0.15);
-  text-align: center;
-  max-width: 90%;
+  line-height: 1.4;
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  max-width: 92%;
 }
 
 .chat-bubble__time {
-  font-size: 0.62rem;
-  opacity: 0.6;
+  font-size: 0.65rem;
+  opacity: 0.7;
   margin-top: 4px;
   text-align: right;
 }
 
-.chat-input-bar {
-  display: flex;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
-  border-top: 1px solid var(--border-mitti);
-  background: var(--surface-khadi);
-}
-
-.chat-input-bar input {
-  flex: 1;
-  border: none;
-  background: var(--bg-chandan);
-}
-
-.chat-input-bar button {
-  flex-shrink: 0;
-}
-
-/* ─── Sankalpa (Acuerdo de Honor) ─── */
+/* 📜 CERTIFICADO SANKALPA (CONTRATO DE HONOR DIGITAL) */
 .sankalpa-card {
-  background: var(--bg-chandan);
+  background: var(--grad-parchment);
   border: 2px solid var(--prestige-kamsya);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  margin: var(--space-md) 0;
+  box-shadow: 0 8px 24px rgba(166, 124, 55, 0.2);
+  margin: var(--space-sm) 0;
   position: relative;
-  overflow: hidden;
 }
 
-.sankalpa-card::before {
+.sankalpa-card::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--prestige-kamsya), var(--accent-geru));
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1px dashed rgba(166, 124, 55, 0.5);
+  border-radius: calc(var(--radius-lg) - 4px);
+  pointer-events: none;
 }
 
 .sankalpa-card__title {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--prestige-kamsya);
+  color: var(--primary-nila);
+  text-align: center;
+  margin-bottom: var(--space-sm);
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-md);
-}
-
-.sankalpa-card__field {
-  margin-bottom: var(--space-sm);
-}
-
-.sankalpa-card__label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--text-vibhuti);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 4px;
-}
-
-.sankalpa-card__value {
-  font-size: 0.88rem;
-  color: var(--text-kajal);
-  font-weight: 500;
-}
-
-.sankalpa-card__id {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-vibhuti);
-  margin-top: var(--space-md);
-  padding-top: var(--space-sm);
-  border-top: 1px solid var(--border-mitti);
+  justify-content: center;
+  gap: 8px;
 }
 
 .sankalpa-card__signatures {
-  display: flex;
-  gap: var(--space-md);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
   margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(166, 124, 55, 0.3);
 }
 
 .sankalpa-sig {
-  flex: 1;
   text-align: center;
-  padding: var(--space-sm);
+  background: rgba(56, 102, 75, 0.08);
+  border: 1px solid var(--success-tulsi);
   border-radius: var(--radius-sm);
-  border: 1px dashed var(--border-mitti);
-}
-
-.sankalpa-sig--confirmed {
-  border-color: var(--success-tulsi);
-  border-style: solid;
-  background: rgba(56, 102, 75, 0.06);
+  padding: 8px 10px;
 }
 
 .sankalpa-sig__label {
   font-size: 0.68rem;
+  text-transform: uppercase;
   color: var(--text-vibhuti);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .sankalpa-sig__status {
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--success-tulsi);
   margin-top: 2px;
 }
 
-.sankalpa-sig__status--pending { color: var(--accent-geru); }
-.sankalpa-sig__status--confirmed { color: var(--success-tulsi); }
-
-/* ─── Notificación Uber Wave ─── */
-.uber-notification {
-  position: fixed;
-  bottom: 80px;
-  left: var(--space-md);
-  right: var(--space-md);
-  z-index: 200;
+.chat-input-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px var(--space-md);
   background: var(--surface-khadi);
-  border: 1px solid var(--border-mitti);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  box-shadow: var(--shadow-uber);
-  animation: slideUp 0.5s var(--ease-spring);
-  max-width: 500px;
-  margin: 0 auto;
+  border-top: 1px solid var(--border-mitti);
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(100%); }
-  to { opacity: 1; transform: translateY(0); }
+.chat-input-bar input {
+  flex: 1;
+  background: var(--bg-chandan);
+  border-radius: var(--radius-pill);
+  padding: 10px 18px;
 }
 
-.uber-notification__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-md);
-}
-
-.uber-notification__type {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--accent-geru);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.uber-notification__timer {
-  font-family: var(--font-mono);
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--accent-geru);
-  min-width: 36px;
-  text-align: center;
-}
-
-.uber-notification__timer-ring {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 3px solid var(--border-mitti);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.uber-notification__timer-ring svg {
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  width: 42px;
-  height: 42px;
-  transform: rotate(-90deg);
-}
-
-.uber-notification__timer-ring circle {
-  fill: none;
-  stroke: var(--accent-geru);
-  stroke-width: 3;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 1s linear;
-}
-
-.uber-notification__body {
-  margin-bottom: var(--space-md);
-}
-
-.uber-notification__title {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--primary-nila);
-  margin-bottom: var(--space-sm);
-}
-
-.uber-notification__detail {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: 0.82rem;
-  color: var(--text-vibhuti);
-  margin-bottom: 4px;
-}
-
-.uber-notification__detail-icon {
-  width: 20px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.uber-notification__actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-sm);
-}
-
-/* ─── PIN Input ─── */
+/* ─── VERIFICACIÓN POR PIN ─── */
 .pin-input-group {
   display: flex;
-  gap: var(--space-sm);
+  gap: 12px;
   justify-content: center;
-  margin: var(--space-md) 0;
+  margin: var(--space-lg) 0;
 }
 
-.pin-input-group input {
-  width: 48px;
-  height: 56px;
-  text-align: center;
+.pin-digit {
+  width: 54px;
+  height: 64px;
   font-family: var(--font-mono);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--primary-nila);
-  border: 2px solid var(--border-mitti);
-  border-radius: var(--radius-sm);
-  background: var(--bg-chandan);
-  caret-color: var(--accent-geru);
-}
-
-.pin-input-group input:focus {
-  border-color: var(--primary-nila);
-  box-shadow: 0 0 0 3px rgba(35, 57, 77, 0.1);
-}
-
-.pin-input-group input.valid {
-  border-color: var(--success-tulsi);
-  background: rgba(56, 102, 75, 0.06);
-}
-
-/* ─── Reseñas Doble Ciego ─── */
-.review-section {
+  font-size: 1.8rem;
+  font-weight: 700;
   text-align: center;
-  padding: var(--space-xl) var(--space-md);
+  background: var(--surface-card);
+  border: 2px solid var(--border-mitti);
+  border-radius: var(--radius-md);
+  color: var(--primary-nila);
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.pin-digit:focus {
+  border-color: var(--primary-nila);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(35, 57, 77, 0.15);
+}
+
+.pin-digit.valid {
+  border-color: var(--success-tulsi);
+  background: rgba(56, 102, 75, 0.08);
+  color: var(--success-tulsi);
+}
+
+/* ─── RESEÑAS DOBLE CIEGO ─── */
+.review-section {
+  background: var(--grad-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: var(--shadow-elevated);
+  text-align: center;
 }
 
 .review-stars {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
+  gap: 8px;
   margin: var(--space-md) 0;
 }
 
 .review-star {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--border-mitti);
   cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-out);
-  background: transparent;
-  padding: 4px;
+  transition: all var(--duration-fast) var(--ease-spring);
 }
 
 .review-star:hover,
 .review-star.active {
-  color: var(--prestige-kamsya);
-  transform: scale(1.15);
-}
-
-.review-blind-notice {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
-  background: rgba(35, 57, 77, 0.06);
-  border-radius: var(--radius-sm);
-  font-size: 0.78rem;
-  color: var(--text-vibhuti);
-  margin: var(--space-md) 0;
-}
-
-.review-blind-notice__icon {
-  font-size: 1rem;
-  flex-shrink: 0;
+  color: var(--kamsya-bright);
+  transform: scale(1.18);
+  filter: drop-shadow(0 2px 8px rgba(201, 158, 82, 0.4));
 }
 
 .review-private-questions {
-  margin-top: var(--space-lg);
   text-align: left;
+  background: var(--surface-khadi);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin: var(--space-lg) 0;
 }
 
 .review-private-question {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-md);
+  padding: 12px 0;
   border-bottom: 1px solid var(--border-mitti);
   gap: var(--space-md);
 }
 
-.review-private-question__text {
-  font-size: 0.85rem;
-  color: var(--text-kajal);
-  flex: 1;
-}
-
-.review-private-question__toggle {
-  display: flex;
-  gap: var(--space-xs);
+.review-private-question:last-child {
+  border-bottom: none;
 }
 
 .toggle-btn {
   padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: 600;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
   background: var(--bg-chandan);
-  color: var(--text-vibhuti);
   border: 1px solid var(--border-mitti);
+  color: var(--text-vibhuti);
 }
 
 .toggle-btn.active-yes {
-  background: rgba(56, 102, 75, 0.12);
-  color: var(--success-tulsi);
+  background: var(--success-tulsi);
+  color: var(--bg-chandan);
   border-color: var(--success-tulsi);
+  box-shadow: var(--glow-tulsi);
 }
 
 .toggle-btn.active-no {
-  background: rgba(168, 56, 59, 0.08);
-  color: var(--danger-sindoor);
+  background: var(--danger-sindoor);
+  color: var(--bg-chandan);
   border-color: var(--danger-sindoor);
 }
 
-/* ─── Revelación Doble Ciego ─── */
+/* ─── BADGES E INSIGNIAS MUDRĀS ─── */
+.badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: var(--space-sm) 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-khadi);
+  border: 1px solid var(--border-mitti);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary-nila);
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.badge:hover {
+  transform: translateY(-2px);
+  border-color: var(--prestige-kamsya);
+}
+
+.badge.active {
+  background: var(--grad-kamsya);
+  color: var(--bg-chandan);
+  border-color: var(--prestige-kamsya);
+  box-shadow: var(--glow-kamsya);
+}
+
+/* ─── REVELACIÓN SIMULTÁNEA DOBLE CIEGO ─── */
 .double-blind-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-md);
-  margin: var(--space-md) 0;
+  margin: var(--space-lg) 0;
   text-align: left;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 580px) {
   .double-blind-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 .double-blind-card {
-  background: var(--surface-khadi);
-  border: 1px solid var(--border-mitti);
-  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  border: 1.5px solid var(--prestige-kamsya);
+  border-radius: var(--radius-lg);
   padding: var(--space-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
   box-shadow: var(--shadow-card);
 }
 
 .double-blind-card__author {
-  font-weight: 600;
-  font-size: 0.88rem;
+  font-weight: 700;
+  font-size: 0.92rem;
   color: var(--primary-nila);
   display: flex;
   justify-content: space-between;
@@ -1150,22 +1472,23 @@ input:focus, textarea:focus, select:focus {
 }
 
 .double-blind-card__stars {
-  color: var(--prestige-kamsya);
-  font-size: 1rem;
+  color: var(--kamsya-bright);
   letter-spacing: 2px;
+  font-size: 1rem;
 }
 
 .double-blind-card__comment {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
+  font-style: italic;
   color: var(--text-kajal);
   line-height: 1.45;
-  font-style: italic;
   margin: var(--space-xs) 0;
 }
 
 .double-blind-card__security {
   font-size: 0.72rem;
   color: var(--success-tulsi);
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -1173,56 +1496,121 @@ input:focus, textarea:focus, select:focus {
 
 .karma-impact-banner {
   background: rgba(56, 102, 75, 0.08);
-  border: 1px solid var(--success-tulsi);
-  border-radius: var(--radius-md);
+  border: 1.5px solid var(--success-tulsi);
+  border-radius: var(--radius-lg);
   padding: var(--space-md);
   margin: var(--space-md) 0;
   text-align: left;
 }
 
 .karma-impact-banner__title {
-  font-weight: 600;
-  font-size: 0.85rem;
+  font-weight: 700;
+  font-size: 0.92rem;
   color: var(--success-tulsi);
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-  margin-bottom: var(--space-xs);
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
 .karma-impact-banner__list {
   list-style: none;
-  font-size: 0.8rem;
-  color: var(--text-kajal);
+  font-size: 0.82rem;
   line-height: 1.5;
+  color: var(--text-kajal);
 }
 
-/* ─── Modal de Registro Dīkṣā ─── */
+.review-blind-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(166, 124, 55, 0.08);
+  border: 1px dashed var(--prestige-kamsya);
+  font-size: 0.78rem;
+  color: var(--prestige-kamsya);
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.review-blind-notice__icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* ─── HABILIDADES TAGS ─── */
+.skills-section {
+  margin: var(--space-md) 0;
+  text-align: left;
+}
+
+.skills-section__title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--text-vibhuti);
+  margin-bottom: var(--space-xs);
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin: 3px;
+  background: var(--surface-khadi);
+  border: 1px solid var(--border-mitti);
+  color: var(--text-kajal);
+}
+
+.skill-tag--proven {
+  border-color: var(--success-tulsi);
+  background: rgba(56, 102, 75, 0.08);
+  color: var(--success-tulsi);
+}
+
+.skill-tag--certified {
+  border-color: var(--prestige-kamsya);
+  background: rgba(166, 124, 55, 0.1);
+  color: var(--kamsya-soft);
+  font-weight: 700;
+}
+
+.skill-tag--declared {
+  border-style: dashed;
+  color: var(--text-vibhuti);
+}
+
+/* ─── MODALES ─── */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  z-index: 300;
-  background: var(--overlay-dark);
+  z-index: 200;
+  background: rgba(25, 42, 58, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-md);
-  animation: fadeIn 0.3s var(--ease-out);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  animation: fadeIn 0.25s var(--ease-smooth);
 }
 
 .modal {
-  background: var(--surface-khadi);
-  border-radius: var(--radius-lg);
+  background: var(--grad-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-xl);
   padding: var(--space-xl);
-  max-width: 420px;
+  max-width: 440px;
   width: 100%;
-  box-shadow: var(--shadow-xl);
-  animation: modalIn 0.4s var(--ease-spring);
+  box-shadow: var(--shadow-modal);
+  animation: modalIn 0.35s var(--ease-spring);
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -1232,132 +1620,45 @@ input:focus, textarea:focus, select:focus {
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.modal__title {
-  font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--primary-nila);
-  margin-bottom: var(--space-md);
-  text-align: center;
-}
-
-.modal__subtitle {
-  font-size: 0.85rem;
-  color: var(--text-vibhuti);
-  text-align: center;
-  margin-bottom: var(--space-lg);
-  line-height: 1.5;
-}
-
-.form-group {
-  margin-bottom: var(--space-md);
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-vibhuti);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: var(--space-xs);
-}
-
-.form-error {
-  font-size: 0.75rem;
-  color: var(--danger-sindoor);
-  margin-top: var(--space-xs);
+/* ─── LISTA DE PRESTADORES (EXPLORAR) ─── */
+.seva-list-item {
+  background: var(--surface-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-}
-
-/* ─── Sección de Explorar ─── */
-.explore-header {
-  margin-bottom: var(--space-lg);
-}
-
-.explore-header h2 {
-  margin-bottom: var(--space-xs);
-}
-
-.explore-header p {
-  font-size: 0.85rem;
-  color: var(--text-vibhuti);
-}
-
-.search-bar {
-  display: flex;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-md);
-}
-
-.search-bar input {
-  flex: 1;
-  padding-left: 36px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235A5D58' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 12px center;
-}
-
-.filter-chips {
-  display: flex;
-  gap: var(--space-sm);
-  overflow-x: auto;
-  padding-bottom: var(--space-sm);
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.filter-chips::-webkit-scrollbar { display: none; }
-
-.filter-chip {
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.78rem;
-  font-weight: 500;
-  white-space: nowrap;
-  background: var(--bg-chandan);
-  color: var(--text-vibhuti);
-  border: 1px solid var(--border-mitti);
-  transition: all var(--duration-fast) var(--ease-out);
-}
-
-.filter-chip:hover,
-.filter-chip.active {
-  background: var(--primary-nila);
-  color: var(--bg-chandan);
-  border-color: var(--primary-nila);
-}
-
-/* ─── Lista de Favores ─── */
-.seva-list-item {
-  display: flex;
   gap: var(--space-md);
-  padding: var(--space-md);
-  background: var(--surface-khadi);
-  border: 1px solid var(--border-mitti);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--space-sm);
   cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-out);
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--duration-fast) var(--ease-smooth);
 }
 
 .seva-list-item:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--prestige-kamsya);
 }
 
 .seva-list-item__avatar {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: var(--radius-md);
-  background: var(--border-mitti);
+  background: var(--surface-khadi);
+  border: 1.5px solid var(--border-mitti);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   flex-shrink: 0;
+}
+
+.seva-list-item__name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-nila);
 }
 
 .seva-list-item__body {
@@ -1365,152 +1666,228 @@ input:focus, textarea:focus, select:focus {
   min-width: 0;
 }
 
-.seva-list-item__name {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--text-kajal);
-}
-
 .seva-list-item__skill {
-  font-size: 0.78rem;
-  color: var(--text-vibhuti);
-  margin-top: 2px;
+  font-size: 0.82rem;
+  color: var(--text-kajal);
+  margin: 2px 0 4px;
+  font-weight: 500;
 }
 
 .seva-list-item__meta {
   display: flex;
-  gap: var(--space-md);
-  margin-top: var(--space-xs);
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   font-size: 0.72rem;
   color: var(--text-vibhuti);
 }
 
 .seva-list-item__status {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .status-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
+  display: inline-block;
 }
 
-.status-dot--available { background: var(--success-tulsi); }
-.status-dot--busy { background: var(--accent-geru); }
-.status-dot--offline { background: var(--border-mitti); }
-
-/* ─── Animaciones Micro ─── */
-.pulse-geru {
-  animation: pulseGeru 2s ease-in-out infinite;
+.status-dot--available {
+  background: var(--success-tulsi);
+  box-shadow: 0 0 6px var(--success-tulsi);
 }
 
-@keyframes pulseGeru {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(184, 90, 58, 0.3); }
-  50% { box-shadow: 0 0 0 8px rgba(184, 90, 58, 0); }
+.status-dot--offline {
+  background: var(--border-mitti);
 }
 
-.shimmer {
-  background: linear-gradient(
-    110deg,
-    var(--surface-khadi) 8%,
-    var(--bg-chandan) 18%,
-    var(--surface-khadi) 33%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
-}
-
-@keyframes shimmer {
-  to { background-position: -200% 0; }
-}
-
-/* ─── Modo Escudo Kavacha ─── */
-.kavacha-bar {
-  position: fixed;
-  top: 56px;
-  left: 0;
-  right: 0;
-  z-index: 90;
-  background: var(--danger-sindoor);
-  color: var(--bg-chandan);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
-  padding: 8px var(--space-md);
-  font-size: 0.78rem;
-  font-weight: 600;
-  animation: slideDown 0.3s var(--ease-out);
-}
-
-@keyframes slideDown {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(0); }
-}
-
-/* ─── Vista vacía ─── */
-.empty-state {
-  text-align: center;
-  padding: var(--space-3xl) var(--space-md);
-}
-
-.empty-state__icon {
-  font-size: 3rem;
+/* ─── EXPLORAR Y BUSCADOR ─── */
+.explore-header {
   margin-bottom: var(--space-md);
-  opacity: 0.4;
+  text-align: left;
 }
 
-.empty-state__title {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
+.explore-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--primary-nila);
+}
+
+.explore-header p {
+  font-size: 0.85rem;
+  color: var(--text-vibhuti);
+  margin-top: 2px;
+}
+
+.search-bar {
   margin-bottom: var(--space-sm);
 }
 
-.empty-state__text {
-  font-size: 0.85rem;
-  color: var(--text-vibhuti);
-  max-width: 280px;
-  margin: 0 auto;
-  line-height: 1.5;
+.search-bar input {
+  background: var(--surface-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-pill);
+  padding: 12px 20px;
+  font-size: 0.88rem;
+  box-shadow: var(--shadow-subtle);
 }
 
-/* ─── Sección bienvenida ─── */
-.welcome-hero {
-  text-align: center;
-  padding: var(--space-xl) 0;
+.search-bar input:focus {
+  border-color: var(--primary-nila);
+  box-shadow: 0 0 0 3px rgba(35, 57, 77, 0.12);
+}
+
+.filter-chips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0 10px;
+}
+
+.filter-chip {
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--surface-card);
+  border: 1px solid var(--border-mitti);
+  color: var(--text-vibhuti);
+  white-space: nowrap;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.filter-chip:hover {
+  border-color: var(--primary-nila);
+  color: var(--primary-nila);
+}
+
+.filter-chip.active {
+  background: var(--grad-nila);
+  color: var(--bg-chandan);
+  border-color: var(--primary-nila);
+  box-shadow: var(--glow-nila);
+}
+
+/* ─── PERFIL EDITORIAL ─── */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-delicate);
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-khadi);
+  border: 2px solid var(--prestige-kamsya);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: var(--shadow-elevated), var(--glow-kamsya);
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+  margin-bottom: 4px;
+}
+
+.profile-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.level-1 { background: rgba(90, 93, 88, 0.1); color: var(--text-vibhuti); border: 1px solid var(--border-mitti); }
+.level-2 { background: rgba(184, 90, 58, 0.1); color: var(--accent-geru); border: 1px solid var(--accent-geru); }
+.level-3 { background: rgba(56, 102, 75, 0.12); color: var(--success-tulsi); border: 1px solid var(--success-tulsi); }
+.level-4 { background: rgba(166, 124, 55, 0.12); color: var(--prestige-kamsya); border: 1px solid var(--prestige-kamsya); }
+.level-5 { background: var(--grad-kamsya); color: var(--bg-chandan); box-shadow: var(--glow-kamsya); }
+
+.profile-zone {
+  font-size: 0.75rem;
+  color: var(--text-vibhuti);
+  margin-top: 4px;
+}
+
+/* ─── MEDIDOR DE KARMA LINEAL ─── */
+.karma-meter {
+  background: var(--surface-khadi);
+  border: 1px solid var(--border-mitti);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
   margin-bottom: var(--space-md);
 }
 
-.welcome-hero__logo {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--radius-lg);
-  margin: 0 auto var(--space-md);
-  display: block;
-  object-fit: cover;
-  box-shadow: var(--shadow-lg);
+.karma-meter__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
 
-.welcome-hero__title {
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  color: var(--primary-nila);
+.karma-meter__label {
+  font-size: 0.75rem;
   font-weight: 700;
-  margin-bottom: var(--space-xs);
-}
-
-.welcome-hero__subtitle {
-  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-vibhuti);
-  max-width: 320px;
-  margin: 0 auto;
-  line-height: 1.5;
 }
 
-/* ─── Estadísticas ─── */
+.karma-meter__value {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+}
+
+.karma-meter__bar {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(35, 57, 77, 0.08);
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.karma-meter__fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--grad-geru);
+  transition: width 1s var(--ease-smooth);
+}
+
+.karma-meter__range {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  color: var(--text-vibhuti);
+}
+
+/* ─── GRILLA DE ESTADÍSTICAS ─── */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1519,121 +1896,117 @@ input:focus, textarea:focus, select:focus {
 }
 
 .stat-card {
-  text-align: center;
-  padding: var(--space-md) var(--space-sm);
   background: var(--surface-khadi);
-  border: 1px solid var(--border-mitti);
+  border: 1px solid var(--border-delicate);
   border-radius: var(--radius-md);
+  padding: 12px 8px;
+  text-align: center;
 }
 
 .stat-card__value {
   font-family: var(--font-mono);
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--primary-nila);
 }
 
 .stat-card__label {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
+  font-weight: 600;
   color: var(--text-vibhuti);
-  margin-top: 2px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  font-weight: 500;
-}
-
-/* ─── Actividad / Historial ─── */
-.activity-item {
-  display: flex;
-  gap: var(--space-sm);
-  padding: var(--space-sm) 0;
-  border-bottom: 1px solid var(--border-mitti);
-  align-items: flex-start;
-}
-
-.activity-item:last-child { border-bottom: none; }
-
-.activity-item__icon {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-
-.activity-item__icon--seva { background: rgba(35, 57, 77, 0.08); }
-.activity-item__icon--karma { background: rgba(184, 90, 58, 0.08); }
-.activity-item__icon--diksha { background: rgba(166, 124, 55, 0.08); }
-
-.activity-item__body {
-  flex: 1;
-}
-
-.activity-item__title {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-kajal);
-}
-
-.activity-item__time {
-  font-size: 0.7rem;
-  color: var(--text-vibhuti);
   margin-top: 2px;
 }
 
-.activity-item__points {
+/* ─── LLAVES DĪKṢĀ ─── */
+.diksha-section {
+  background: var(--surface-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+}
+
+.diksha-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin: 4px;
+}
+
+.diksha-key--available {
+  background: rgba(184, 90, 58, 0.08);
+  border: 1px solid var(--accent-geru);
+  color: var(--accent-geru);
+}
+
+.diksha-key--used {
+  background: rgba(90, 93, 88, 0.08);
+  border: 1px dashed var(--border-mitti);
+  color: var(--text-vibhuti);
+  text-decoration: line-through;
+}
+
+/* ─── FORMULARIOS EDITORIALES ─── */
+.form-group {
+  margin-bottom: var(--space-md);
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-vibhuti);
+  margin-bottom: 6px;
+}
+
+.form-error {
+  color: var(--danger-sindoor);
+  font-size: 0.75rem;
+  margin-top: 4px;
   font-weight: 600;
-  align-self: center;
 }
 
-.activity-item__points--positive { color: var(--success-tulsi); }
-.activity-item__points--negative { color: var(--danger-sindoor); }
-
-/* ─── Responsive ─── */
-@media (min-width: 768px) {
-  .main-content {
-    max-width: 640px;
-  }
-
-  .bottom-nav {
-    max-width: 640px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-
-  .uber-notification {
-    bottom: 100px;
-  }
+/* ─── ESTADOS VACÍOS (EMPTY STATES) ─── */
+.empty-state {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--surface-card);
+  border: 1px dashed var(--border-mitti);
+  border-radius: var(--radius-xl);
+  margin: var(--space-lg) 0;
 }
 
-@media (min-width: 1024px) {
-  .main-content {
-    max-width: 720px;
-  }
+.empty-state__icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-sm);
+  filter: drop-shadow(0 2px 8px rgba(35, 57, 77, 0.1));
 }
 
-@media (max-width: 374px) {
-  .role-switcher__btn {
-    padding: 5px 8px;
-    font-size: 0.65rem;
-  }
-
-  .top-bar__logo span {
-    font-size: 1.05rem;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.empty-state__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+  margin-bottom: var(--space-xs);
 }
 
-/* ─── Utilidades ─── */
+.empty-state__text {
+  font-size: 0.85rem;
+  color: var(--text-vibhuti);
+  max-width: 320px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ─── UTILIDADES EDITORIALES ─── */
 .hidden { display: none !important; }
 .text-geru { color: var(--accent-geru); }
 .text-tulsi { color: var(--success-tulsi); }
@@ -1641,34 +2014,15 @@ input:focus, textarea:focus, select:focus {
 .text-sindoor { color: var(--danger-sindoor); }
 .text-nila { color: var(--primary-nila); }
 .text-vibhuti { color: var(--text-vibhuti); }
+.font-mono { font-family: var(--font-mono); }
+.font-display { font-family: var(--font-display); }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm { gap: var(--space-sm); }
+.mt-xs { margin-top: var(--space-xs); }
 .mt-sm { margin-top: var(--space-sm); }
 .mt-md { margin-top: var(--space-md); }
 .mt-lg { margin-top: var(--space-lg); }
 .mb-md { margin-bottom: var(--space-md); }
-.gap-sm { gap: var(--space-sm); }
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-.text-center { text-align: center; }
-.font-mono { font-family: var(--font-mono); }
-.font-heading { font-family: var(--font-heading); }
-.w-full { width: 100%; }
 
-/* ─── Decoración Yantra sutil ─── */
-.yantra-pattern {
-  position: relative;
-}
-
-.yantra-pattern::after {
-  content: '';
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%2323394D' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%2323394D' stroke-width='1'/%3E%3Cpolygon points='50,10 90,75 10,75' fill='none' stroke='%2323394D' stroke-width='1'/%3E%3Cpolygon points='50,90 10,25 90,25' fill='none' stroke='%2323394D' stroke-width='1'/%3E%3C/svg%3E");
-  background-size: contain;
-  pointer-events: none;
-}
