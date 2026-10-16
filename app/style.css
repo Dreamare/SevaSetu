@@ -638,12 +638,96 @@ input:focus, textarea:focus, select:focus {
 
 .mandala-gauge {
   position: relative;
-  width: 170px;
-  height: 170px;
+  width: 178px;
+  height: 178px;
   margin: 0 auto var(--space-md);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50% !important;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.mandala-gauge:hover {
+  transform: scale(1.04);
+}
+
+.mandala-gauge:active {
+  transform: scale(0.98);
+}
+
+/* Resplandor áurico circular y pulsante */
+.glow-karma-pulse {
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.3), 0 0 50px rgba(184, 90, 58, 0.18);
+  border-radius: 50% !important;
+}
+
+/* Anillos concéntricos de energía cósmica (Prana) */
+.mandala-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212, 175, 55, 0.35);
+  pointer-events: none;
+  animation: karmaRingPulse 3.2s infinite ease-out;
+}
+
+.mandala-pulse-ring.ring-2 {
+  inset: -14px;
+  border-color: rgba(184, 90, 58, 0.22);
+  animation-delay: 1.6s;
+}
+
+@keyframes karmaRingPulse {
+  0% { transform: scale(0.94); opacity: 0.8; }
+  50% { transform: scale(1.04); opacity: 0.4; }
+  100% { transform: scale(1.14); opacity: 0; }
+}
+
+/* Órbita de micro-partículas de Karma */
+.karma-particles-orbit {
+  position: absolute;
+  inset: -18px;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.karma-sparkle {
+  position: absolute;
+  font-size: 0.75rem;
+  color: #FFD700;
+  user-select: none;
+  filter: drop-shadow(0 0 4px #FFA000);
+}
+
+.karma-sparkle.kp-1 { top: 4px; right: 28px; animation: sparkleTwinkle 2s infinite ease-in-out; }
+.karma-sparkle.kp-2 { bottom: 12px; left: 16px; font-size: 0.85rem; animation: sparkleTwinkle 2.5s infinite ease-in-out 0.6s; }
+.karma-sparkle.kp-3 { top: 48%; left: -8px; font-size: 0.65rem; color: var(--accent-geru); animation: sparkleTwinkle 1.8s infinite ease-in-out 1.2s; }
+.karma-sparkle.kp-4 { top: 42%; right: -8px; font-size: 0.7rem; color: #FFD700; animation: sparkleTwinkle 2.2s infinite ease-in-out 0.3s; }
+.karma-sparkle.kp-5 { bottom: 6px; right: 30px; font-size: 0.65rem; animation: sparkleTwinkle 2.4s infinite ease-in-out 0.9s; }
+.karma-sparkle.kp-6 { top: -6px; left: 45%; font-size: 0.8rem; animation: sparkleTwinkle 3s infinite ease-in-out 1.5s; }
+
+.karma-dust-orb {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #FFD700;
+  box-shadow: 0 0 6px #FF9100;
+  animation: karmaDustOrbit 6s infinite linear;
+}
+
+.karma-dust-orb.kd-1 { top: 10%; left: 80%; animation-duration: 5s; }
+.karma-dust-orb.kd-2 { top: 85%; left: 20%; animation-duration: 7s; animation-delay: 1.5s; }
+.karma-dust-orb.kd-3 { top: 30%; left: 2%; animation-duration: 6s; animation-delay: 3s; }
+.karma-dust-orb.kd-4 { top: 92%; left: 75%; animation-duration: 5.5s; animation-delay: 0.8s; }
+
+@keyframes karmaDustOrbit {
+  0% { transform: translateY(0) scale(0.6); opacity: 0.2; }
+  50% { transform: translateY(-8px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(0) scale(0.6); opacity: 0.2; }
 }
 
 .mandala-gauge svg {
@@ -652,21 +736,38 @@ input:focus, textarea:focus, select:focus {
   width: 100%;
   height: 100%;
   transform: rotate(-90deg);
+  border-radius: 50%;
+  overflow: visible;
 }
 
 .mandala-track {
   fill: none;
   stroke: var(--border-mitti);
-  stroke-width: 6;
-  opacity: 0.45;
+  stroke-width: 7;
+  opacity: 0.4;
 }
 
 .mandala-fill {
   fill: none;
   stroke: url(#mandalaGrad);
-  stroke-width: 8;
+  stroke-width: 9;
   stroke-linecap: round;
-  transition: stroke-dashoffset 1.2s var(--ease-smooth);
+  transition: stroke-dashoffset 1.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.55));
+}
+
+.mandala-tip-orb {
+  fill: #FFF9E6;
+  stroke: #D4AF37;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 8px #FFD700);
+  transition: cx 1.3s cubic-bezier(0.34, 1.56, 0.64, 1), cy 1.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: tipOrbGlow 2s infinite alternate ease-in-out;
+}
+
+@keyframes tipOrbGlow {
+  0% { filter: drop-shadow(0 0 4px #FFD700); r: 4.5; }
+  100% { filter: drop-shadow(0 0 10px #FF9100); r: 5.8; }
 }
 
 .mandala-center {
@@ -676,29 +777,72 @@ input:focus, textarea:focus, select:focus {
   justify-content: center;
   z-index: 2;
   text-align: center;
+  pointer-events: none;
 }
 
-.mandala-avatar {
-  font-size: 2.2rem;
-  line-height: 1;
+/* Marco Redondo Sagrado de la Foto de Perfil en el Mandala */
+.mandala-avatar-frame {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50% !important;
+  padding: 2px;
+  background: linear-gradient(135deg, #FFD700 0%, #B85A3A 50%, #A67C37 100%);
+  box-shadow: 0 4px 14px rgba(184, 90, 58, 0.35), 0 0 14px rgba(212, 175, 55, 0.35);
   margin-bottom: 2px;
-  filter: drop-shadow(0 2px 6px rgba(35, 57, 77, 0.15));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.mandala-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% !important;
+  object-fit: cover;
+  border: 1.5px solid var(--bg-chandan);
+  display: block;
+}
+
+.mandala-avatar-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 8px rgba(255, 215, 0, 0.4);
+  pointer-events: none;
+}
+
+.mandala-points-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  line-height: 1;
 }
 
 .mandala-points {
   font-family: var(--font-mono);
   font-size: 1.7rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--primary-nila);
   line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.mandala-spark-icon {
+  font-size: 0.75rem;
+  color: #FFD700;
+  animation: sparkleTwinkle 2s infinite ease-in-out;
 }
 
 .mandala-pts-label {
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   color: var(--text-vibhuti);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-top: 2px;
 }
 
 .hero-user-name {
@@ -936,114 +1080,299 @@ input:focus, textarea:focus, select:focus {
   border-radius: var(--radius-sm);
 }
 
-/* ─── ÁRBOL PARAMPARĀ (MAPA DE LINAJE SAGRADO) ─── */
+/* ─── ÁRBOL PARAMPARĀ (MAPA DE LINAJE SAGRADO VIVO Y GAMIFICADO) ─── */
 .parampara-tree {
   margin: var(--space-md) 0;
   padding: var(--space-md) var(--space-sm);
   position: relative;
+  background: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+  border-radius: var(--radius-xl);
+}
+
+.parampara-tree__header {
+  margin-bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .parampara-tree__title {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--primary-nila);
-  margin-bottom: var(--space-lg);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
+/* Barra gamificada de métricas de linaje */
+.parampara-tree__gamified-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.tree-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
+  border: 1px solid var(--border-mitti);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-kajal);
+  box-shadow: var(--shadow-subtle);
+}
+
+.tree-stat-chip--gold {
+  border-color: var(--prestige-kamsya);
+  background: rgba(166, 124, 55, 0.08);
+  color: var(--prestige-kamsya);
+  font-weight: 700;
+}
+
+.tree-stat-chip--tulsi {
+  border-color: var(--success-tulsi);
+  background: rgba(56, 102, 75, 0.08);
+  color: var(--success-tulsi);
+}
+
+/* Tronco Vivo del Árbol (Savia Sagrada con Pulsos de Luz) */
 .parampara-thread {
   position: relative;
-  padding-left: 28px;
+  padding-left: 48px;
 }
 
-/* Espina dorada vertical */
+/* Espina / Tronco con gradiente vegetal de savia */
 .parampara-thread::before {
   content: '';
   position: absolute;
-  left: 11px;
-  top: 14px;
+  left: 20px;
+  top: 20px;
   bottom: 24px;
-  width: 3px;
-  background: linear-gradient(180deg, var(--prestige-kamsya) 0%, var(--accent-geru) 50%, var(--success-tulsi) 100%);
+  width: 5px;
+  background: linear-gradient(180deg, #A67C37 0%, #B85A3A 35%, #38664B 75%, #4C8262 100%);
   border-radius: var(--radius-pill);
-  box-shadow: 0 0 8px rgba(166, 124, 55, 0.3);
+  box-shadow: 0 0 10px rgba(166, 124, 55, 0.35);
+  animation: trunkGlowPulse 4s infinite alternate ease-in-out;
 }
 
+@keyframes trunkGlowPulse {
+  0% { box-shadow: 0 0 8px rgba(166, 124, 55, 0.3); }
+  100% { box-shadow: 0 0 16px rgba(212, 175, 55, 0.6), 0 0 25px rgba(56, 102, 75, 0.3); }
+}
+
+/* Impulso de savia mágica viajando por el tronco */
+.parampara-thread::after {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 15px;
+  width: 7px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,215,0,0.8) 60%, transparent 100%);
+  box-shadow: 0 0 12px #FFD700;
+  animation: sapFlowTravel 3.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+@keyframes sapFlowTravel {
+  0% { top: 15px; opacity: 0; transform: scaleY(0.5); }
+  20% { opacity: 1; transform: scaleY(1); }
+  80% { opacity: 0.9; transform: scaleY(1); }
+  100% { top: calc(100% - 30px); opacity: 0; transform: scaleY(0.4); }
+}
+
+/* Nodo Individual del Árbol con Animación Progresiva de Florecimiento */
 .parampara-node {
   position: relative;
   display: flex;
   align-items: center;
   gap: var(--space-md);
   margin-bottom: var(--space-md);
+  opacity: 0;
+  transform: translateY(22px) scale(0.94);
+  animation: treeNodeBloom 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-.parampara-node__pin {
+/* Retardo secuencial progresivo (efecto de crecimiento orgánico) */
+.parampara-node:nth-child(1) { animation-delay: 0.12s; }
+.parampara-node:nth-child(2) { animation-delay: 0.28s; }
+.parampara-node:nth-child(3) { animation-delay: 0.44s; }
+.parampara-node:nth-child(4) { animation-delay: 0.60s; }
+.parampara-node:nth-child(5) { animation-delay: 0.76s; }
+.parampara-node:nth-child(6) { animation-delay: 0.92s; }
+
+@keyframes treeNodeBloom {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.92);
+  }
+  70% {
+    transform: translateY(-3px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Sello Circular de Avatar de Linaje (reemplaza los simples pines de aguja) */
+.parampara-avatar-seal {
   position: absolute;
-  left: -28px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  left: -48px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50% !important;
   background: var(--bg-chandan);
-  border: 3px solid var(--prestige-kamsya);
-  box-shadow: 0 0 10px rgba(166, 124, 55, 0.4);
+  border: 2.5px solid var(--prestige-kamsya);
+  box-shadow: 0 4px 12px rgba(166, 124, 55, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 3;
+  overflow: visible;
+  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease;
 }
 
-.parampara-node--current .parampara-node__pin {
-  border-color: var(--accent-geru);
-  box-shadow: var(--glow-geru);
+.parampara-avatar-seal img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% !important;
+  object-fit: cover;
+  display: block;
 }
 
-.parampara-node__pin-inner {
-  width: 8px;
-  height: 8px;
+.parampara-node:hover .parampara-avatar-seal {
+  transform: scale(1.12);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.6);
+}
+
+/* Cresta decorativa sobre el sello */
+.seal-crest-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: var(--prestige-kamsya);
+  background: var(--surface-card);
+  border: 1.5px solid var(--prestige-kamsya);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.parampara-node--current .parampara-node__pin-inner {
-  background: var(--accent-geru);
+/* Rama conectora horizontal entre el tronco y la tarjeta */
+.tree-branch-stem {
+  position: absolute;
+  left: -28px;
+  width: 28px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--prestige-kamsya) 0%, rgba(224, 213, 193, 0.8) 100%);
+  z-index: 1;
 }
 
+/* Estilo para el Nodo Actual (TÚ) */
+.parampara-node--current .parampara-avatar-seal {
+  border-color: var(--accent-geru);
+  box-shadow: 0 0 0 3px rgba(184, 90, 58, 0.25), 0 0 18px rgba(184, 90, 58, 0.5);
+  animation: activeSealPulse 2.8s infinite alternate ease-in-out;
+}
+
+@keyframes activeSealPulse {
+  0% { box-shadow: 0 0 0 2px rgba(184, 90, 58, 0.2), 0 0 12px rgba(184, 90, 58, 0.4); }
+  100% { box-shadow: 0 0 0 6px rgba(184, 90, 58, 0.12), 0 0 24px rgba(212, 175, 55, 0.7); }
+}
+
+/* Estilo para Nodos de Ahijados / Discípulos */
+.parampara-node--disciple .parampara-avatar-seal {
+  border-color: var(--success-tulsi);
+  box-shadow: 0 4px 12px rgba(56, 102, 75, 0.35);
+}
+
+/* Tarjeta de Información del Nodo */
 .parampara-node__card {
   flex: 1;
   background: var(--surface-card);
-  border: 1px solid var(--border-delicate);
-  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-delicate);
+  border-radius: var(--radius-lg);
   padding: 12px 16px;
   box-shadow: var(--shadow-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   transition: all var(--duration-fast) var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
 }
 
 .parampara-node__card:hover {
-  transform: translateX(4px);
+  transform: translateX(6px);
   border-color: var(--prestige-kamsya);
+  box-shadow: 0 6px 20px rgba(166, 124, 55, 0.18);
+  background: #FFFDF9;
 }
 
 .parampara-node--current .parampara-node__card {
-  background: rgba(184, 90, 58, 0.06);
-  border: 1.5px solid var(--accent-geru);
+  background: linear-gradient(135deg, rgba(184, 90, 58, 0.06) 0%, rgba(212, 175, 55, 0.08) 100%);
+  border: 1.8px solid var(--accent-geru);
+  box-shadow: 0 4px 18px rgba(184, 90, 58, 0.15);
 }
 
 .parampara-node__name {
+  font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   color: var(--primary-nila);
+  line-height: 1.2;
 }
 
 .parampara-node__tier-tag {
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: var(--text-vibhuti);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.parampara-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+.parampara-badge-pill--guru {
+  background: rgba(166, 124, 55, 0.12);
+  color: var(--prestige-kamsya);
+  border: 1px solid var(--prestige-kamsya);
+}
+
+.parampara-badge-pill--active {
+  background: var(--accent-geru);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(184, 90, 58, 0.35);
+}
+
+.parampara-badge-pill--disciple {
+  background: rgba(56, 102, 75, 0.12);
+  color: var(--success-tulsi);
+  border: 1px solid var(--success-tulsi);
 }
 
 /* ─── DESPACHO UBER WAVE (TARJETA EMERGENTE RADAR) ─── */
@@ -1712,16 +2041,31 @@ input:focus, textarea:focus, select:focus {
 }
 
 .seva-list-item__avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: var(--radius-md);
+  width: 52px;
+  height: 52px;
+  border-radius: 50% !important;
   background: var(--surface-khadi);
-  border: 1.5px solid var(--border-mitti);
+  border: 2px solid var(--prestige-kamsya);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
   flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(35, 57, 77, 0.12);
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.seva-list-item__avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% !important;
+  object-fit: cover;
+  display: block;
+}
+
+.seva-list-item:hover .seva-list-item__avatar {
+  transform: scale(1.08);
+  border-color: var(--accent-geru);
 }
 
 .seva-list-item__name {
@@ -1854,18 +2198,61 @@ input:focus, textarea:focus, select:focus {
 }
 
 .profile-avatar {
-  width: 72px;
-  height: 72px;
-  border-radius: var(--radius-lg);
+  width: 82px;
+  height: 82px;
+  border-radius: 50% !important;
   background: var(--surface-khadi);
-  border: 2px solid var(--prestige-kamsya);
+  border: 3px solid var(--prestige-kamsya);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
-  box-shadow: var(--shadow-elevated), var(--glow-kamsya);
+  box-shadow: 0 8px 24px rgba(166, 124, 55, 0.4), var(--glow-kamsya);
   flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
 }
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% !important;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── UTILIDADES DE AVATAR CIRCULAR UNIVERSAL ─── */
+.user-avatar-circle {
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-khadi);
+  border: 1.5px solid var(--prestige-kamsya);
+  flex-shrink: 0;
+  position: relative;
+  user-select: none;
+}
+
+.user-avatar-circle img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% !important;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-fallback {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.avatar--xs { width: 28px; height: 28px; font-size: 0.8rem; }
+.avatar--sm { width: 38px; height: 38px; font-size: 1rem; }
+.avatar--md { width: 50px; height: 50px; font-size: 1.4rem; }
+.avatar--lg { width: 64px; height: 64px; font-size: 1.8rem; }
+.avatar--hero { width: 82px; height: 82px; font-size: 2.2rem; }
+.avatar--tree { width: 44px; height: 44px; font-size: 1.2rem; }
 
 .profile-info {
   flex: 1;
@@ -2667,6 +3054,16 @@ input:focus, textarea:focus, select:focus {
   animation: pulseTourTarget 1.8s infinite ease-in-out !important;
   border-radius: var(--radius-md) !important;
   transition: all 0.3s ease !important;
+}
+
+/* Regla estricta para elementos circulares (Mandala, avatares, sellos): NUNCA cuadrados */
+.mandala-gauge.tour-target-highlight,
+.profile-avatar.tour-target-highlight,
+.user-avatar-circle.tour-target-highlight,
+.parampara-avatar-seal.tour-target-highlight,
+.mandala-avatar-frame.tour-target-highlight {
+  border-radius: 50% !important;
+  outline-offset: 5px !important;
 }
 
 @keyframes pulseTourTarget {

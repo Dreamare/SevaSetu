@@ -845,6 +845,125 @@ function renderCurrentView() {
   }
 }
 
+// ─── Renderizado de Avatar Circular Universal ───
+function renderUserAvatar(user, sizeClass = 'avatar--md', extraStyle = '') {
+  if (user && user.avatarImg) {
+    return `
+      <div class="user-avatar-circle ${sizeClass}" style="${extraStyle}">
+        <img src="${user.avatarImg}" alt="${user.displayName || 'Usuario'}" class="user-avatar-img" onerror="this.parentElement.innerHTML='<span class=\\'avatar-fallback\\'>${user.avatar || '👤'}</span>'" />
+      </div>
+    `;
+  }
+  return `
+    <div class="user-avatar-circle ${sizeClass}" style="${extraStyle}">
+      <span class="avatar-fallback">${user?.avatar || '👤'}</span>
+    </div>
+  `;
+}
+
+// ─── Encontrar Usuario por Nombre o Texto en Linaje ───
+function findUserByAncestorText(ancestorText) {
+  if (!ancestorText) return null;
+  return state.users.find(u => ancestorText.includes(u.displayName) || u.displayName.includes(ancestorText)) || null;
+}
+
+// ─── Renderizado del Árbol de Linaje Sagrado (Kalpavriksha) Gamificado y Vivo ───
+function renderParamparaTree(user) {
+  if (!user || (!user.parampara?.length && !user.shishyas?.length)) return '';
+  const level = getKarmaLevel(user.karmaPoints);
+  const totalGenerations = (user.parampara?.length || 0) + 1 + (user.shishyas?.length > 0 ? 1 : 0);
+
+  return `
+    <div class="parampara-tree card mb-md">
+      <div class="parampara-tree__header">
+        <div class="parampara-tree__title">
+          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-arbol-parampara.png" alt="Árbol Sagrado" />
+          <span>Árbol de Linaje Sagrado · Kalpavriksha</span>
+        </div>
+        <div class="parampara-tree__gamified-bar">
+          <span class="tree-stat-chip tree-stat-chip--gold">🌿 ${totalGenerations} Generaciones de Linaje</span>
+          <span class="tree-stat-chip tree-stat-chip--tulsi">🛡️ Solidaridad 100% Sin Faltas</span>
+          <span class="tree-stat-chip">✨ Bono Gurú (+25 pts) Activo</span>
+        </div>
+      </div>
+
+      <div class="parampara-thread">
+        ${user.parampara.map((ancestor, i) => {
+          const guruUser = findUserByAncestorText(ancestor) || state.users.find(u => u.id === 'user_001');
+          return `
+            <div class="parampara-node">
+              <div class="parampara-avatar-seal">
+                <img src="${guruUser?.avatarImg || '/avatars/avatar-user-001.jpg'}" alt="${ancestor}" onerror="this.src='/avatars/avatar-user-001.jpg'" />
+                <span class="seal-crest-badge">👑</span>
+              </div>
+              <div class="tree-branch-stem"></div>
+              <div class="parampara-node__card">
+                <div>
+                  <div class="parampara-node__name">${ancestor}</div>
+                  <div class="parampara-node__tier-tag">
+                    <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-nivel-acarya.png" alt="Gurú" />
+                    <span>Ascendencia Nivel ${i + 1} · Gurú Padrino</span>
+                  </div>
+                </div>
+                <span class="parampara-badge-pill parampara-badge-pill--guru">
+                  👑 Gurú Fundador
+                </span>
+              </div>
+            </div>
+          `;
+        }).join('')}
+
+        <div class="parampara-node parampara-node--current">
+          <div class="parampara-avatar-seal">
+            <img src="${user.avatarImg || '/avatars/avatar-user-002.jpg'}" alt="${user.displayName}" onerror="this.src='/avatars/avatar-user-002.jpg'" />
+            <span class="seal-crest-badge">✨</span>
+          </div>
+          <div class="tree-branch-stem"></div>
+          <div class="parampara-node__card">
+            <div>
+              <div class="parampara-node__name">${user.displayName} (Tú)</div>
+              <div class="parampara-node__tier-tag">
+                <img class="icon-img icon-img--xs" src="${level.iconImg || '/iconos/transparent/icon-rol-sevaka.png'}" alt="${level.name}" />
+                <span>${level.name} (${level.title}) · ${user.karmaPoints} pts</span>
+              </div>
+            </div>
+            <span class="parampara-badge-pill parampara-badge-pill--active">
+              ✨ Nodo Activo
+            </span>
+          </div>
+        </div>
+
+        ${user.shishyas && user.shishyas.length > 0 ? user.shishyas.map(sid => {
+          const s = getUserById(sid);
+          if (!s) return '';
+          const sLevel = getKarmaLevel(s.karmaPoints);
+          return `
+            <div class="parampara-node parampara-node--disciple">
+              <div class="parampara-avatar-seal">
+                <img src="${s.avatarImg || '/avatars/avatar-user-004.jpg'}" alt="${s.displayName}" onerror="this.src='/avatars/avatar-user-004.jpg'" />
+                <span class="seal-crest-badge">🌱</span>
+              </div>
+              <div class="tree-branch-stem"></div>
+              <div class="parampara-node__card">
+                <div>
+                  <div class="parampara-node__name">${s.displayName}</div>
+                  <div class="parampara-node__tier-tag">
+                    <img class="icon-img icon-img--xs" src="${sLevel.iconImg || '/iconos/transparent/icon-rol-sramana.png'}" alt="${sLevel.name}" />
+                    <span>Discípulo Iniciado · ${sLevel.name} · ${s.karmaPoints} pts</span>
+                  </div>
+                </div>
+                <span class="parampara-badge-pill parampara-badge-pill--disciple" title="Cada 5 favores 5★ de tu ahijado te otorgan +25 pts">
+                  🌱 Ahijado (+25 pts)
+                </span>
+              </div>
+            </div>
+          `;
+        }).join('') : ''}
+      </div>
+    </div>
+  `;
+}
+
 // ═══════════════════════════════════════════════════════
 // VISTA: INICIO (MANDALA SAGRADO Y ACCIONES BENTO)
 // ═══════════════════════════════════════════════════════
@@ -859,6 +978,12 @@ function renderHomeView() {
   const circumference = 2 * Math.PI * radius; // ~439.8
   const strokeDashoffset = circumference - (circumference * progress) / 100;
 
+  // Cálculo de la posición del orbe luminoso en la punta del arco
+  const p = Math.min(Math.max(progress, 1), 99) / 100;
+  const angle = -Math.PI / 2 + (p * 2 * Math.PI);
+  const tipX = (85 + radius * Math.cos(angle)).toFixed(1);
+  const tipY = (85 + radius * Math.sin(angle)).toFixed(1);
+
   return `
     <!-- HERO: MANDALA SAGRADO DE KARMA -->
     <div class="karma-mandala-hero">
@@ -867,26 +992,57 @@ function renderHomeView() {
         <span>Red de Linaje Activa · ${user.zone}</span>
       </div>
 
-      <!-- Medidor Circular Mandala SVG -->
-      <div class="mandala-gauge glow-karma-pulse">
-        <svg viewBox="0 0 160 160">
+      <!-- Medidor Circular Mandala SVG con Efectos y Partículas -->
+      <div class="mandala-gauge glow-karma-pulse" id="mandalaKarmaGauge" title="Toca para irradiar bendiciones de Karma">
+        <!-- Anillos áuricos pulsantes concéntricos -->
+        <div class="mandala-pulse-ring ring-1"></div>
+        <div class="mandala-pulse-ring ring-2"></div>
+
+        <!-- Micro-partículas de Karma en órbita -->
+        <div class="karma-particles-orbit">
+          <span class="karma-sparkle kp-1">✦</span>
+          <span class="karma-sparkle kp-2">✨</span>
+          <span class="karma-sparkle kp-3">✦</span>
+          <span class="karma-sparkle kp-4">✨</span>
+          <span class="karma-sparkle kp-5">✦</span>
+          <span class="karma-sparkle kp-6">🪷</span>
+          <span class="karma-dust-orb kd-1"></span>
+          <span class="karma-dust-orb kd-2"></span>
+          <span class="karma-dust-orb kd-3"></span>
+          <span class="karma-dust-orb kd-4"></span>
+        </div>
+
+        <svg viewBox="0 0 170 170">
           <defs>
             <linearGradient id="mandalaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#A67C37" />
-              <stop offset="50%" stop-color="#B85A3A" />
+              <stop offset="0%" stop-color="#FFD700" />
+              <stop offset="35%" stop-color="#E5A93C" />
+              <stop offset="70%" stop-color="#B85A3A" />
               <stop offset="100%" stop-color="#38664B" />
             </linearGradient>
+            <filter id="mandalaGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3.5" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
           </defs>
-          <circle class="mandala-track" cx="80" cy="80" r="${radius}" />
-          <circle class="mandala-fill" cx="80" cy="80" r="${radius}" 
+          <circle class="mandala-track" cx="85" cy="85" r="${radius}" />
+          <circle class="mandala-fill" cx="85" cy="85" r="${radius}" 
             stroke-dasharray="${circumference}" 
             stroke-dashoffset="${strokeDashoffset}" />
+          <!-- Orbe luminoso indicador al final del arco -->
+          <circle class="mandala-tip-orb" cx="${tipX}" cy="${tipY}" r="5" />
         </svg>
 
         <div class="mandala-center">
-          <div class="mandala-avatar">${user.avatar}</div>
-          <div class="mandala-points">${user.karmaPoints}</div>
-          <div class="mandala-pts-label">Karma Pts</div>
+          <div class="mandala-avatar-frame">
+            <img class="mandala-avatar-img" src="${user.avatarImg || '/avatars/avatar-user-002.jpg'}" alt="${user.displayName}" onerror="this.src='/avatars/avatar-user-002.jpg'" />
+            <div class="mandala-avatar-glow"></div>
+          </div>
+          <div class="mandala-points-wrap">
+            <div class="mandala-points">${user.karmaPoints}</div>
+            <span class="mandala-spark-icon">✨</span>
+          </div>
+          <div class="mandala-pts-label">KARMA PTS</div>
         </div>
       </div>
 
@@ -1034,71 +1190,8 @@ function renderHomeView() {
         `).join('') || '<p class="text-vibhuti" style="font-size:0.85rem;">Aún no hay transacciones en el libro mayor.</p>'}
     </div>
 
-    <!-- ÁRBOL PARAMPARĀ (MAPA DE LINAJE SAGRADO) -->
-    ${user.parampara.length > 0 ? `
-      <div class="card">
-        <div class="parampara-tree__title" style="display:flex; align-items:center; gap:8px;">
-          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-arbol-parampara.png" alt="Linaje" />
-          <span>Árbol de Linaje Sagrado</span>
-        </div>
-        <div class="parampara-thread">
-          ${user.parampara.map((ancestor, i) => `
-            <div class="parampara-node">
-              <div class="parampara-node__pin">
-                <div class="parampara-node__pin-inner"></div>
-              </div>
-              <div class="parampara-node__card">
-                <div>
-                  <div class="parampara-node__name">${ancestor}</div>
-                  <div class="parampara-node__tier-tag">Ascendencia nivel ${i + 1}</div>
-                </div>
-                <span style="font-size:0.8rem; color:var(--prestige-kamsya); display:flex; align-items:center; gap:4px;">
-                  <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-nivel-acarya.png" alt="Gurú" /> Gurú
-                </span>
-              </div>
-            </div>
-          `).join('')}
-          
-          <div class="parampara-node parampara-node--current">
-            <div class="parampara-node__pin">
-              <div class="parampara-node__pin-inner"></div>
-            </div>
-            <div class="parampara-node__card">
-              <div>
-                <div class="parampara-node__name">${user.displayName} (Tú)</div>
-                <div class="parampara-node__tier-tag" style="display:flex; align-items:center; gap:4px;">
-                  <img class="icon-img icon-img--xs" src="${level.iconImg || '/iconos/transparent/icon-rol-sevaka.png'}" alt="${level.name}" />
-                  <span>${level.name} (${level.title}) · ${user.karmaPoints} pts</span>
-                </div>
-              </div>
-              <span class="badge active" style="font-size:0.7rem; padding:3px 8px;">Activo</span>
-            </div>
-          </div>
-
-          ${user.shishyas.length > 0 ? user.shishyas.map(sid => {
-            const s = getUserById(sid);
-            if (!s) return '';
-            const sLevel = getKarmaLevel(s.karmaPoints);
-            return `
-              <div class="parampara-node">
-                <div class="parampara-node__pin" style="border-color:var(--success-tulsi);">
-                  <div class="parampara-node__pin-inner" style="background:var(--success-tulsi);"></div>
-                </div>
-                <div class="parampara-node__card">
-                  <div>
-                    <div class="parampara-node__name">${s.displayName}</div>
-                    <div class="parampara-node__tier-tag">Discípulo · ${sLevel.name} · ${s.karmaPoints} pts</div>
-                  </div>
-                  <span style="font-size:0.75rem; color:var(--success-tulsi); font-weight:600; display:flex; align-items:center; gap:4px;">
-                    <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-rol-sramana.png" alt="Ahijado" /> Ahijado
-                  </span>
-                </div>
-              </div>
-            `;
-          }).join('') : ''}
-        </div>
-      </div>
-    ` : ''}
+    <!-- ÁRBOL PARAMPARĀ (MAPA DE LINAJE SAGRADO VIVO Y GAMIFICADO) -->
+    ${renderParamparaTree(user)}
   `;
 }
 
@@ -1136,7 +1229,9 @@ function renderExploreView() {
         const level = getKarmaLevel(user.karmaPoints);
         return `
           <div class="seva-list-item" data-user-id="${user.id}" id="profile-${user.id}">
-            <div class="seva-list-item__avatar">${user.avatar}</div>
+            <div class="seva-list-item__avatar">
+              ${renderUserAvatar(user, 'avatar--md')}
+            </div>
             <div class="seva-list-item__body">
               <div class="seva-list-item__name">${user.displayName}</div>
               <div class="seva-list-item__skill">
@@ -1177,7 +1272,9 @@ function renderProfileDetailView() {
 
     <div class="card yantra-pattern">
       <div class="profile-header">
-        <div class="profile-avatar">${user.avatar}</div>
+        <div class="profile-avatar">
+          ${renderUserAvatar(user, 'avatar--hero')}
+        </div>
         <div class="profile-info">
           <div class="profile-name">${user.displayName}</div>
           <span class="profile-level level-${level.level}" style="display:inline-flex; align-items:center; gap:6px;">
@@ -1258,46 +1355,8 @@ function renderProfileDetailView() {
         </div>
       ` : ''}
 
-      <!-- Linaje -->
-      <div class="parampara-tree">
-        <div class="parampara-tree__title" style="display:flex; align-items:center; gap:8px;">
-          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-arbol-parampara.png" alt="Linaje" />
-          <span>Árbol de Linaje</span>
-        </div>
-        ${user.parampara.map((ancestor, i) => `
-          <div class="parampara-node">
-            <div class="parampara-node__dot guru"></div>
-            <div class="parampara-node__info">
-              <div class="parampara-node__name">${ancestor}</div>
-              <div class="parampara-node__role">Nivel de ascendencia ${i + 1}</div>
-            </div>
-          </div>
-        `).join('')}
-        <div class="parampara-node">
-          <div class="parampara-node__dot current"></div>
-          <div class="parampara-node__info">
-            <div class="parampara-node__name">${user.displayName}</div>
-            <div class="parampara-node__role" style="display:flex; align-items:center; gap:4px;">
-              <img class="icon-img icon-img--xs" src="${level.iconImg || '/iconos/transparent/icon-rol-sevaka.png'}" alt="${level.name}" />
-              <span>${level.name} · Nivel ${level.level}</span>
-            </div>
-          </div>
-        </div>
-        ${user.shishyas.map(sid => {
-          const s = state.users.find(u => u.id === sid);
-          if (!s) return '';
-          const sLevel = getKarmaLevel(s.karmaPoints);
-          return `
-            <div class="parampara-node">
-              <div class="parampara-node__dot"></div>
-              <div class="parampara-node__info">
-                <div class="parampara-node__name">${s.displayName}</div>
-                <div class="parampara-node__role">Discípulo · ${sLevel.name} · ${s.karmaPoints} pts</div>
-              </div>
-            </div>
-          `;
-        }).join('')}
-      </div>
+      <!-- Linaje Sagrado Kalpavriksha Gamificado -->
+      ${renderParamparaTree(user)}
     </div>
 
     <!-- Botón de contacto -->
@@ -1408,7 +1467,9 @@ function renderChatView() {
       <!-- Header del chat -->
       <div class="chat-header-bar">
         <div class="chat-header-user">
-          <div class="chat-header-avatar">${otherUser?.avatar || '👤'}</div>
+          <div class="chat-header-avatar">
+            ${renderUserAvatar(otherUser, 'avatar--sm')}
+          </div>
           <div>
             <div style="font-weight:700; font-size:0.95rem; color:var(--primary-nila); font-family:var(--font-heading);">${otherUser?.displayName || 'Usuario'}</div>
             <div class="chat-security-status-badge" style="display:inline-flex; align-items:center; gap:6px;">
@@ -2420,6 +2481,16 @@ function attachEventListeners() {
     });
   }
 
+  // Interacción táctil en el Medidor Circular de Karma (Efectos y Partículas)
+  const mandalaGauge = document.getElementById('mandalaKarmaGauge');
+  if (mandalaGauge) {
+    mandalaGauge.addEventListener('click', () => {
+      playNotificationSound();
+      triggerMarigoldPetals();
+      showNotification(`✨ ¡Aura de Karma radiante! Tienes ${state.currentUser.karmaPoints} puntos de honor y confianza comunitaria.`);
+    });
+  }
+
   // Simular notificación Uber (Sevaka)
   const btnSimulate = document.getElementById('btnSimulateNotification');
   if (btnSimulate) {
@@ -2982,6 +3053,7 @@ function attachEventListeners() {
         id: newUserId,
         displayName: name,
         avatar: '🌱',
+        avatarImg: '/avatars/avatar-user-005.jpg',
         karmaPoints: 45, // Nivel 1: Chela (0–99 pts)
         karmaLevel: 1,
         completedSevas: 0,
