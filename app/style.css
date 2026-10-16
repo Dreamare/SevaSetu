@@ -2096,3 +2096,561 @@ input:focus, textarea:focus, select:focus {
 .mt-lg { margin-top: var(--space-lg); }
 .mb-md { margin-bottom: var(--space-md); }
 
+/* ═══════════════════════════════════════════════════════
+   SISTEMA DE GAMIFICACIÓN, BRILLOS Y ANIMACIONES MODERNAS
+   ═══════════════════════════════════════════════════════ */
+
+/* Shimmer dorado resplandeciente */
+@keyframes shimmerGold {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-gold {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(235, 198, 126, 0.28) 45%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(235, 198, 126, 0.28) 55%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerGold 4s infinite linear;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Pulso de Aura de Karma */
+@keyframes karmaPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(166, 124, 55, 0.45), 0 4px 16px rgba(166, 124, 55, 0.15);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(166, 124, 55, 0), 0 8px 24px rgba(166, 124, 55, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(166, 124, 55, 0), 0 4px 16px rgba(166, 124, 55, 0.15);
+  }
+}
+
+.glow-karma-pulse {
+  animation: karmaPulse 2.8s infinite ease-out;
+}
+
+/* Levitation orgánica flotante (estilo Ghibli) */
+@keyframes floatGhibli {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.2deg);
+  }
+}
+
+/* Resplandor rotativo de mandala */
+@keyframes rotateMandalaGlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Pop-in dinámico con rebote elástico */
+@keyframes bouncePopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.65) translateY(20px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   BOT COMPANION INTERACTIVO: "SIDDHI" (ESTILO GHIBLI / VÉDICO)
+   ═══════════════════════════════════════════════════════ */
+
+#botCompanionWidget {
+  position: fixed;
+  bottom: 80px;
+  right: 18px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  #botCompanionWidget {
+    bottom: 74px;
+    right: 12px;
+  }
+}
+
+/* Píldora de sugerencia flotante */
+.bot-speech-pill {
+  background: rgba(35, 57, 77, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 8px 24px rgba(25, 42, 58, 0.35);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  animation: fadeIn 0.4s var(--ease-spring);
+  white-space: nowrap;
+  max-width: 260px;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.bot-speech-pill:hover {
+  transform: translateY(-2px);
+  background: var(--primary-nila);
+  border-color: var(--prestige-kamsya);
+  box-shadow: 0 10px 28px rgba(166, 124, 55, 0.4);
+}
+
+.bot-speech-pill__spark {
+  color: var(--prestige-kamsya);
+  font-size: 0.9rem;
+  animation: pulseSoft 1.5s infinite;
+}
+
+/* Botón disparador del Avatar Siddhi */
+.bot-trigger-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  background: #fbf8f3;
+  border: 3px solid var(--accent-geru);
+  box-shadow: 0 8px 26px rgba(184, 90, 58, 0.38), 0 0 0 4px rgba(212, 175, 55, 0.28);
+  animation: floatGhibli 3.6s ease-in-out infinite;
+  transition: transform var(--duration-fast) var(--ease-spring), box-shadow var(--duration-fast);
+  overflow: visible;
+}
+
+.bot-trigger-btn:hover {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 12px 32px rgba(184, 90, 58, 0.5), 0 0 0 6px rgba(212, 175, 55, 0.45);
+}
+
+.bot-trigger-btn:active {
+  transform: scale(0.96);
+}
+
+/* Halo místico giratorio */
+.bot-aura-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px dashed rgba(212, 175, 55, 0.65);
+  animation: rotateMandalaGlow 18s linear infinite;
+  pointer-events: none;
+}
+
+/* Imagen circular de Siddhi */
+.bot-trigger-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Indicador de estado activo (loto verde) */
+.bot-status-badge {
+  position: absolute;
+  bottom: 0px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--success-tulsi);
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* ═══════════════════════════════════════════════════════
+   VENTANA DINÁMICA MODAL DE SIDDHI (GUÍA INTERACTIVA)
+   ═══════════════════════════════════════════════════════ */
+
+.bot-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(25, 42, 58, 0.62);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@media (min-width: 580px) {
+  .bot-dialog-overlay {
+    align-items: center;
+  }
+}
+
+.bot-dialog-card {
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  background: var(--surface-card);
+  background-image: radial-gradient(circle at 100% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 40%), url('/fondo.jpg');
+  background-repeat: repeat;
+  background-size: 320px 320px;
+  border: 2px solid var(--accent-geru);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 50px rgba(25, 42, 58, 0.45), 0 0 0 1px rgba(212, 175, 55, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: bouncePopIn 0.35s var(--ease-spring);
+  position: relative;
+}
+
+/* Velo de lectura para la ventana */
+.bot-dialog-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(251, 248, 243, 0.94);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bot-dialog-content-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 85vh;
+}
+
+/* Header con Siddhi animado */
+.bot-dialog-header {
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  background: linear-gradient(135deg, rgba(35, 57, 77, 0.96) 0%, rgba(53, 79, 102, 0.94) 100%);
+  color: var(--bg-chandan);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  border-bottom: 2px solid var(--accent-geru);
+  position: relative;
+}
+
+.bot-dialog-avatar-box {
+  width: 68px;
+  height: 68px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--prestige-kamsya);
+  overflow: hidden;
+  background: #fbf8f3;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.bot-dialog-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.bot-dialog-avatar-box:hover .bot-dialog-avatar-img {
+  transform: scale(1.08);
+}
+
+.bot-dialog-title-group {
+  flex: 1;
+}
+
+.bot-dialog-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.2;
+}
+
+.bot-dialog-subtitle {
+  font-size: 0.76rem;
+  color: rgba(251, 248, 243, 0.85);
+  margin-top: 2px;
+}
+
+.bot-dialog-close-btn {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-fast);
+}
+
+.bot-dialog-close-btn:hover {
+  background: var(--danger-sindoor);
+  transform: rotate(90deg);
+}
+
+/* Tabs de navegación interactiva */
+.bot-tabs-nav {
+  display: flex;
+  background: var(--surface-khadi);
+  border-bottom: 1px solid var(--border-mitti);
+  padding: 4px;
+  gap: 4px;
+}
+
+.bot-tab-btn {
+  flex: 1;
+  padding: 8px 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-vibhuti);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  text-align: center;
+  transition: all var(--duration-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.bot-tab-btn.active {
+  background: var(--primary-nila);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(35, 57, 77, 0.25);
+}
+
+/* Cuerpo de diálogo */
+.bot-dialog-body {
+  padding: var(--space-md);
+  overflow-y: auto;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-kajal);
+}
+
+/* Mensaje con globo parlante de Siddhi */
+.bot-speech-bubble {
+  background: #fff;
+  border: 1px solid var(--border-mitti);
+  border-left: 4px solid var(--accent-geru);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  box-shadow: 0 4px 14px rgba(35, 57, 77, 0.05);
+  margin-bottom: var(--space-md);
+}
+
+.bot-speech-bubble p {
+  margin: 0 0 8px;
+  font-size: 0.86rem;
+  color: var(--text-kajal);
+}
+
+.bot-speech-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+/* Tarjetas interactivas de características */
+.bot-feature-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: all var(--duration-fast);
+}
+
+.bot-feature-card:hover {
+  border-color: var(--prestige-kamsya);
+  transform: translateX(4px);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(166, 124, 55, 0.12);
+}
+
+.bot-feature-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-khadi);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--border-mitti);
+}
+
+.bot-feature-title {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--primary-nila);
+  margin-bottom: 2px;
+}
+
+.bot-feature-desc {
+  font-size: 0.76rem;
+  color: var(--text-vibhuti);
+  line-height: 1.35;
+}
+
+/* Preguntas desplegables estilo acordeón */
+.bot-faq-item {
+  background: #fff;
+  border: 1px solid var(--border-mitti);
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color var(--duration-fast);
+}
+
+.bot-faq-question {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: left;
+  color: var(--primary-nila);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  cursor: pointer;
+}
+
+.bot-faq-question:hover {
+  background: rgba(35, 57, 77, 0.03);
+}
+
+.bot-faq-answer {
+  padding: 0 14px 12px;
+  font-size: 0.78rem;
+  color: var(--text-vibhuti);
+  line-height: 1.45;
+  border-top: 1px dashed var(--border-delicate);
+  padding-top: 8px;
+}
+
+/* Footer de acciones del bot */
+.bot-dialog-footer {
+  padding: 10px var(--space-md);
+  background: var(--surface-khadi);
+  border-top: 1px solid var(--border-mitti);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Botón de celebración / pétalos de marigold */
+.btn-celebrate-karma {
+  background: linear-gradient(135deg, var(--accent-geru) 0%, #D4AF37 100%);
+  color: #fff;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 14px rgba(184, 90, 58, 0.35);
+  transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.btn-celebrate-karma:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SISTEMA DE PÉTALOS DE CALÉNDULA Y PARTÍCULAS DORADAS
+   ═══════════════════════════════════════════════════════ */
+
+#particlesCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 500;
+}
+
+/* Modal de celebración épica (Subida de Nivel / Recompensa) */
+.celebration-modal {
+  text-align: center;
+  padding: var(--space-lg);
+  animation: bouncePopIn 0.4s var(--ease-spring);
+}
+
+.celebration-modal__img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid var(--prestige-kamsya);
+  margin: 0 auto var(--space-md);
+  box-shadow: 0 12px 36px rgba(166, 124, 55, 0.45);
+  animation: floatGhibli 3s ease-in-out infinite;
+}
+
+.celebration-modal__title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--primary-nila);
+  margin-bottom: 6px;
+}
+
+.celebration-modal__subtitle {
+  font-size: 0.9rem;
+  color: var(--accent-geru);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+

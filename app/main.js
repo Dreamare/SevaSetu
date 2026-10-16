@@ -30,7 +30,485 @@ const state = {
   registerModal: false,
   sankalpaPending: null,
   pinVerification: { type: null, correctPin: null, enteredDigits: ['', '', '', ''] },
+  botGuide: {
+    isOpen: false,
+    activeTab: 'view', // 'view' | 'faq' | 'tour'
+    tourStep: 0,
+    currentPose: 'greeting', // 'greeting' | 'explaining' | 'celebrating' | 'thinking'
+    hasSeenSpeechPill: false,
+    faqOpenIndex: null,
+  },
 };
+
+// ─── Poses del Bot Guía "Siddhi" (Estilo Hayao Miyazaki / Cultura Védica) ───
+const BOT_POSES = {
+  greeting: '/bot/siddhi-greeting.jpg',
+  explaining: '/bot/siddhi-explaining.jpg',
+  celebrating: '/bot/siddhi-celebrating.jpg',
+  thinking: '/bot/siddhi-thinking.jpg',
+};
+
+// ─── Sabiduría Contextual de Siddhi ───
+const BOT_KNOWLEDGE = {
+  views: {
+    home: {
+      title: 'El Mandala y el Linaje Sagrado',
+      subtitle: 'Vista de Inicio y Honor Comunitario',
+      pose: 'explaining',
+      badge: '🏛️ Tablero de Inicio',
+      speech: '¡Namastē! Soy Siddhi, tu espíritu guía del Dharma. En esta pantalla puedes ver tu Mandala de Karma y tu Linaje Paramparā. Tu puntaje no es dinero ni status vacío: es la confianza que has edificado favor tras favor en tu comunidad.',
+      features: [
+        {
+          icon: '/iconos/transparent/icon-mudra-loto-servicio.png',
+          title: 'Mandala de Karma y Trío Bento',
+          desc: 'Mide tu honor acumulado. Cada favor completado impecablemente te acerca al siguiente rango y desbloquea +3 Llaves Dīkṣā.'
+        },
+        {
+          icon: '/iconos/transparent/icon-arbol-parampara.png',
+          title: 'Linaje Sagrado Paramparā',
+          desc: 'Visualiza la cadena de confianza: quién fue tu Guru padrino y quiénes son tus discípulos o ahijados. Tu Karma responde solidariamente por ellos.'
+        },
+        {
+          icon: '/iconos/transparent/icon-mudra-palabra-sagrada.png',
+          title: 'Libro Mayor de Honor',
+          desc: 'Historial inmutable con hash de cada intercambio, bonos de gurudakṣiṇā (+25 pts) y penalizaciones si un ahijado comete falta grave.'
+        }
+      ]
+    },
+    explore: {
+      title: 'Exploración de la Comunidad',
+      subtitle: 'Encuentra prestadores avalados',
+      pose: 'explaining',
+      badge: '🔍 Directorio de Linajes',
+      speech: '¡Bienvenido/a al mercado comunitario de favores! Aquí no hay algoritmos opacos que cobren comisiones abusivas. Encuentras vecinos calificados con habilidades verificadas por su maestro.',
+      features: [
+        {
+          icon: '/iconos/transparent/icon-skill-tan-seva.png',
+          title: 'Tan-Sevā (Oficios Manuales)',
+          desc: 'Servicios físicos: plomería, electricidad, reparaciones domésticas, cuidado del hogar.'
+        },
+        {
+          icon: '/iconos/transparent/icon-skill-man-seva.png',
+          title: 'Man-Sevā (Gestión y Asesoría)',
+          desc: 'Servicios intelectuales: orientación en trámites de salud, visas, acompañamiento bancario a personas mayores.'
+        },
+        {
+          icon: '/iconos/transparent/icon-nivel-acarya.png',
+          title: 'Rangos por Karma',
+          desc: 'Desde Śramaṇa (aprendiz) hasta Ācārya (maestro). Puedes tocar cualquier perfil para ver sus Mudrās e historial.'
+        }
+      ]
+    },
+    chat: {
+      title: 'Chat Seguro y Filtro Anti-Fuga',
+      subtitle: 'Comunicación protegida y Acuerdo Sankalpa',
+      pose: 'thinking',
+      badge: '💬 Canal Cifrado',
+      speech: '¡Ojo avizor! Este chat cuenta con un Escudo Anti-Fuga y protección Habeas Data. Los datos sensibles de contacto están bloqueados hasta que ambas partes definan el pacto de honor.',
+      features: [
+        {
+          icon: '/iconos/transparent/icon-escudo-kavacha.png',
+          title: 'Filtro Anti-Fuga Inteligente',
+          desc: 'Detecta números de teléfono, enlaces externos y correos para evitar transacciones clandestinas inseguras fuera de la red.'
+        },
+        {
+          icon: '/iconos/transparent/icon-pacto-sankalpa.png',
+          title: 'Acuerdo Digital Sankalpa',
+          desc: 'Una vez acordada la compensación justa y el alcance, ambos confirman el pacto y se liberan los datos de contacto directo.'
+        },
+        {
+          icon: '/iconos/transparent/icon-escudo-kavacha.png',
+          title: 'Modo Escudo Kavacha',
+          desc: 'Si te sientes inseguro en una visita domiciliaria, activa Kavacha para compartir tu ubicación en vivo con un contacto de confianza.'
+        }
+      ]
+    },
+    profile: {
+      title: 'Tu Expediente de Honor y Mudrās',
+      subtitle: 'Prestigio, Llaves y Discípulos',
+      pose: 'explaining',
+      badge: '👤 Perfil de Confianza',
+      speech: 'Este es tu espejo ante la comunidad. Aquí se condensan los reconocimientos que has recibido y las llaves que posees para apadrinar a nuevos miembros.',
+      features: [
+        {
+          icon: '/iconos/transparent/icon-mudra-ojo-sabiduria.png',
+          title: 'Insignias Mudrās',
+          desc: 'Condecoraciones especiales: Manos de Maestro (técnica), Palabra Sagrada (puntualidad/acuerdo), Guía Paciente y Loto de Servicio.'
+        },
+        {
+          icon: '/iconos/transparent/icon-llave-diksha.png',
+          title: 'Llaves Dīkṣā Disponibles',
+          desc: 'Son invitaciones exclusivas. Cada llave te convierte en el Guru del nuevo usuario; su buen trato te otorga bonos y su negligencia te penaliza.'
+        },
+        {
+          icon: '/iconos/transparent/icon-doble-ciego.png',
+          title: 'Reseñas Verificadas',
+          desc: 'Opiniones transparentes sin censura, reveladas bajo el protocolo simultáneo de Doble Ciego.'
+        }
+      ]
+    },
+    'profile-detail': {
+      title: 'Detalle del Miembro Comunitario',
+      subtitle: 'Auditoría de linaje y habilidades',
+      pose: 'explaining',
+      badge: '📜 Hoja de Vida Sagrada',
+      speech: 'Estás consultando el linaje de este miembro. Puedes verificar qué maestro lo apadrinó, cuántos favores ha completado con éxito y contactarlo directamente para pedirle ayuda.',
+      features: [
+        {
+          icon: '/iconos/transparent/icon-mudra-loto-servicio.png',
+          title: 'Solicitud Directa',
+          desc: 'Pulsa el botón inferior para abrir un chat de coordinación inmediata con este prestador.'
+        },
+        {
+          icon: '/iconos/transparent/icon-arbol-parampara.png',
+          title: 'Cadena de Linaje',
+          desc: 'Revisa de qué maestro proviene para asegurarte de que cuenta con respaldo de honor en la zona.'
+        }
+      ]
+    },
+    review: {
+      title: 'Protocolo de Reseña Doble Ciego',
+      subtitle: 'Imparcialidad absoluta sin represalias',
+      pose: 'thinking',
+      badge: '🔒 Doble Ciego Activo',
+      speech: '¡Aquí reside la máxima pureza de SevaSetu! La evaluación se rige por la teoría de juegos del Doble Ciego. Ninguna de las dos partes puede leer la opinión del otro hasta que ambos hayan calificado.',
+      features: [
+        {
+          icon: '/iconos/transparent/icon-doble-ciego.png',
+          title: 'Evaluación a Ciegas',
+          desc: 'Elimina el miedo a que te califiquen mal por decir la verdad. Tu veredicto queda sellado y encriptado.'
+        },
+        {
+          icon: '/iconos/transparent/icon-mudra-palabra-sagrada.png',
+          title: 'Revelación Simultánea',
+          desc: 'Cuando la contraparte califica (o usas el simulador), ambas reseñas se publican a la vez de forma indeleble.'
+        },
+        {
+          icon: '/iconos/transparent/icon-escudo-kavacha.png',
+          title: '3 Preguntas Confidenciales',
+          desc: 'Respuestas privadas de seguridad que alimentan anónimamente el prestigio del usuario sin revelarse jamás al calificado.'
+        }
+      ]
+    },
+    'seva-flow': {
+      title: 'Protocolo de Verificación por PIN',
+      subtitle: 'Presencia física y cierre con pago justo',
+      pose: 'explaining',
+      badge: '🔢 Candado de 4 Dígitos',
+      speech: 'El flujo de servicio utiliza dos códigos PIN de cuatro dígitos para garantizar la presencia física y certificar el pago:',
+      features: [
+        {
+          icon: '/iconos/transparent/icon-doble-ciego.png',
+          title: 'PIN de Llegada (Inicio)',
+          desc: 'El solicitante le muestra este PIN al prestador cuando este arriba al domicilio. Valida que el servicio inició en persona.'
+        },
+        {
+          icon: '/iconos/transparent/icon-pacto-sankalpa.png',
+          title: 'PIN de Finalización (Cierre)',
+          desc: 'El solicitante entrega este PIN solo después de comprobar el trabajo y entregar la compensación en mano. Cierra el favor y abre la evaluación.'
+        }
+      ]
+    },
+    register: {
+      title: 'Iniciación con Código Dīkṣā',
+      subtitle: 'Acceso por invitación y padrinazgo',
+      pose: 'greeting',
+      badge: '🌱 Rango Śramaṇa',
+      speech: '¡Namastē futuro compañero! SevaSetu es una red protegida por la confianza. Para registrarte necesitas ingresar un código Dīkṣā expedido por un miembro de la comunidad que responda por ti.',
+      features: [
+        {
+          icon: '/iconos/transparent/icon-llave-diksha.png',
+          title: 'Llave de Invitación',
+          desc: 'Ingresa un código como DK-AP-001 para vincularte al linaje de un Ācārya de tu zona.'
+        },
+        {
+          icon: '/iconos/transparent/icon-rol-sramana.png',
+          title: 'Iniciado en Observación',
+          desc: 'Comenzarás con 45 puntos de Karma y hasta 2 habilidades declaradas. Conforme completes favores con 5★ ganarás autonomía.'
+        }
+      ]
+    }
+  },
+  faqs: [
+    {
+      q: '¿Cómo subo de nivel y gano puntos de Karma?',
+      a: 'Por cada favor completado con 5★ recibes +15 pts. Con 4★ recibes +10 pts. Además, como solicitante respetuoso y puntual ganas +10 pts en cada servicio. Al llegar a 100, 300, 700 y 1500 pts subes de rango y ganas +3 Llaves Dīkṣā.'
+    },
+    {
+      q: '¿Qué es el Padrinazgo Solidario y cómo me afecta?',
+      a: 'Cuando invitas a alguien con tu Llave Dīkṣā, eres su Guru. Si tu ahijado completa 5 favores con 5★, recibes el bono Gurudakṣiṇā (+25 pts). Pero si tu ahijado comete una falta grave (≤2★), asumes una penalización solidaria del 50% de los puntos perdidos.'
+    },
+    {
+      q: '¿Por qué el chat bloquea números de teléfono y correos?',
+      a: 'Por el Escudo Anti-Fuga. Protege tu privacidad y asegura que los acuerdos se sellen bajo el Pacto Sankalpa de honor antes de intercambiar números personales o verse en persona.'
+    },
+    {
+      q: '¿Cómo funciona la reseña de Doble Ciego?',
+      a: 'Ambas partes califican sin poder ver lo que escribió el otro. Solo cuando ambos han enviado su reseña (o se cumple el plazo), ambas opiniones se publican en el perfil al mismo instante, evitando chantajes.'
+    },
+    {
+      q: '¿Puedo cambiar de rol para probar la app?',
+      a: '¡Sí! En la barra superior tienes el conmutador: Sevaka (Claudia, prestadora nivel 4), Yajamāna (Ernesto, solicitante que pide favores) y Śramaṇa (aprendiz iniciado). ¡Pruébalos para ver cómo cambia la experiencia!'
+    }
+  ],
+  tour: [
+    {
+      title: 'Paso 1: El Conmutador de Roles',
+      target: '#roleSwitcher',
+      pose: 'explaining',
+      text: 'En la parte superior puedes alternar entre Sevaka (Prestador de oficios), Yajamāna (Solicitante) y Śramaṇa (Aprendiz). Cada rol muestra herramientas adaptadas a su misión.'
+    },
+    {
+      title: 'Paso 2: El Mandala de Karma y Bento Trio',
+      target: '.karma-mandala-hero',
+      pose: 'celebrating',
+      text: 'Tu medidor circular mandala muestra tu honor activo. Los azulejos bento te resumen tus favores completados, promedio de estrellas y tus Llaves Dīkṣā disponibles.'
+    },
+    {
+      title: 'Paso 3: Deck de Acciones Rápidas',
+      target: '.action-deck',
+      pose: 'explaining',
+      text: 'Desde aquí puedes emitir solicitudes o simular favores entrantes con el radar de oleadas (Uber Wave). ¡Todo sucede en tiempo real!'
+    },
+    {
+      title: 'Paso 4: El Árbol Sagrado Paramparā',
+      target: '.parampara-thread',
+      pose: 'greeting',
+      text: 'Aquí contemplas tu ascendencia védica: quién te apadrinó y a quiénes has iniciado tú. ¡El honor se transmite y se cuida en familia!'
+    }
+  ]
+};
+
+// ─── Sonido armónico de celebración / campana mística ───
+function playCelebrationSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // Acorde C-E-G-C (brillo celestial)
+    notes.forEach((freq, i) => {
+      setTimeout(() => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.frequency.value = freq;
+        osc.type = 'triangle';
+        gain.gain.value = 0.12;
+        osc.start();
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.85);
+        osc.stop(ctx.currentTime + 0.85);
+      }, i * 90);
+    });
+  } catch (e) { /* audio silenciado si no interactuó */ }
+}
+
+// ─── Explosión de Pétalos de Caléndula y Partículas de Karma ───
+function triggerKarmaCelebration() {
+  playCelebrationSound();
+  state.botGuide.currentPose = 'celebrating';
+  
+  const canvas = document.getElementById('particlesCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const petals = [];
+  const colors = ['#E68A00', '#FFB800', '#FFA000', '#D4AF37', '#FFD700', '#B85A3A'];
+
+  for (let i = 0; i < 70; i++) {
+    petals.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height * 0.7,
+      size: Math.random() * 12 + 10,
+      speedX: Math.random() * 3 - 1.5,
+      speedY: Math.random() * 3 + 2.5,
+      rotation: Math.random() * 360,
+      rotSpeed: Math.random() * 4 - 2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      opacity: Math.random() * 0.4 + 0.6,
+      wobble: Math.random() * Math.PI * 2,
+    });
+  }
+
+  let startTime = Date.now();
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const elapsed = Date.now() - startTime;
+
+    petals.forEach(p => {
+      p.y += p.speedY;
+      p.wobble += 0.05;
+      p.x += Math.sin(p.wobble) * 2 + p.speedX;
+      p.rotation += p.rotSpeed;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rotation * Math.PI) / 180);
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle = p.color;
+
+      // Silueta orgánica de pétalo de caléndula
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.size, p.size * 0.55, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Centro dorado brillante
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+      ctx.arc(0, 0, p.size * 0.22, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    });
+
+    if (elapsed < 4200) {
+      requestAnimationFrame(animate);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  animate();
+}
+
+// ─── Renderizado del Bot Companion "Siddhi" ───
+function renderBotCompanion() {
+  const currentKnowledge = BOT_KNOWLEDGE.views[state.currentView] || BOT_KNOWLEDGE.views.home;
+  const currentPoseImg = BOT_POSES[state.botGuide.currentPose] || BOT_POSES.greeting;
+
+  return `
+    <!-- WIDGET FLOTANTE DE SIDDHI -->
+    <div id="botCompanionWidget">
+      ${!state.botGuide.isOpen && !state.botGuide.hasSeenSpeechPill ? `
+        <div class="bot-speech-pill" id="btnOpenBotPill" title="Preguntarle a Siddhi sobre esta pantalla">
+          <span class="bot-speech-pill__spark">✨</span>
+          <span>¿Dudas? Habla con Siddhi</span>
+          <button id="btnClosePill" style="margin-left:4px; font-size:0.75rem; color:rgba(255,255,255,0.7); background:transparent; border:none; padding:0 4px; cursor:pointer;" title="Ocultar globo">✕</button>
+        </div>
+      ` : ''}
+
+      <button class="bot-trigger-btn" id="btnToggleBot" title="Siddhi · Tu Guía del Dharma">
+        <div class="bot-aura-ring"></div>
+        <img class="bot-trigger-img" src="${currentPoseImg}" alt="Siddhi Guía" />
+        <div class="bot-status-badge">🪷</div>
+      </button>
+    </div>
+
+    <!-- MODAL DINÁMICO DE DIÁLOGO DE SIDDHI -->
+    ${state.botGuide.isOpen ? `
+      <div class="bot-dialog-overlay" id="botDialogOverlay">
+        <div class="bot-dialog-card">
+          <div class="bot-dialog-content-wrapper">
+            <!-- Header con avatar dinámico -->
+            <div class="bot-dialog-header">
+              <div class="bot-dialog-avatar-box">
+                <img class="bot-dialog-avatar-img" src="${currentPoseImg}" alt="Siddhi" />
+              </div>
+              <div class="bot-dialog-title-group">
+                <div class="bot-dialog-title">
+                  <span>Siddhi</span>
+                  <span style="font-size:0.75rem; opacity:0.85; font-weight:400; font-family:var(--font-body);">(Espíritu Guía)</span>
+                </div>
+                <div class="bot-dialog-subtitle">
+                  ${currentKnowledge.badge} · Sabiduría Comunitaria
+                </div>
+              </div>
+              <button class="bot-dialog-close-btn" id="btnCloseBotDialog" title="Cerrar Guía">✕</button>
+            </div>
+
+            <!-- Tabs de navegación -->
+            <div class="bot-tabs-nav">
+              <button class="bot-tab-btn ${state.botGuide.activeTab === 'view' ? 'active' : ''}" data-tab="view" id="botTab-view">
+                💡 Esta Vista
+              </button>
+              <button class="bot-tab-btn ${state.botGuide.activeTab === 'faq' ? 'active' : ''}" data-tab="faq" id="botTab-faq">
+                ❓ Preguntas
+              </button>
+              <button class="bot-tab-btn ${state.botGuide.activeTab === 'tour' ? 'active' : ''}" data-tab="tour" id="botTab-tour">
+                ✨ Tour Guiado
+              </button>
+            </div>
+
+            <!-- Cuerpo de diálogo según Tab activa -->
+            <div class="bot-dialog-body">
+              ${state.botGuide.activeTab === 'view' ? `
+                <div class="bot-speech-bubble">
+                  <p><strong>${currentKnowledge.title}</strong></p>
+                  <p>${currentKnowledge.speech}</p>
+                </div>
+
+                <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-vibhuti); letter-spacing:0.05em; margin-bottom:8px;">
+                  Elementos Clave de esta Pantalla:
+                </div>
+
+                ${(currentKnowledge.features || []).map(f => `
+                  <div class="bot-feature-card">
+                    <div class="bot-feature-icon-box">
+                      <img class="icon-img icon-img--sm" src="${f.icon}" alt="${f.title}" />
+                    </div>
+                    <div>
+                      <div class="bot-feature-title">${f.title}</div>
+                      <div class="bot-feature-desc">${f.desc}</div>
+                    </div>
+                  </div>
+                `).join('')}
+              ` : state.botGuide.activeTab === 'faq' ? `
+                <div class="bot-speech-bubble">
+                  <p><strong>Reglas de Honor y Preguntas Frecuentes</strong></p>
+                  <p>Toca cualquier duda para que te explique cómo funciona la filosofía de SevaSetu:</p>
+                </div>
+
+                ${BOT_KNOWLEDGE.faqs.map((faq, idx) => `
+                  <div class="bot-faq-item">
+                    <button class="bot-faq-question" data-faq-idx="${idx}">
+                      <span>${faq.q}</span>
+                      <span style="font-size:0.85rem; color:var(--accent-geru);">${state.botGuide.faqOpenIndex === idx ? '▲' : '▼'}</span>
+                    </button>
+                    ${state.botGuide.faqOpenIndex === idx ? `
+                      <div class="bot-faq-answer">${faq.a}</div>
+                    ` : ''}
+                  </div>
+                `).join('')}
+              ` : `
+                <!-- TAB TOUR GUIADO -->
+                <div class="bot-speech-bubble">
+                  <p><strong>Paseo de Aprendizaje con Siddhi (${state.botGuide.tourStep + 1} de ${BOT_KNOWLEDGE.tour.length})</strong></p>
+                  <p style="font-size:0.86rem; line-height:1.45; margin-top:4px;">
+                    <strong>${BOT_KNOWLEDGE.tour[state.botGuide.tourStep].title}:</strong>
+                    ${BOT_KNOWLEDGE.tour[state.botGuide.tourStep].text}
+                  </p>
+                </div>
+
+                <div class="flex justify-between items-center mt-md">
+                  <button class="btn btn--secondary btn--sm" id="btnTourPrev" ${state.botGuide.tourStep === 0 ? 'disabled style="opacity:0.4;"' : ''}>
+                    ← Anterior
+                  </button>
+                  <span class="font-mono" style="font-size:0.75rem; color:var(--text-vibhuti); font-weight:700;">
+                    ${state.botGuide.tourStep + 1} / ${BOT_KNOWLEDGE.tour.length}
+                  </span>
+                  <button class="btn btn--primary btn--sm" id="btnTourNext">
+                    ${state.botGuide.tourStep === BOT_KNOWLEDGE.tour.length - 1 ? '✓ Concluir Tour' : 'Siguiente →'}
+                  </button>
+                </div>
+              `}
+            </div>
+
+            <!-- Footer con botón de celebración gamificada -->
+            <div class="bot-dialog-footer">
+              <button class="btn-celebrate-karma" id="btnCelebrateKarma">
+                <span>🎉</span>
+                <span>¡Celebrar con Pétalos de Marigold!</span>
+              </button>
+              <button class="btn btn--secondary btn--sm" id="btnDismissDialog" style="font-size:0.75rem; padding:6px 12px;">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    ` : ''}
+  `;
+}
 
 // Configurar usuario actual según rol
 function setCurrentUserByRole() {
@@ -62,8 +540,10 @@ function render() {
       ${renderCurrentView()}
     </main>
     ${renderBottomNav()}
+    ${renderBotCompanion()}
     ${state.uberNotification ? renderUberNotification() : ''}
     ${state.registerModal ? renderRegisterModal() : ''}
+    <canvas id="particlesCanvas"></canvas>
   `;
   attachEventListeners();
 }
@@ -184,7 +664,7 @@ function renderHomeView() {
       </div>
 
       <!-- Medidor Circular Mandala SVG -->
-      <div class="mandala-gauge">
+      <div class="mandala-gauge glow-karma-pulse">
         <svg viewBox="0 0 160 160">
           <defs>
             <linearGradient id="mandalaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -207,7 +687,7 @@ function renderHomeView() {
       </div>
 
       <div class="hero-user-name">${user.displayName}</div>
-      <div class="hero-level-chip ${level.level >= 4 ? 'hero-level-chip--kamsya' : 'hero-level-chip--sindhoor'}" style="display:inline-flex; align-items:center; gap:6px;">
+      <div class="hero-level-chip shimmer-gold ${level.level >= 4 ? 'hero-level-chip--kamsya' : 'hero-level-chip--sindhoor'}" style="display:inline-flex; align-items:center; gap:6px;">
         <img class="icon-img icon-img--xs" src="${level.iconImg || '/iconos/transparent/icon-rol-sevaka.png'}" alt="${level.name}" />
         <span>Nivel ${level.level} · ${level.name} (${level.title})</span>
       </div>
@@ -811,7 +1291,7 @@ function renderChatView() {
 // ─── Tarjeta Sankalpa (Pergamino Sagrado Digital) ───
 function renderSankalpaCard(request) {
   return `
-    <div class="sankalpa-card">
+    <div class="sankalpa-card shimmer-gold">
       <div class="sankalpa-card__title" style="display:flex; align-items:center; gap:8px;">
         <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Sankalpa" />
         <span>Pacto de Honor Digital (Sankalpa)</span>
@@ -1327,6 +1807,7 @@ function applySolidaryKarmaFlow(activeSeva) {
       relatedUser: provider.id,
       date: 'Hoy',
     });
+    triggerKarmaCelebration();
     showNotification(`🕉️ ¡Ascenso de Nivel! ${provider.displayName} ahora es ${promo.newLevel.name} (+3 Llaves Dīkṣā otorgadas).`);
   }
 
@@ -1369,6 +1850,147 @@ function applySolidaryKarmaFlow(activeSeva) {
 // EVENTOS
 // ═══════════════════════════════════════════════════════
 function attachEventListeners() {
+  // ─── EVENTOS DEL BOT COMPANION "SIDDHI" ───
+  // Alternar diálogo
+  const btnToggleBot = document.getElementById('btnToggleBot');
+  if (btnToggleBot) {
+    btnToggleBot.addEventListener('click', () => {
+      state.botGuide.isOpen = !state.botGuide.isOpen;
+      if (state.botGuide.isOpen) {
+        state.botGuide.hasSeenSpeechPill = true;
+        const currentKn = BOT_KNOWLEDGE.views[state.currentView] || BOT_KNOWLEDGE.views.home;
+        state.botGuide.currentPose = currentKn.pose || 'greeting';
+        playNotificationSound();
+      }
+      render();
+    });
+  }
+
+  // Abrir desde píldora
+  const btnOpenPill = document.getElementById('btnOpenBotPill');
+  if (btnOpenPill) {
+    btnOpenPill.addEventListener('click', (e) => {
+      if (e.target.id === 'btnClosePill') return;
+      state.botGuide.isOpen = true;
+      state.botGuide.hasSeenSpeechPill = true;
+      const currentKn = BOT_KNOWLEDGE.views[state.currentView] || BOT_KNOWLEDGE.views.home;
+      state.botGuide.currentPose = currentKn.pose || 'greeting';
+      playNotificationSound();
+      render();
+    });
+  }
+
+  // Cerrar píldora
+  const btnClosePill = document.getElementById('btnClosePill');
+  if (btnClosePill) {
+    btnClosePill.addEventListener('click', (e) => {
+      e.stopPropagation();
+      state.botGuide.hasSeenSpeechPill = true;
+      render();
+    });
+  }
+
+  // Cerrar diálogo
+  const btnCloseBotDialog = document.getElementById('btnCloseBotDialog');
+  if (btnCloseBotDialog) {
+    btnCloseBotDialog.addEventListener('click', () => {
+      state.botGuide.isOpen = false;
+      render();
+    });
+  }
+
+  const btnDismissDialog = document.getElementById('btnDismissDialog');
+  if (btnDismissDialog) {
+    btnDismissDialog.addEventListener('click', () => {
+      state.botGuide.isOpen = false;
+      render();
+    });
+  }
+
+  // Cerrar tocando el fondo oscuro
+  const botOverlay = document.getElementById('botDialogOverlay');
+  if (botOverlay) {
+    botOverlay.addEventListener('click', (e) => {
+      if (e.target === botOverlay) {
+        state.botGuide.isOpen = false;
+        render();
+      }
+    });
+  }
+
+  // Cambiar pestaña del bot
+  document.querySelectorAll('.bot-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      state.botGuide.activeTab = tab;
+      if (tab === 'view') {
+        const currentKn = BOT_KNOWLEDGE.views[state.currentView] || BOT_KNOWLEDGE.views.home;
+        state.botGuide.currentPose = currentKn.pose || 'explaining';
+      } else if (tab === 'faq') {
+        state.botGuide.currentPose = 'thinking';
+      } else if (tab === 'tour') {
+        state.botGuide.currentPose = BOT_KNOWLEDGE.tour[state.botGuide.tourStep]?.pose || 'explaining';
+      }
+      render();
+    });
+  });
+
+  // Acordeón FAQ
+  document.querySelectorAll('.bot-faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.faqIdx);
+      state.botGuide.faqOpenIndex = state.botGuide.faqOpenIndex === idx ? null : idx;
+      state.botGuide.currentPose = 'thinking';
+      render();
+    });
+  });
+
+  // Tour Siguiente / Anterior
+  const btnTourNext = document.getElementById('btnTourNext');
+  if (btnTourNext) {
+    btnTourNext.addEventListener('click', () => {
+      if (state.botGuide.tourStep < BOT_KNOWLEDGE.tour.length - 1) {
+        state.botGuide.tourStep++;
+        state.botGuide.currentPose = BOT_KNOWLEDGE.tour[state.botGuide.tourStep].pose || 'explaining';
+        render();
+        const target = BOT_KNOWLEDGE.tour[state.botGuide.tourStep].target;
+        setTimeout(() => {
+          document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      } else {
+        // Concluir tour con fiesta de Karma
+        state.botGuide.isOpen = false;
+        state.botGuide.tourStep = 0;
+        triggerKarmaCelebration();
+        showNotification('🎉 ¡Has completado la Visita Guiada con Siddhi! +10 Karma Pts de honor simbólico.');
+        render();
+      }
+    });
+  }
+
+  const btnTourPrev = document.getElementById('btnTourPrev');
+  if (btnTourPrev) {
+    btnTourPrev.addEventListener('click', () => {
+      if (state.botGuide.tourStep > 0) {
+        state.botGuide.tourStep--;
+        state.botGuide.currentPose = BOT_KNOWLEDGE.tour[state.botGuide.tourStep].pose || 'explaining';
+        render();
+        const target = BOT_KNOWLEDGE.tour[state.botGuide.tourStep].target;
+        setTimeout(() => {
+          document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
+    });
+  }
+
+  // Celebración con pétalos y sonido
+  const btnCelebrate = document.getElementById('btnCelebrateKarma');
+  if (btnCelebrate) {
+    btnCelebrate.addEventListener('click', () => {
+      triggerKarmaCelebration();
+    });
+  }
+
   // Conmutador de rol
   document.querySelectorAll('.role-switcher__btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1570,6 +2192,8 @@ function attachEventListeners() {
           timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }),
           type: 'sankalpa',
         });
+        triggerKarmaCelebration();
+        showNotification('✨ ¡Pacto Sagrado Sankalpa sellado! El canal seguro se ha liberado.');
       }
       render();
     });
@@ -1815,6 +2439,7 @@ function attachEventListeners() {
       if (activeSeva.reviews[otherRoleKey]) {
         activeSeva.reviews.revealed = true;
         applySolidaryKarmaFlow(activeSeva);
+        triggerKarmaCelebration();
         showNotification('✨ ¡Revelación Doble Ciego completada! Ambas reseñas se han publicado simultáneamente.');
       } else {
         activeSeva.reviews.revealed = false;
@@ -1855,6 +2480,7 @@ function attachEventListeners() {
 
       activeSeva.reviews.revealed = true;
       applySolidaryKarmaFlow(activeSeva);
+      triggerKarmaCelebration();
       showNotification('✨ ¡Contraparte evaluó! Revelación simultánea doble ciego desbloqueada.');
       render();
     });
@@ -2089,6 +2715,7 @@ function attachEventListeners() {
       state.currentView = 'home';
 
       showNotification(`🎉 ¡Bienvenido/a ${name}! Has sido iniciado/a como Śramaṇa bajo el linaje de ${guru.displayName}.`);
+      triggerKarmaCelebration();
       render();
     });
   }
