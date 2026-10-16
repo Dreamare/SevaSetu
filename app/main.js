@@ -32,6 +32,7 @@ const state = {
   pinVerification: { type: null, correctPin: null, enteredDigits: ['', '', '', ''] },
   botGuide: {
     isOpen: false,
+    tourActive: false,
     activeTab: 'view', // 'view' | 'faq' | 'tour'
     tourStep: 0,
     currentPose: 'greeting', // 'greeting' | 'explaining' | 'celebrating' | 'thinking'
@@ -46,6 +47,10 @@ const BOT_POSES = {
   explaining: '/bot/siddhi-explaining.jpg',
   celebrating: '/bot/siddhi-celebrating.jpg',
   thinking: '/bot/siddhi-thinking.jpg',
+  cloudPointing: '/bot/siddhi-cloud-pointing.png',
+  cloudNamaste: '/bot/siddhi-cloud-namaste.png',
+  cloudCelebrating: '/bot/siddhi-cloud-celebrating.png',
+  cloudWisdom: '/bot/siddhi-cloud-wisdom.png',
 };
 
 // ─── Sabiduría Contextual de Siddhi ───
@@ -253,28 +258,94 @@ const BOT_KNOWLEDGE = {
   ],
   tour: [
     {
-      title: 'Paso 1: El Conmutador de Roles',
+      step: 1,
+      title: 'El Conmutador de Roles Sagrados',
+      badge: '👑 Roles Comunitarios',
+      view: 'home',
       target: '#roleSwitcher',
-      pose: 'explaining',
-      text: 'En la parte superior puedes alternar entre Sevaka (Prestador de oficios), Yajamāna (Solicitante) y Śramaṇa (Aprendiz). Cada rol muestra herramientas adaptadas a su misión.'
+      sprite: '/bot/siddhi-cloud-pointing.png',
+      text: '¡Namastē! Soy Siddhi y volaremos juntos en mi nube mágica. Aquí arriba puedes alternar tu vocación: Sevaka (prestador de oficios), Yajamāna (solicitante que encarga favores) y Śramaṇa (nuevo aprendiz iniciado). ¡Cada rol transforma las herramientas de la plataforma!',
+      tip: 'Toca cualquier rol para probar su experiencia adaptada.'
     },
     {
-      title: 'Paso 2: El Mandala de Karma y Bento Trio',
-      target: '.karma-mandala-hero',
-      pose: 'celebrating',
-      text: 'Tu medidor circular mandala muestra tu honor activo. Los azulejos bento te resumen tus favores completados, promedio de estrellas y tus Llaves Dīkṣā disponibles.'
+      step: 2,
+      title: 'El Mandala Circular de Karma',
+      badge: '🕉️ Honor Acumulado',
+      view: 'home',
+      target: '.mandala-gauge',
+      sprite: '/bot/siddhi-cloud-wisdom.png',
+      text: 'Tu honor no es dinero ni status vacío: es la confianza edificada en tu comunidad. El medidor circular refleja tus puntos de Karma. Al alcanzar los hitos (100, 300, 700 y 1500 pts) asciendes de rango y ganas nuevas Llaves Dīkṣā.',
+      tip: 'Cada favor impecable con 5★ te otorga +15 puntos de Karma.'
     },
     {
-      title: 'Paso 3: Deck de Acciones Rápidas',
+      step: 3,
+      title: 'Trío Bento de Confianza',
+      badge: '📊 Métricas Clave',
+      view: 'home',
+      target: '.bento-metrics-grid',
+      sprite: '/bot/siddhi-cloud-pointing.png',
+      text: 'Tres métricas esenciales a golpe de vista: la cantidad de favores Sevā culminados, tu calificación de honor sin censura y tus Llaves Dīkṣā activas para apadrinar a nuevos miembros de tu vecindario.',
+      tip: 'Un perfil con 5★ inspira confianza inmediata en tu barrio.'
+    },
+    {
+      step: 4,
+      title: 'Radar de Oleadas y Acciones Rápidas',
+      badge: '📡 Radar Comunitario',
+      view: 'home',
       target: '.action-deck',
-      pose: 'explaining',
-      text: 'Desde aquí puedes emitir solicitudes o simular favores entrantes con el radar de oleadas (Uber Wave). ¡Todo sucede en tiempo real!'
+      sprite: '/bot/siddhi-cloud-pointing.png',
+      text: 'Aquí está el pulso activo. Como solicitante puedes emitir pedidos directos al radar. Como prestador puedes simular el radar de despachos en tiempo real por oleadas de cercanía (Wave Uber).',
+      tip: '¡Prueba a pulsar "Simular Notificación Entrante"!'
     },
     {
-      title: 'Paso 4: El Árbol Sagrado Paramparā',
+      step: 5,
+      title: 'Árbol Sagrado Paramparā (Linaje)',
+      badge: '🌱 Cadena de Padrinazgo',
+      view: 'home',
       target: '.parampara-thread',
-      pose: 'greeting',
-      text: 'Aquí contemplas tu ascendencia védica: quién te apadrinó y a quiénes has iniciado tú. ¡El honor se transmite y se cuida en familia!'
+      sprite: '/bot/siddhi-cloud-wisdom.png',
+      text: 'La confianza tiene memoria. Aquí contemplas tu ascendencia védica: quién fue tu maestro Guru que respondió por ti, y quiénes son tus discípulos ahijados. El Karma se comparte: su excelencia te premia y sus faltas te comprometen solidariamente.',
+      tip: 'Si tu ahijado completa 5 favores 5★, recibes el bono Gurudakṣiṇā (+25 pts).'
+    },
+    {
+      step: 6,
+      title: 'Directorio Comunitario de Linajes',
+      badge: '🔍 Explorar Vecinos',
+      view: 'explore',
+      target: '#searchInput',
+      sprite: '/bot/siddhi-cloud-pointing.png',
+      text: 'Navega y encuentra vecinos calificados clasificados en Tan-Sevā (oficios manuales: plomería, electricidad) y Man-Sevā (gestión intelectual: trámites, salud, asesorías). ¡Sin comisiones abusivas de plataformas intermediarias!',
+      tip: 'Filtra por categoría y toca cualquier perfil para auditar su linaje.'
+    },
+    {
+      step: 7,
+      title: 'Chat Seguro con Filtro Anti-Fuga',
+      badge: '🛡️ Habeas Data y Seguridad',
+      view: 'chat',
+      target: '.chat-container',
+      sprite: '/bot/siddhi-cloud-wisdom.png',
+      text: 'El canal de comunicación está blindado con el Escudo Anti-Fuga. Si alguien intenta enviar números telefónicos o correos antes de acordar las condiciones, el mensaje se intercepta para evitar fraudes y proteger la privacidad.',
+      tip: '¡Una vez pactado el favor, el pacto Sankalpa libera los datos de contacto directo!'
+    },
+    {
+      step: 8,
+      title: 'Pacto Sankalpa y Verificación PIN',
+      badge: '📜 Protocolo de 4 Dígitos',
+      view: 'chat',
+      target: '.chat-container',
+      sprite: '/bot/siddhi-cloud-pointing.png',
+      text: 'El servicio se sella con el pergamino digital Sankalpa y dos códigos PIN de 4 dígitos: uno para certificar la llegada física al domicilio y otro para certificar el cierre del favor y la entrega de la compensación justa acordada.',
+      tip: 'Cero intermediación bancaria: el pago es directo y transparente.'
+    },
+    {
+      step: 9,
+      title: 'Protocolo de Reseñas Doble Ciego',
+      badge: '🔒 Teoría de Juegos Imparcial',
+      view: 'home',
+      target: '#brandLogoHome',
+      sprite: '/bot/siddhi-cloud-celebrating.png',
+      text: '¡La culminación del honor! Las evaluaciones se realizan a ciegas: nadie ve la opinión del otro hasta que ambos hayan calificado simultáneamente. Sin chantajes ni represalias. ¡Que el Dharma guíe siempre tus pasos en SevaSetu!',
+      tip: '¡Has completado el gran tour volador con Siddhi!'
     }
   ]
 };
@@ -470,24 +541,20 @@ function renderBotCompanion() {
                   </div>
                 `).join('')}
               ` : `
-                <!-- TAB TOUR GUIADO -->
-                <div class="bot-speech-bubble">
-                  <p><strong>Paseo de Aprendizaje con Siddhi (${state.botGuide.tourStep + 1} de ${BOT_KNOWLEDGE.tour.length})</strong></p>
-                  <p style="font-size:0.86rem; line-height:1.45; margin-top:4px;">
-                    <strong>${BOT_KNOWLEDGE.tour[state.botGuide.tourStep].title}:</strong>
-                    ${BOT_KNOWLEDGE.tour[state.botGuide.tourStep].text}
+                <!-- TAB TOUR GUIADO: LANZADOR DE VUELO EN NUBE -->
+                <div class="bot-speech-bubble" style="text-align:center; padding: 18px 14px;">
+                  <div style="width:130px; height:130px; margin: 0 auto 10px; animation: flyingCloudBob 3s ease-in-out infinite;">
+                    <img src="/bot/siddhi-cloud-pointing.png" alt="Siddhi en Nube Voladora" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 8px 18px rgba(184,90,58,0.35));" />
+                  </div>
+                  <p style="font-family:var(--font-display); font-size:1.15rem; color:var(--primary-nila); font-weight:700; margin-bottom:6px;">
+                    ¡Recorrido en Nube Voladora!
                   </p>
-                </div>
-
-                <div class="flex justify-between items-center mt-md">
-                  <button class="btn btn--secondary btn--sm" id="btnTourPrev" ${state.botGuide.tourStep === 0 ? 'disabled style="opacity:0.4;"' : ''}>
-                    ← Anterior
-                  </button>
-                  <span class="font-mono" style="font-size:0.75rem; color:var(--text-vibhuti); font-weight:700;">
-                    ${state.botGuide.tourStep + 1} / ${BOT_KNOWLEDGE.tour.length}
-                  </span>
-                  <button class="btn btn--primary btn--sm" id="btnTourNext">
-                    ${state.botGuide.tourStep === BOT_KNOWLEDGE.tour.length - 1 ? '✓ Concluir Tour' : 'Siguiente →'}
+                  <p style="font-size:0.83rem; color:var(--text-kajal); line-height:1.45; margin-bottom:14px;">
+                    Siddhi montará en su nube mágica con estela de partículas para mostrarte <strong>en vivo y en directo</strong> cada una de las 9 funciones esenciales de SevaSetu, <em>sin difuminar la pantalla</em>.
+                  </p>
+                  <button class="btn btn--primary btn--full shimmer-gold" id="btnStartFlyingTour" style="padding:12px; font-weight:700; font-size:0.92rem; display:flex; align-items:center; justify-content:center; gap:8px;">
+                    <span>🚀</span>
+                    <span>Iniciar Tour Volador en Nube Mágica</span>
                   </button>
                 </div>
               `}
@@ -507,6 +574,78 @@ function renderBotCompanion() {
         </div>
       </div>
     ` : ''}
+  `;
+}
+
+// ─── Renderizado del Tour Volador con Siddhi en Nube Mágica ───
+function renderFlyingTourGuide() {
+  if (!state.botGuide.tourActive) return '';
+
+  const stepIdx = state.botGuide.tourStep;
+  const currentStep = BOT_KNOWLEDGE.tour[stepIdx] || BOT_KNOWLEDGE.tour[0];
+  const spriteImg = currentStep.sprite || BOT_POSES.cloudPointing;
+
+  return `
+    <!-- GUÍA FLOTANTE EN NUBE VOLADORA -->
+    <div class="flying-tour-guide" id="flyingTourGuide">
+      <!-- Personaje en Nube con Efecto de Levitación y Partículas -->
+      <div class="flying-cloud-character">
+        <div class="flying-cloud-aura"></div>
+        <img class="flying-cloud-img" src="${spriteImg}" alt="Siddhi en Nube Voladora" />
+        
+        <!-- Partículas y Destellos de Estrellas -->
+        <div class="cloud-particles">
+          <span class="particle-sparkle p1">✨</span>
+          <span class="particle-sparkle p2">🌟</span>
+          <span class="particle-sparkle p3">🪷</span>
+          <span class="particle-sparkle p4">✦</span>
+          <span class="particle-sparkle p5">✨</span>
+          <span class="particle-dust d1"></span>
+          <span class="particle-dust d2"></span>
+          <span class="particle-dust d3"></span>
+          <span class="particle-dust d4"></span>
+        </div>
+      </div>
+
+      <!-- Tarjeta de Diálogo Explicativa -->
+      <div class="flying-tour-card">
+        <div class="flying-tour-content">
+          <div class="flying-tour-header">
+            <div class="flying-tour-step-badge">
+              <span>${currentStep.badge}</span>
+              <span class="flying-tour-counter">${stepIdx + 1} / ${BOT_KNOWLEDGE.tour.length}</span>
+            </div>
+            <button class="flying-tour-close-btn" id="btnCloseFlyingTour" title="Cerrar Tour">✕</button>
+          </div>
+
+          <h4 class="flying-tour-title">${currentStep.title}</h4>
+          <p class="flying-tour-text">${currentStep.text}</p>
+
+          ${currentStep.tip ? `
+            <div class="flying-tour-tip">
+              <span style="font-size:0.9rem;">💡</span>
+              <span>${currentStep.tip}</span>
+            </div>
+          ` : ''}
+
+          <div class="flying-tour-actions">
+            <button class="btn btn--secondary btn--sm" id="btnFlyingTourPrev" ${stepIdx === 0 ? 'disabled style="opacity:0.4; pointer-events:none;"' : ''}>
+              ← Anterior
+            </button>
+
+            <div class="flying-tour-progress-dots">
+              ${BOT_KNOWLEDGE.tour.map((_, i) => `
+                <span class="tour-dot ${i === stepIdx ? 'active' : ''}"></span>
+              `).join('')}
+            </div>
+
+            <button class="btn btn--primary btn--sm shimmer-gold" id="btnFlyingTourNext">
+              ${stepIdx === BOT_KNOWLEDGE.tour.length - 1 ? '🎉 ¡Finalizar Tour!' : 'Siguiente →'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   `;
 }
 
@@ -541,6 +680,7 @@ function render() {
     </main>
     ${renderBottomNav()}
     ${renderBotCompanion()}
+    ${renderFlyingTourGuide()}
     ${state.uberNotification ? renderUberNotification() : ''}
     ${state.registerModal ? renderRegisterModal() : ''}
     <canvas id="particlesCanvas"></canvas>
@@ -1945,42 +2085,86 @@ function attachEventListeners() {
     });
   });
 
-  // Tour Siguiente / Anterior
-  const btnTourNext = document.getElementById('btnTourNext');
-  if (btnTourNext) {
-    btnTourNext.addEventListener('click', () => {
+  // Iniciar Tour Volador en Nube Mágica
+  const btnStartFlying = document.getElementById('btnStartFlyingTour');
+  if (btnStartFlying) {
+    btnStartFlying.addEventListener('click', () => {
+      state.botGuide.isOpen = false;
+      state.botGuide.tourActive = true;
+      state.botGuide.tourStep = 0;
+      const firstStep = BOT_KNOWLEDGE.tour[0];
+      if (firstStep.view && state.currentView !== firstStep.view) {
+        state.currentView = firstStep.view;
+      }
+      playCelebrationSound();
+      render();
+    });
+  }
+
+  // Cerrar Tour Volador
+  const btnCloseFlying = document.getElementById('btnCloseFlyingTour');
+  if (btnCloseFlying) {
+    btnCloseFlying.addEventListener('click', () => {
+      state.botGuide.tourActive = false;
+      document.querySelectorAll('.tour-target-highlight').forEach(el => el.classList.remove('tour-target-highlight'));
+      render();
+    });
+  }
+
+  // Tour Volador: Siguiente
+  const btnFlyingNext = document.getElementById('btnFlyingTourNext');
+  if (btnFlyingNext) {
+    btnFlyingNext.addEventListener('click', () => {
       if (state.botGuide.tourStep < BOT_KNOWLEDGE.tour.length - 1) {
         state.botGuide.tourStep++;
-        state.botGuide.currentPose = BOT_KNOWLEDGE.tour[state.botGuide.tourStep].pose || 'explaining';
+        const nextStep = BOT_KNOWLEDGE.tour[state.botGuide.tourStep];
+        if (nextStep.view && state.currentView !== nextStep.view) {
+          state.currentView = nextStep.view;
+        }
+        playNotificationSound();
         render();
-        const target = BOT_KNOWLEDGE.tour[state.botGuide.tourStep].target;
-        setTimeout(() => {
-          document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
       } else {
-        // Concluir tour con fiesta de Karma
-        state.botGuide.isOpen = false;
+        // Concluir tour volador con gran celebración
+        state.botGuide.tourActive = false;
         state.botGuide.tourStep = 0;
+        document.querySelectorAll('.tour-target-highlight').forEach(el => el.classList.remove('tour-target-highlight'));
+        state.currentView = 'home';
         triggerKarmaCelebration();
-        showNotification('🎉 ¡Has completado la Visita Guiada con Siddhi! +10 Karma Pts de honor simbólico.');
+        showNotification('🎉 ¡Has completado el Gran Tour Volador con Siddhi! +10 Karma Pts de honor simbólico.');
         render();
       }
     });
   }
 
-  const btnTourPrev = document.getElementById('btnTourPrev');
-  if (btnTourPrev) {
-    btnTourPrev.addEventListener('click', () => {
+  // Tour Volador: Anterior
+  const btnFlyingPrev = document.getElementById('btnFlyingTourPrev');
+  if (btnFlyingPrev) {
+    btnFlyingPrev.addEventListener('click', () => {
       if (state.botGuide.tourStep > 0) {
         state.botGuide.tourStep--;
-        state.botGuide.currentPose = BOT_KNOWLEDGE.tour[state.botGuide.tourStep].pose || 'explaining';
+        const prevStep = BOT_KNOWLEDGE.tour[state.botGuide.tourStep];
+        if (prevStep.view && state.currentView !== prevStep.view) {
+          state.currentView = prevStep.view;
+        }
+        playNotificationSound();
         render();
-        const target = BOT_KNOWLEDGE.tour[state.botGuide.tourStep].target;
-        setTimeout(() => {
-          document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
       }
     });
+  }
+
+  // Resaltado de Spotlight y Desplazamiento Suave al elemento objetivo
+  if (state.botGuide.tourActive) {
+    const curStep = BOT_KNOWLEDGE.tour[state.botGuide.tourStep];
+    if (curStep && curStep.target) {
+      setTimeout(() => {
+        document.querySelectorAll('.tour-target-highlight').forEach(el => el.classList.remove('tour-target-highlight'));
+        const targetEl = document.querySelector(curStep.target);
+        if (targetEl) {
+          targetEl.classList.add('tour-target-highlight');
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+    }
   }
 
   // Celebración con pétalos y sonido

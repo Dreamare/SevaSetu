@@ -2653,4 +2653,373 @@ input:focus, textarea:focus, select:focus {
   margin-bottom: var(--space-md);
 }
 
+/* ═══════════════════════════════════════════════════════
+   TOUR VOLADOR CON SIDDHI EN NUBE MÁGICA Y PARTÍCULAS
+   ═══════════════════════════════════════════════════════ */
+
+/* Elemento activo resaltado con aura y halo dorado */
+.tour-target-highlight {
+  position: relative !important;
+  z-index: 150 !important;
+  outline: 3px solid var(--accent-geru) !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 6px rgba(184, 90, 58, 0.3), 0 0 35px rgba(212, 175, 55, 0.65) !important;
+  animation: pulseTourTarget 1.8s infinite ease-in-out !important;
+  border-radius: var(--radius-md) !important;
+  transition: all 0.3s ease !important;
+}
+
+@keyframes pulseTourTarget {
+  0%, 100% {
+    outline-color: var(--accent-geru);
+    box-shadow: 0 0 0 6px rgba(184, 90, 58, 0.3), 0 0 25px rgba(212, 175, 55, 0.45);
+  }
+  50% {
+    outline-color: var(--prestige-kamsya);
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0.2), 0 0 45px rgba(212, 175, 55, 0.75);
+  }
+}
+
+/* Contenedor flotante del Tour (Sin difuminar el fondo) */
+.flying-tour-guide {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 560px;
+  z-index: 350;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  animation: slideUpTour 0.4s var(--ease-spring);
+}
+
+@keyframes slideUpTour {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(40px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* Personaje Siddhi en Nube Voladora */
+.flying-cloud-character {
+  position: relative;
+  width: 145px;
+  height: 145px;
+  margin-bottom: -36px;
+  margin-left: 20px;
+  z-index: 3;
+  pointer-events: none;
+  animation: flyingCloudBob 3.2s ease-in-out infinite;
+}
+
+@keyframes flyingCloudBob {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+/* Imagen Sprite con transparencia */
+.flying-cloud-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(184, 90, 58, 0.4)) drop-shadow(0 0 18px rgba(212, 175, 55, 0.5));
+  transition: transform 0.3s ease;
+}
+
+/* Halo celestial detrás de la nube */
+.flying-cloud-aura {
+  position: absolute;
+  inset: 15% 10% 10% 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.45) 0%, rgba(230, 138, 0, 0.2) 60%, transparent 80%);
+  filter: blur(10px);
+  z-index: -1;
+  animation: cloudAuraPulse 2.8s infinite alternate ease-in-out;
+}
+
+@keyframes cloudAuraPulse {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ─── Partículas Mágicas Alrededor de la Nube ─── */
+.cloud-particles {
+  position: absolute;
+  inset: -15px;
+  pointer-events: none;
+}
+
+.particle-sparkle {
+  position: absolute;
+  font-size: 1rem;
+  line-height: 1;
+  user-select: none;
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.8));
+}
+
+.particle-sparkle.p1 {
+  top: 10px;
+  right: 5px;
+  animation: sparkleTwinkle 1.8s infinite ease-in-out;
+}
+
+.particle-sparkle.p2 {
+  bottom: 30px;
+  left: -8px;
+  animation: sparkleTwinkle 2.4s infinite ease-in-out 0.4s;
+}
+
+.particle-sparkle.p3 {
+  bottom: 8px;
+  right: 25px;
+  font-size: 0.85rem;
+  animation: sparkleTwinkle 2s infinite ease-in-out 0.8s;
+}
+
+.particle-sparkle.p4 {
+  top: 40px;
+  left: -2px;
+  color: var(--accent-geru);
+  font-size: 0.75rem;
+  animation: sparkleTwinkle 1.6s infinite ease-in-out 1.2s;
+}
+
+.particle-sparkle.p5 {
+  top: -5px;
+  left: 45%;
+  animation: sparkleTwinkle 2.2s infinite ease-in-out 0.6s;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3) rotate(180deg);
+  }
+}
+
+/* Polvo de estrellas dorado */
+.particle-dust {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #FFD700;
+  box-shadow: 0 0 6px #FFA000;
+}
+
+.particle-dust.d1 {
+  bottom: 20px;
+  right: 15px;
+  animation: stardustDrift 2.2s infinite linear;
+}
+
+.particle-dust.d2 {
+  bottom: 12px;
+  right: 45px;
+  animation: stardustDrift 2.6s infinite linear 0.7s;
+}
+
+.particle-dust.d3 {
+  bottom: 26px;
+  left: 20px;
+  animation: stardustDrift 2s infinite linear 1.2s;
+}
+
+.particle-dust.d4 {
+  bottom: 8px;
+  left: 50px;
+  animation: stardustDrift 2.5s infinite linear 0.3s;
+}
+
+@keyframes stardustDrift {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(0.4);
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(28px) translateX(18px) scale(1.2);
+  }
+}
+
+/* Tarjeta de Diálogo del Tour Flotante */
+.flying-tour-card {
+  background: var(--surface-card);
+  background-image: radial-gradient(circle at 95% 5%, rgba(212, 175, 55, 0.12) 0%, transparent 45%), url('/fondo.jpg');
+  background-repeat: repeat;
+  background-size: 320px 320px;
+  border: 2px solid var(--accent-geru);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 16px 42px rgba(25, 42, 58, 0.38), 0 0 0 1px rgba(212, 175, 55, 0.35);
+  padding: 16px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.flying-tour-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(251, 248, 243, 0.95);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.flying-tour-content {
+  position: relative;
+  z-index: 1;
+}
+
+.flying-tour-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-left: 95px;
+}
+
+.flying-tour-step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(35, 57, 77, 0.08);
+  border: 1px solid var(--border-mitti);
+  border-radius: var(--radius-pill);
+  padding: 3px 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+}
+
+.flying-tour-counter {
+  font-family: var(--font-mono);
+  background: var(--primary-nila);
+  color: #fff;
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+}
+
+.flying-tour-close-btn {
+  background: rgba(35, 57, 77, 0.08);
+  color: var(--text-vibhuti);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-fast);
+}
+
+.flying-tour-close-btn:hover {
+  background: var(--danger-sindoor);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.flying-tour-title {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  color: var(--primary-nila);
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.flying-tour-text {
+  font-size: 0.84rem;
+  color: var(--text-kajal);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+.flying-tour-tip {
+  background: rgba(166, 124, 55, 0.08);
+  border-left: 3px solid var(--prestige-kamsya);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 0.76rem;
+  color: var(--text-kajal);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.flying-tour-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-mitti);
+}
+
+.flying-tour-progress-dots {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.tour-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border-delicate);
+  transition: all 0.25s ease;
+}
+
+.tour-dot.active {
+  width: 18px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-geru);
+  box-shadow: 0 0 6px rgba(184, 90, 58, 0.5);
+}
+
+@media (max-width: 500px) {
+  .flying-tour-guide {
+    bottom: 10px;
+    width: calc(100% - 16px);
+  }
+  .flying-cloud-character {
+    width: 115px;
+    height: 115px;
+    margin-bottom: -28px;
+    margin-left: 10px;
+  }
+  .flying-tour-card {
+    padding: 12px 14px;
+  }
+  .flying-tour-header {
+    padding-left: 65px;
+  }
+  .flying-tour-title {
+    font-size: 1rem;
+  }
+  .flying-tour-text {
+    font-size: 0.78rem;
+  }
+}
+
+
 
