@@ -1,0 +1,11 @@
+{
+  "name": "sevasetu-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SevaSetu · El Puente del Servicio - Red Comunitaria de Confianza",
+  "scripts": {
+    "dev": "npm run dev --prefix app",
+    "build": "npm run build --prefix app",
+    "preview": "npm run preview --prefix app"
+  }
+}
