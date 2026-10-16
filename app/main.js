@@ -595,9 +595,8 @@ function renderFlyingTourGuide() {
   const spriteImg = currentStep.sprite || BOT_POSES.cloudPointing;
 
   return `
-    <!-- GUÍA FLOTANTE EN NUBE VOLADORA -->
-    <div class="flying-tour-guide" id="flyingTourGuide">
-      <!-- Personaje en Nube con Efecto de Levitación y Partículas -->
+    <!-- SIDDHI EN NUBE VOLADORA INDEPENDIENTE (VUELA AL LADO DEL ELEMENTO) -->
+    <div class="flying-siddhi-companion" id="flyingSiddhiCompanion">
       <div class="flying-cloud-character">
         <div class="flying-cloud-aura"></div>
         <img class="flying-cloud-img" src="${spriteImg}" alt="Siddhi en Nube Voladora" />
@@ -615,14 +614,15 @@ function renderFlyingTourGuide() {
           <span class="particle-dust d4"></span>
         </div>
       </div>
+    </div>
 
-      <!-- Tarjeta de Diálogo Explicativa -->
+    <!-- TARJETA DE DIÁLOGO CENTRADA EN LA PANTALLA -->
+    <div class="flying-tour-guide" id="flyingTourGuide">
       <div class="flying-tour-card">
         <div class="flying-tour-content">
           <div class="flying-tour-header">
             <div class="flying-tour-step-badge">
               <span>${currentStep.badge}</span>
-              <span class="flying-tour-location-chip">📍 ${currentStep.location || 'En pantalla'}</span>
               <span class="flying-tour-counter">${stepIdx + 1} / ${BOT_KNOWLEDGE.tour.length}</span>
             </div>
             <div style="display:flex; align-items:center; gap:6px;">
@@ -660,6 +660,57 @@ function renderFlyingTourGuide() {
       </div>
     </div>
   `;
+}
+
+// ─── Posicionamiento Dinámico de Siddhi al lado del Elemento Objetivo ───
+function positionSiddhiNearTarget(targetEl) {
+  const siddhi = document.getElementById('flyingSiddhiCompanion');
+  if (!siddhi || !targetEl) return;
+
+  const rect = targetEl.getBoundingClientRect();
+  const siddhiW = 96;
+  const siddhiH = 96;
+  const vpW = window.innerWidth;
+  const vpH = window.innerHeight;
+
+  let top, left;
+  let isFlipped = false;
+
+  // Preferir ubicar a Siddhi a la izquierda del elemento
+  if (rect.left >= siddhiW + 16) {
+    left = rect.left - siddhiW - 8;
+    top = rect.top + (rect.height / 2) - (siddhiH / 2);
+    isFlipped = false; // Mira y apunta a la derecha hacia el elemento
+  }
+  // Si no cabe a la izquierda, intentar a la derecha
+  else if (vpW - rect.right >= siddhiW + 16) {
+    left = rect.right + 8;
+    top = rect.top + (rect.height / 2) - (siddhiH / 2);
+    isFlipped = true; // Invertir sprite para que mire y apunte a la izquierda hacia el elemento
+  }
+  // Si el elemento ocupa casi todo el ancho de la pantalla (móvil o contenedor muy ancho)
+  else {
+    top = rect.top - siddhiH - 6;
+    left = Math.min(vpW - siddhiW - 12, Math.max(12, rect.right - siddhiW));
+    if (top < 68) {
+      top = rect.top + 6;
+      left = Math.max(12, rect.left + 6);
+    }
+    isFlipped = false;
+  }
+
+  // Márgenes seguros en pantalla (no salirse arriba ni solaparse abajo)
+  top = Math.max(68, Math.min(vpH - siddhiH - 180, top));
+  left = Math.max(8, Math.min(vpW - siddhiW - 8, left));
+
+  siddhi.style.top = `${Math.round(top)}px`;
+  siddhi.style.left = `${Math.round(left)}px`;
+  siddhi.style.opacity = '1';
+
+  const charEl = siddhi.querySelector('.flying-cloud-character');
+  if (charEl) {
+    charEl.classList.toggle('flipped', isFlipped);
+  }
 }
 
 // Configurar usuario actual según rol
@@ -2121,6 +2172,12 @@ function attachEventListeners() {
       state.botGuide.tourActive = false;
       document.querySelectorAll('.tour-target-highlight').forEach(el => el.classList.remove('tour-target-highlight'));
       document.querySelectorAll('.tour-target-beacon').forEach(el => el.remove());
+      if (window._tourScrollHandler) {
+        window.removeEventListener('scroll', window._tourScrollHandler);
+        window.removeEventListener('resize', window._tourResizeHandler);
+        window._tourScrollHandler = null;
+        window._tourResizeHandler = null;
+      }
       render();
     });
   }
@@ -2143,6 +2200,12 @@ function attachEventListeners() {
         state.botGuide.tourStep = 0;
         document.querySelectorAll('.tour-target-highlight').forEach(el => el.classList.remove('tour-target-highlight'));
         document.querySelectorAll('.tour-target-beacon').forEach(el => el.remove());
+        if (window._tourScrollHandler) {
+          window.removeEventListener('scroll', window._tourScrollHandler);
+          window.removeEventListener('resize', window._tourResizeHandler);
+          window._tourScrollHandler = null;
+          window._tourResizeHandler = null;
+        }
         state.currentView = 'home';
         triggerKarmaCelebration();
         showNotification('🎉 ¡Has completado el Gran Tour Volador con Siddhi! +10 Karma Pts de honor simbólico.');
@@ -2178,17 +2241,20 @@ function attachEventListeners() {
           const rect = targetEl.getBoundingClientRect();
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
           window.scrollTo({ top: Math.max(0, rect.top + scrollTop - 95), behavior: 'smooth' });
+          setTimeout(() => {
+            positionSiddhiNearTarget(targetEl);
+          }, 120);
         }
       }
     });
   }
 
-  // Resaltado de Spotlight y Desplazamiento Inteligente al elemento objetivo
+  // Resaltado de Spotlight y Posicionamiento de Siddhi en su Nube al lado del elemento
   if (state.botGuide.tourActive) {
     const curStep = BOT_KNOWLEDGE.tour[state.botGuide.tourStep];
     if (curStep && curStep.target) {
       setTimeout(() => {
-        // Limpiar marcas y balizas previas
+        // Limpiar marcas previas
         document.querySelectorAll('.tour-target-highlight').forEach(el => el.classList.remove('tour-target-highlight'));
         document.querySelectorAll('.tour-target-beacon').forEach(el => el.remove());
 
@@ -2196,21 +2262,36 @@ function attachEventListeners() {
         if (targetEl) {
           targetEl.classList.add('tour-target-highlight');
 
-          // Crear baliza que señala directamente al elemento
-          const beacon = document.createElement('div');
-          beacon.className = 'tour-target-beacon';
-          beacon.innerHTML = `<span>👉 ¡Aquí!</span>`;
-          targetEl.appendChild(beacon);
-
-          // Posicionamiento inteligente en el tercio superior de la pantalla
-          // para dejar la tarjeta del tour y el resto de la interfaz 100% visible sin taparse
+          // Desplazamiento inteligente al tercio superior
           const rect = targetEl.getBoundingClientRect();
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
           const targetOffset = rect.top + scrollTop - 95;
           window.scrollTo({ top: Math.max(0, targetOffset), behavior: 'smooth' });
+
+          // Posicionar al guía volador Siddhi físicamente al lado del elemento
+          positionSiddhiNearTarget(targetEl);
+          setTimeout(() => {
+            positionSiddhiNearTarget(targetEl);
+          }, 180);
         }
-      }, 100);
+      }, 70);
     }
+
+    // Mantener a Siddhi al lado del elemento ante cualquier scroll o cambio de tamaño
+    if (window._tourScrollHandler) {
+      window.removeEventListener('scroll', window._tourScrollHandler);
+      window.removeEventListener('resize', window._tourResizeHandler);
+    }
+    window._tourScrollHandler = () => {
+      const cur = BOT_KNOWLEDGE.tour[state.botGuide.tourStep];
+      if (cur && cur.target) {
+        const el = document.querySelector(cur.target);
+        if (el) positionSiddhiNearTarget(el);
+      }
+    };
+    window._tourResizeHandler = window._tourScrollHandler;
+    window.addEventListener('scroll', window._tourScrollHandler, { passive: true });
+    window.addEventListener('resize', window._tourResizeHandler, { passive: true });
   }
 
   // Celebración con pétalos y sonido
