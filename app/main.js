@@ -61,22 +61,22 @@ const BOT_KNOWLEDGE = {
       subtitle: 'Vista de Inicio y Honor Comunitario',
       pose: 'explaining',
       badge: '🏛️ Tablero de Inicio',
-      speech: '¡Namastē! Soy Siddhi, tu espíritu guía del Dharma. En esta pantalla puedes ver tu Mandala de Karma y tu Linaje Paramparā. Tu puntaje no es dinero ni status vacío: es la confianza que has edificado favor tras favor en tu comunidad.',
+      speech: '¡Namastē! Soy Siddhi, tu espíritu guía. En esta pantalla puedes ver tu Mandala de Karma y tu Árbol de Linaje. Tu puntaje no es dinero ni status vacío: es la confianza que has edificado favor tras favor en tu comunidad.',
       features: [
         {
           icon: '/iconos/transparent/icon-mudra-loto-servicio.png',
           title: 'Mandala de Karma y Trío Bento',
-          desc: 'Mide tu honor acumulado. Cada favor completado impecablemente te acerca al siguiente rango y desbloquea +3 Llaves Dīkṣā.'
+          desc: 'Mide tu honor acumulado. Cada favor completado impecablemente te acerca al siguiente rango y desbloquea +3 Llaves Mantra.'
         },
         {
           icon: '/iconos/transparent/icon-arbol-parampara.png',
-          title: 'Linaje Sagrado Paramparā',
-          desc: 'Visualiza la cadena de confianza: quién fue tu Guru padrino y quiénes son tus discípulos o ahijados. Tu Karma responde solidariamente por ellos.'
+          title: 'Árbol de Linaje',
+          desc: 'Visualiza la cadena de confianza: quién fue tu Gurú padrino y quiénes son tus discípulos o ahijados. Tu Karma responde solidariamente por ellos.'
         },
         {
           icon: '/iconos/transparent/icon-mudra-palabra-sagrada.png',
           title: 'Libro Mayor de Honor',
-          desc: 'Historial inmutable con hash de cada intercambio, bonos de gurudakṣiṇā (+25 pts) y penalizaciones si un ahijado comete falta grave.'
+          desc: 'Historial inmutable con hash de cada intercambio, Bonos Gurú (+25 pts) y penalizaciones si un ahijado comete falta grave.'
         }
       ]
     },
@@ -89,24 +89,24 @@ const BOT_KNOWLEDGE = {
       features: [
         {
           icon: '/iconos/transparent/icon-skill-tan-seva.png',
-          title: 'Tan-Sevā (Oficios Manuales)',
+          title: 'Oficios (Servicios Manuales)',
           desc: 'Servicios físicos: plomería, electricidad, reparaciones domésticas, cuidado del hogar.'
         },
         {
           icon: '/iconos/transparent/icon-skill-man-seva.png',
-          title: 'Man-Sevā (Gestión y Asesoría)',
+          title: 'Asesorías (Gestión y Orientación)',
           desc: 'Servicios intelectuales: orientación en trámites de salud, visas, acompañamiento bancario a personas mayores.'
         },
         {
           icon: '/iconos/transparent/icon-nivel-acarya.png',
           title: 'Rangos por Karma',
-          desc: 'Desde Śramaṇa (aprendiz) hasta Ācārya (maestro). Puedes tocar cualquier perfil para ver sus Mudrās e historial.'
+          desc: 'Desde Chela (aprendiz) hasta Gurú Mayor (guardián). Puedes tocar cualquier perfil para ver sus Sellos e historial.'
         }
       ]
     },
     chat: {
       title: 'Chat Seguro y Filtro Anti-Fuga',
-      subtitle: 'Comunicación protegida y Acuerdo Sankalpa',
+      subtitle: 'Comunicación protegida y Pacto de Honor',
       pose: 'thinking',
       badge: '💬 Canal Cifrado',
       speech: '¡Ojo avizor! Este chat cuenta con un Escudo Anti-Fuga y protección Habeas Data. Los datos sensibles de contacto están bloqueados hasta que ambas partes definan el pacto de honor.',
@@ -118,18 +118,18 @@ const BOT_KNOWLEDGE = {
         },
         {
           icon: '/iconos/transparent/icon-pacto-sankalpa.png',
-          title: 'Acuerdo Digital Sankalpa',
+          title: 'Pacto de Honor Digital',
           desc: 'Una vez acordada la compensación justa y el alcance, ambos confirman el pacto y se liberan los datos de contacto directo.'
         },
         {
           icon: '/iconos/transparent/icon-escudo-kavacha.png',
-          title: 'Modo Escudo Kavacha',
-          desc: 'Si te sientes inseguro en una visita domiciliaria, activa Kavacha para compartir tu ubicación en vivo con un contacto de confianza.'
+          title: 'Modo Escudo de Seguridad',
+          desc: 'Si te sientes inseguro en una visita domiciliaria, activa el Modo Escudo para compartir tu ubicación en vivo con un contacto de confianza.'
         }
       ]
     },
     profile: {
-      title: 'Tu Expediente de Honor y Mudrās',
+      title: 'Tu Expediente de Honor y Sellos',
       subtitle: 'Prestigio, Llaves y Discípulos',
       pose: 'explaining',
       badge: '👤 Perfil de Confianza',
@@ -137,13 +137,13 @@ const BOT_KNOWLEDGE = {
       features: [
         {
           icon: '/iconos/transparent/icon-mudra-ojo-sabiduria.png',
-          title: 'Insignias Mudrās',
+          title: 'Sellos de Reconocimiento',
           desc: 'Condecoraciones especiales: Manos de Maestro (técnica), Palabra Sagrada (puntualidad/acuerdo), Guía Paciente y Loto de Servicio.'
         },
         {
           icon: '/iconos/transparent/icon-llave-diksha.png',
-          title: 'Llaves Dīkṣā Disponibles',
-          desc: 'Son invitaciones exclusivas. Cada llave te convierte en el Guru del nuevo usuario; su buen trato te otorga bonos y su negligencia te penaliza.'
+          title: 'Llaves Mantra Disponibles',
+          desc: 'Son invitaciones exclusivas. Cada llave te convierte en el Gurú del nuevo usuario; su buen trato te otorga bonos y su negligencia te penaliza.'
         },
         {
           icon: '/iconos/transparent/icon-doble-ciego.png',
@@ -215,16 +215,16 @@ const BOT_KNOWLEDGE = {
       ]
     },
     register: {
-      title: 'Iniciación con Código Dīkṣā',
+      title: 'Iniciación con Llave Mantra',
       subtitle: 'Acceso por invitación y padrinazgo',
       pose: 'greeting',
-      badge: '🌱 Rango Śramaṇa',
-      speech: '¡Namastē futuro compañero! SevaSetu es una red protegida por la confianza. Para registrarte necesitas ingresar un código Dīkṣā expedido por un miembro de la comunidad que responda por ti.',
+      badge: '🌱 Rango Chela',
+      speech: '¡Namastē futuro compañero! SevaSetu es una red protegida por la confianza. Para registrarte necesitas ingresar un código Mantra expedido por un miembro de la comunidad que responda por ti.',
       features: [
         {
           icon: '/iconos/transparent/icon-llave-diksha.png',
           title: 'Llave de Invitación',
-          desc: 'Ingresa un código como DK-AP-001 para vincularte al linaje de un Ācārya de tu zona.'
+          desc: 'Ingresa un código como DK-AP-001 para vincularte al linaje de un Maestro de tu zona.'
         },
         {
           icon: '/iconos/transparent/icon-rol-sramana.png',
@@ -237,15 +237,15 @@ const BOT_KNOWLEDGE = {
   faqs: [
     {
       q: '¿Cómo subo de nivel y gano puntos de Karma?',
-      a: 'Por cada favor completado con 5★ recibes +15 pts. Con 4★ recibes +10 pts. Además, como solicitante respetuoso y puntual ganas +10 pts en cada servicio. Al llegar a 100, 300, 700 y 1500 pts subes de rango y ganas +3 Llaves Dīkṣā.'
+      a: 'Por cada favor completado con 5★ recibes +15 pts. Con 4★ recibes +10 pts. Además, como solicitante respetuoso y puntual ganas +10 pts en cada servicio. Al llegar a 100, 300, 700 y 1500 pts subes de rango y ganas +3 Llaves Mantra.'
     },
     {
       q: '¿Qué es el Padrinazgo Solidario y cómo me afecta?',
-      a: 'Cuando invitas a alguien con tu Llave Dīkṣā, eres su Guru. Si tu ahijado completa 5 favores con 5★, recibes el bono Gurudakṣiṇā (+25 pts). Pero si tu ahijado comete una falta grave (≤2★), asumes una penalización solidaria del 50% de los puntos perdidos.'
+      a: 'Cuando invitas a alguien con tu Llave Mantra, eres su Gurú. Si tu ahijado completa 5 favores con 5★, recibes el Bono Gurú (+25 pts). Pero si tu ahijado comete una falta grave (≤2★), asumes una penalización solidaria del 50% de los puntos perdidos.'
     },
     {
       q: '¿Por qué el chat bloquea números de teléfono y correos?',
-      a: 'Por el Escudo Anti-Fuga. Protege tu privacidad y asegura que los acuerdos se sellen bajo el Pacto Sankalpa de honor antes de intercambiar números personales o verse en persona.'
+      a: 'Por el Escudo Anti-Fuga. Protege tu privacidad y asegura que los acuerdos se sellen bajo el Pacto de Honor antes de intercambiar números personales o verse en persona.'
     },
     {
       q: '¿Cómo funciona la reseña de Doble Ciego?',
@@ -253,7 +253,7 @@ const BOT_KNOWLEDGE = {
     },
     {
       q: '¿Puedo cambiar de rol para probar la app?',
-      a: '¡Sí! En la barra superior tienes el conmutador: Sevaka (Claudia, prestadora nivel 4), Yajamāna (Ernesto, solicitante que pide favores) y Śramaṇa (aprendiz iniciado). ¡Pruébalos para ver cómo cambia la experiencia!'
+      a: '¡Sí! En la barra superior tienes el conmutador: Prestador (Claudia, prestadora nivel 4), Solicitante (Ernesto, pide favores) y Aprendiz (nuevo iniciado). ¡Pruébalos para ver cómo cambia la experiencia!'
     }
   ],
   tour: [
@@ -265,7 +265,7 @@ const BOT_KNOWLEDGE = {
       view: 'home',
       target: '#roleSwitcher',
       sprite: '/bot/siddhi-cloud-pointing.png',
-      text: '¡Namastē! Soy Siddhi y volaremos juntos en mi nube mágica. Aquí arriba a la derecha puedes alternar tu vocación: Sevaka (prestador), Yajamāna (solicitante) y Śramaṇa (nuevo aprendiz). ¡Cada rol transforma las herramientas de la plataforma!',
+      text: '¡Namastē! Soy Siddhi y volaremos juntos en mi nube mágica. Aquí arriba a la derecha puedes alternar tu vocación: Prestador (quien ofrece servicios), Solicitante (quien pide favores) y Aprendiz (nuevo miembro). ¡Cada rol transforma las herramientas de la plataforma!',
       tip: 'Toca cualquier rol para probar su experiencia adaptada.'
     },
     {
@@ -276,7 +276,7 @@ const BOT_KNOWLEDGE = {
       view: 'home',
       target: '.mandala-gauge',
       sprite: '/bot/siddhi-cloud-wisdom.png',
-      text: 'Tu honor no es dinero ni status vacío: es la confianza edificada en tu comunidad. El medidor circular refleja tus puntos de Karma. Al alcanzar los hitos (100, 300, 700 y 1500 pts) asciendes de rango y ganas nuevas Llaves Dīkṣā.',
+      text: 'Tu honor no es dinero ni status vacío: es la confianza edificada en tu comunidad. El medidor circular refleja tus puntos de Karma. Al alcanzar los hitos (100, 300, 700 y 1500 pts) asciendes de rango y ganas nuevas Llaves Mantra.',
       tip: 'Cada favor impecable con 5★ te otorga +15 puntos de Karma.'
     },
     {
@@ -287,7 +287,7 @@ const BOT_KNOWLEDGE = {
       view: 'home',
       target: '.bento-metrics-grid',
       sprite: '/bot/siddhi-cloud-pointing.png',
-      text: 'Tres métricas esenciales a golpe de vista: la cantidad de favores Sevā culminados, tu calificación de honor sin censura y tus Llaves Dīkṣā activas para apadrinar a nuevos miembros de tu vecindario.',
+      text: 'Tres métricas esenciales a golpe de vista: la cantidad de favores culminados, tu calificación de honor sin censura y tus Llaves Mantra activas para apadrinar a nuevos miembros de tu vecindario.',
       tip: 'Un perfil con 5★ inspira confianza inmediata en tu barrio.'
     },
     {
@@ -303,14 +303,14 @@ const BOT_KNOWLEDGE = {
     },
     {
       step: 5,
-      title: 'Árbol Sagrado Paramparā (Linaje)',
+      title: 'Árbol de Linaje',
       badge: '🌱 Cadena de Padrinazgo',
       location: 'Sección de linaje',
       view: 'home',
       target: '.parampara-thread',
       sprite: '/bot/siddhi-cloud-wisdom.png',
-      text: 'La confianza tiene memoria. Aquí contemplas tu ascendencia védica: quién fue tu maestro Guru que respondió por ti, y quiénes son tus discípulos ahijados. El Karma se comparte: su excelencia te premia y sus faltas te comprometen solidariamente.',
-      tip: 'Si tu ahijado completa 5 favores 5★, recibes el bono Gurudakṣiṇā (+25 pts).'
+      text: 'La confianza tiene memoria. Aquí contemplas tu árbol de linaje: quién fue tu Gurú que respondió por ti, y quiénes son tus discípulos ahijados. El Karma se comparte: su excelencia te premia y sus faltas te comprometen solidariamente.',
+      tip: 'Si tu ahijado completa 5 favores 5★, recibes el Bono Gurú (+25 pts).'
     },
     {
       step: 6,
@@ -320,7 +320,7 @@ const BOT_KNOWLEDGE = {
       view: 'explore',
       target: '#searchInput',
       sprite: '/bot/siddhi-cloud-pointing.png',
-      text: 'Navega y encuentra vecinos calificados clasificados en Tan-Sevā (oficios manuales: plomería, electricidad) y Man-Sevā (gestión intelectual: trámites, salud, asesorías). ¡Sin comisiones abusivas de plataformas intermediarias!',
+      text: 'Navega y encuentra vecinos calificados: Oficios (servicios manuales: plomería, electricidad) y Asesorías (gestión intelectual: trámites, salud, orientación). ¡Sin comisiones abusivas de plataformas intermediarias!',
       tip: 'Filtra por categoría y toca cualquier perfil para auditar su linaje.'
     },
     {
@@ -332,17 +332,17 @@ const BOT_KNOWLEDGE = {
       target: '.chat-container',
       sprite: '/bot/siddhi-cloud-wisdom.png',
       text: 'El canal de comunicación está blindado con el Escudo Anti-Fuga. Si alguien intenta enviar números telefónicos o correos antes de acordar las condiciones, el mensaje se intercepta para evitar fraudes y proteger la privacidad.',
-      tip: '¡Una vez pactado el favor, el pacto Sankalpa libera los datos de contacto directo!'
+      tip: '¡Una vez pactado el favor, el Pacto de Honor libera los datos de contacto directo!'
     },
     {
       step: 8,
-      title: 'Pacto Sankalpa y Verificación PIN',
+      title: 'Pacto de Honor y Verificación PIN',
       badge: '📜 Protocolo de 4 Dígitos',
       location: 'Flujo de servicio',
       view: 'chat',
       target: '.chat-container',
       sprite: '/bot/siddhi-cloud-pointing.png',
-      text: 'El servicio se sella con el pergamino digital Sankalpa y dos códigos PIN de 4 dígitos: uno para certificar la llegada física al domicilio y otro para certificar el cierre del favor y la entrega de la compensación justa acordada.',
+      text: 'El servicio se sella con el Pacto de Honor digital y dos códigos PIN de 4 dígitos: uno para certificar la llegada física al domicilio y otro para certificar el cierre del favor y la entrega de la compensación justa acordada.',
       tip: 'Cero intermediación bancaria: el pago es directo y transparente.'
     },
     {
@@ -717,13 +717,13 @@ function positionSiddhiNearTarget(targetEl) {
 function setCurrentUserByRole() {
   switch (state.currentRole) {
     case 'sevaka':
-      state.currentUser = state.users.find(u => u.id === 'user_002'); // Claudia - Ācārya
+      state.currentUser = state.users.find(u => u.id === 'user_002'); // Claudia - Maestro
       break;
     case 'yajamana':
       state.currentUser = state.users.find(u => u.id === 'user_003'); // Ernesto - Solicitante
       break;
     case 'shramana':
-      // Si el usuario actual ya es un Śramaṇa registrado, mantenerlo; sino, default Laura
+      // Si el usuario actual ya es un Aprendiz registrado, mantenerlo; sino, default Laura
       if (!state.currentUser || state.currentUser.karmaLevel !== 1) {
         state.currentUser = state.users.find(u => u.id === 'user_005'); // Laura - Nuevo
       }
@@ -783,27 +783,27 @@ function renderTopBar() {
 
       <div class="role-switcher" id="roleSwitcher">
         <button class="role-switcher__btn ${state.currentRole === 'sevaka' ? 'active' : ''}" data-role="sevaka" id="btnRoleSevaka" title="Modo Prestador">
-          <img class="role-switcher__icon" src="/iconos/transparent/icon-rol-sevaka.png" alt="Sevaka" /> Sevaka
+          <img class="role-switcher__icon" src="/iconos/transparent/icon-rol-sevaka.png" alt="Prestador" /> Prestador
         </button>
         <button class="role-switcher__btn ${state.currentRole === 'yajamana' ? 'active' : ''}" data-role="yajamana" id="btnRoleYajamana" title="Modo Solicitante">
-          <img class="role-switcher__icon" src="/iconos/transparent/icon-rol-yajamana.png" alt="Yajamāna" /> Yajamāna
+          <img class="role-switcher__icon" src="/iconos/transparent/icon-rol-yajamana.png" alt="Solicitante" /> Solicitante
         </button>
         <button class="role-switcher__btn ${state.currentRole === 'shramana' ? 'active' : ''}" data-role="shramana" id="btnRoleShramana" title="Modo Aprendiz">
-          <img class="role-switcher__icon" src="/iconos/transparent/icon-rol-sramana.png" alt="Śramaṇa" /> Śramaṇa
+          <img class="role-switcher__icon" src="/iconos/transparent/icon-rol-sramana.png" alt="Aprendiz" /> Aprendiz
         </button>
       </div>
     </header>
   `;
 }
 
-// ─── Barra Kavacha ───
+// ─── Modo Escudo ───
 function renderKavachaBar() {
   return `
     <div class="kavacha-bar" id="kavachaBar">
       <div style="display:flex; align-items:center; gap:8px;">
         <span class="kavacha-bar__pulse"></span>
-        <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-escudo-kavacha.png" alt="Kavacha" />
-        <span>Modo Escudo Kavacha activo — Seguimiento en vivo compartido con tu contacto de confianza</span>
+        <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-escudo-kavacha.png" alt="Modo Escudo" />
+        <span>Modo Escudo activo — Seguimiento en vivo compartido con tu contacto de confianza</span>
       </div>
       <button onclick="document.getElementById('kavachaBar').remove(); window.__state.kavachaActive = false;" style="background:transparent;color:var(--bg-chandan);font-weight:700;font-size:0.9rem;padding:2px 8px;">✕</button>
     </div>
@@ -864,7 +864,7 @@ function renderHomeView() {
     <div class="karma-mandala-hero">
       <div class="hero-beacon-ribbon">
         <span class="beacon-dot"></span>
-        <span>Red Paramparā Activa · ${user.zone}</span>
+        <span>Red de Linaje Activa · ${user.zone}</span>
       </div>
 
       <!-- Medidor Circular Mandala SVG -->
@@ -900,14 +900,14 @@ function renderHomeView() {
         ${state.currentRole === 'shramana'
           ? 'Iniciado en observación comunitaria. Tu conducta en tus primeros favores edifica tu Karma y honra a tu padrino.'
           : state.currentRole === 'sevaka'
-          ? 'Tu servicio desinteresado (Sevā) teje el puente de honor. Cada favor impecable desbloquea prestigio y llaves Dīkṣā.'
-          : 'Solicitudes protegidas bajo honor digital Sankalpa. Calificaciones objetivas y sin intermediarios bancarios.'}
+          ? 'Tu servicio desinteresado teje el puente de honor. Cada favor impecable desbloquea prestigio y Llaves Mantra.'
+          : 'Solicitudes protegidas bajo Pacto de Honor digital. Calificaciones objetivas y sin intermediarios bancarios.'}
       </p>
 
       ${nextLevel ? `
         <div style="background: rgba(35, 57, 77, 0.04); border: 1px dashed var(--border-mitti); border-radius: var(--radius-md); padding: 8px 14px; margin-top: var(--space-xs); font-size: 0.75rem; color: var(--text-vibhuti); display: inline-flex; align-items: center; gap: 8px;">
           <img class="icon-img icon-img--xs" src="${nextLevel.iconImg || '/iconos/transparent/icon-nivel-acarya.png'}" alt="${nextLevel.name}" />
-          <span>Próximo rango: <strong>${nextLevel.name}</strong> a los ${nextLevel.min} pts (+3 Llaves Dīkṣā)</span>
+          <span>Próximo rango: <strong>${nextLevel.name}</strong> a los ${nextLevel.min} pts (+3 Llaves Mantra)</span>
         </div>
       ` : `
         <div style="background: rgba(166, 124, 55, 0.08); border: 1px solid var(--prestige-kamsya); border-radius: var(--radius-md); padding: 8px 14px; font-size: 0.75rem; color: var(--prestige-kamsya); font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
@@ -923,7 +923,7 @@ function renderHomeView() {
             <img class="bento-icon-img" src="/iconos/transparent/icon-mudra-loto-servicio.png" alt="Favores" />
             <span>${user.completedSevas}</span>
           </div>
-          <div class="bento-metric-card__label">Favores Sevā</div>
+          <div class="bento-metric-card__label">Favores Realizados</div>
         </div>
         <div class="bento-metric-card">
           <div class="bento-metric-card__value" style="display:flex; align-items:center; justify-content:center; gap:4px;">
@@ -937,7 +937,7 @@ function renderHomeView() {
             <img class="bento-icon-img" src="/iconos/transparent/icon-llave-diksha.png" alt="Llaves" />
             <span>${user.dikshaKeys.filter(k => k.status === 'available').length}</span>
           </div>
-          <div class="bento-metric-card__label">Llaves Dīkṣā</div>
+          <div class="bento-metric-card__label">Llaves Mantra</div>
         </div>
       </div>
     </div>
@@ -978,7 +978,7 @@ function renderHomeView() {
             <img class="icon-img icon-img--md" src="/iconos/transparent/icon-llave-diksha.png" alt="Llaves" />
           </div>
           <div class="action-tile__body">
-            <h3 class="action-tile__title">Tus Llaves Dīkṣā</h3>
+            <h3 class="action-tile__title">Tus Llaves Mantra</h3>
             <p class="action-tile__desc">Invita y apadrina miembros bajo tu prestigio solidario.</p>
           </div>
         </div>
@@ -988,8 +988,8 @@ function renderHomeView() {
             <img class="icon-img icon-img--md" src="/iconos/transparent/icon-llave-diksha.png" alt="Código" />
           </div>
           <div class="action-tile__body">
-            <h3 class="action-tile__title">Ingresar Código Dīkṣā</h3>
-            <p class="action-tile__desc">Redime tu llave de invitación e iníciate con un Guru.</p>
+            <h3 class="action-tile__title">Ingresar Código Mantra</h3>
+            <p class="action-tile__desc">Redime tu llave de invitación e iníciate con un Gurú.</p>
           </div>
         </div>
         <div class="action-tile" id="btnExploreQuick">
@@ -998,7 +998,7 @@ function renderHomeView() {
           </div>
           <div class="action-tile__body">
             <h3 class="action-tile__title">Conocer Maestros</h3>
-            <p class="action-tile__desc">Explora los Ācāryas activos en la red comunitaria.</p>
+            <p class="action-tile__desc">Explora los Maestros activos en la red comunitaria.</p>
           </div>
         </div>
       `}
@@ -1039,7 +1039,7 @@ function renderHomeView() {
       <div class="card">
         <div class="parampara-tree__title" style="display:flex; align-items:center; gap:8px;">
           <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-arbol-parampara.png" alt="Linaje" />
-          <span>Linaje Sagrado Paramparā</span>
+          <span>Árbol de Linaje Sagrado</span>
         </div>
         <div class="parampara-thread">
           ${user.parampara.map((ancestor, i) => `
@@ -1053,7 +1053,7 @@ function renderHomeView() {
                   <div class="parampara-node__tier-tag">Ascendencia nivel ${i + 1}</div>
                 </div>
                 <span style="font-size:0.8rem; color:var(--prestige-kamsya); display:flex; align-items:center; gap:4px;">
-                  <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-nivel-acarya.png" alt="Guru" /> Guru
+                  <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-nivel-acarya.png" alt="Gurú" /> Gurú
                 </span>
               </div>
             </div>
@@ -1111,7 +1111,7 @@ function renderExploreView() {
   return `
     <div class="explore-header">
       <h2>Explorar Comunidad</h2>
-      <p>Encuentra prestadores de confianza en tu red Paramparā</p>
+      <p>Encuentra prestadores de confianza en tu red de linaje</p>
     </div>
 
     <div class="search-bar">
@@ -1121,12 +1121,12 @@ function renderExploreView() {
     <div class="filter-chips mb-md" id="filterChips">
       <button class="filter-chip active" data-filter="all">Todos</button>
       <button class="filter-chip" data-filter="tan_seva" style="display:inline-flex; align-items:center; gap:6px;">
-        <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-skill-tan-seva.png" alt="Tan" />
-        <span>Tan-Sevā</span>
+        <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-skill-tan-seva.png" alt="Oficios" />
+        <span>Oficios</span>
       </button>
       <button class="filter-chip" data-filter="man_seva" style="display:inline-flex; align-items:center; gap:6px;">
-        <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-skill-man-seva.png" alt="Man" />
-        <span>Man-Sevā</span>
+        <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-skill-man-seva.png" alt="Asesorías" />
+        <span>Asesorías</span>
       </button>
       <button class="filter-chip" data-filter="available">🟢 Disponibles</button>
     </div>
@@ -1242,12 +1242,12 @@ function renderProfileDetailView() {
         `).join('')}
       </div>
 
-      <!-- Insignias -->
+      <!-- Insignias (Sellos) -->
       ${user.badges.length > 0 ? `
         <div class="skills-section mt-sm">
           <div class="skills-section__title" style="display:flex; align-items:center; gap:6px;">
-            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-ojo-sabiduria.png" alt="Mudras" />
-            <span>Insignias (Mudrās)</span>
+            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-ojo-sabiduria.png" alt="Sellos" />
+            <span>Sellos de Reconocimiento</span>
           </div>
           <div class="badges-row">
             ${user.badges.map(bId => {
@@ -1258,11 +1258,11 @@ function renderProfileDetailView() {
         </div>
       ` : ''}
 
-      <!-- Linaje Paramparā -->
+      <!-- Linaje -->
       <div class="parampara-tree">
         <div class="parampara-tree__title" style="display:flex; align-items:center; gap:8px;">
           <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-arbol-parampara.png" alt="Linaje" />
-          <span>Linaje Paramparā</span>
+          <span>Árbol de Linaje</span>
         </div>
         ${user.parampara.map((ancestor, i) => `
           <div class="parampara-node">
@@ -1292,7 +1292,7 @@ function renderProfileDetailView() {
               <div class="parampara-node__dot"></div>
               <div class="parampara-node__info">
                 <div class="parampara-node__name">${s.displayName}</div>
-                <div class="parampara-node__role">Śiṣya · ${sLevel.name} · ${s.karmaPoints} pts</div>
+                <div class="parampara-node__role">Discípulo · ${sLevel.name} · ${s.karmaPoints} pts</div>
               </div>
             </div>
           `;
@@ -1336,7 +1336,7 @@ function renderProfileDetailView() {
                 </p>
                 <div class="flex justify-between items-center" style="font-size:0.72rem; color:var(--text-vibhuti);">
                   <span>${r.skillIcon} ${r.skillName} · ${rev.date || r.createdAt}</span>
-                  ${rev.badge ? `<span class="badge" style="padding:2px 8px; font-size:0.7rem; display:inline-flex; align-items:center; gap:4px;"><img class="mudra-icon-img" src="${MUDRAS[rev.badge]?.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="Mudra" /> <span>${MUDRAS[rev.badge]?.name || ''}</span></span>` : ''}
+                  ${rev.badge ? `<span class="badge" style="padding:2px 8px; font-size:0.7rem; display:inline-flex; align-items:center; gap:4px;"><img class="mudra-icon-img" src="${MUDRAS[rev.badge]?.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="Sello" /> <span>${MUDRAS[rev.badge]?.name || ''}</span></span>` : ''}
                 </div>
               </div>
             `;
@@ -1345,12 +1345,12 @@ function renderProfileDetailView() {
       `;
     })()}
 
-    <!-- Llaves Dīkṣā (solo propio perfil) -->
+    <!-- Llaves Mantra (solo propio perfil) -->
     ${isOwnProfile && user.dikshaKeys.length > 0 ? `
       <div class="diksha-section mt-md">
         <div class="skills-section__title" style="display:flex; align-items:center; gap:8px;">
           <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-llave-diksha.png" alt="Llaves" />
-          <span>Llaves de Invitación Dīkṣā</span>
+          <span>Llaves de Invitación Mantra</span>
         </div>
         <p class="text-vibhuti" style="font-size:0.78rem; margin-bottom:var(--space-sm);">
           Cada llave invita a un nuevo miembro bajo tu padrinazgo. Tu Karma responde por ellos.
@@ -1413,14 +1413,14 @@ function renderChatView() {
             <div style="font-weight:700; font-size:0.95rem; color:var(--primary-nila); font-family:var(--font-heading);">${otherUser?.displayName || 'Usuario'}</div>
             <div class="chat-security-status-badge" style="display:inline-flex; align-items:center; gap:6px;">
               <img class="icon-img icon-img--xs" src="${isSankalpaAgreed ? '/iconos/transparent/icon-pacto-sankalpa.png' : '/iconos/transparent/icon-escudo-kavacha.png'}" alt="Seguridad" />
-              <span>${isSankalpaAgreed ? 'Acuerdo Sankalpa Sellado · Datos Abiertos' : 'Escudo Anti-Fuga Activo · Canal Cifrado'}</span>
+              <span>${isSankalpaAgreed ? 'Pacto de Honor Sellado · Datos Abiertos' : 'Escudo Anti-Fuga Activo · Canal Cifrado'}</span>
             </div>
           </div>
         </div>
         <div class="flex gap-sm">
-          <button class="btn btn--danger btn--sm" id="btnKavacha" title="Modo Escudo Kavacha" style="padding:6px 12px; font-size:0.75rem; display:inline-flex; align-items:center; gap:6px;">
-            <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-escudo-kavacha.png" alt="Kavacha" />
-            <span>Kavacha</span>
+          <button class="btn btn--danger btn--sm" id="btnKavacha" title="Modo Escudo de Seguridad" style="padding:6px 12px; font-size:0.75rem; display:inline-flex; align-items:center; gap:6px;">
+            <img class="icon-img icon-img--xs" src="/iconos/transparent/icon-escudo-kavacha.png" alt="Escudo" />
+            <span>Modo Escudo</span>
           </button>
         </div>
       </div>
@@ -1429,7 +1429,7 @@ function renderChatView() {
       <div class="chat-messages" id="chatMessages">
         ${messages.map(msg => {
           if (msg.type === 'sankalpa') {
-            return `<div class="chat-bubble chat-bubble--system" style="display:flex; align-items:flex-start; gap:8px;"><img class="icon-img icon-img--xs" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Sankalpa" style="margin-top:2px;" /> <span>${msg.text}</span></div>`;
+            return `<div class="chat-bubble chat-bubble--system" style="display:flex; align-items:flex-start; gap:8px;"><img class="icon-img icon-img--xs" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Pacto" style="margin-top:2px;" /> <span>${msg.text}</span></div>`;
           }
           if (msg.type === 'blocked') {
             return `<div class="chat-bubble chat-bubble--blocked" style="display:flex; align-items:flex-start; gap:8px;"><img class="icon-img icon-img--xs" src="/iconos/transparent/icon-escudo-kavacha.png" alt="Escudo" style="margin-top:2px;" /> <span>${msg.text}</span></div>`;
@@ -1450,8 +1450,8 @@ function renderChatView() {
       ${!isSankalpaAgreed && activeRequest.status === 'negotiating' ? `
         <div style="padding: var(--space-sm) var(--space-md); border-top: 1px solid var(--border-mitti); background: var(--surface-khadi);">
           <button class="btn btn--geru btn--full btn--sm" id="btnConfirmSankalpa" style="display:flex; align-items:center; justify-content:center; gap:8px;">
-            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Sankalpa" />
-            <span>Confirmar Acuerdo Sankalpa</span>
+            <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Pacto" />
+            <span>Confirmar Pacto de Honor</span>
           </button>
         </div>
       ` : ''}
@@ -1492,13 +1492,13 @@ function renderChatView() {
   `;
 }
 
-// ─── Tarjeta Sankalpa (Pergamino Sagrado Digital) ───
+// ─── Tarjeta de Pacto de Honor (Pergamino Sagrado Digital) ───
 function renderSankalpaCard(request) {
   return `
     <div class="sankalpa-card shimmer-gold">
       <div class="sankalpa-card__title" style="display:flex; align-items:center; gap:8px;">
-        <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Sankalpa" />
-        <span>Pacto de Honor Digital (Sankalpa)</span>
+        <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-pacto-sankalpa.png" alt="Pacto" />
+        <span>Pacto de Honor Digital</span>
       </div>
       <div style="margin-bottom:8px;">
         <div style="font-size:0.68rem; text-transform:uppercase; color:var(--text-vibhuti); font-weight:700; letter-spacing:0.04em;">Descripción del Favor</div>
@@ -1512,7 +1512,7 @@ function renderSankalpaCard(request) {
         <div style="font-size:0.68rem; text-transform:uppercase; color:var(--text-vibhuti); font-weight:700; letter-spacing:0.04em;">Modalidad Comunitaria</div>
         <div style="font-size:0.8rem; color:var(--text-vibhuti); font-weight:600; display:flex; align-items:center; gap:6px;">
           <img class="icon-img icon-img--xs" src="${request.category === 'tan_seva' ? '/iconos/transparent/icon-skill-tan-seva.png' : '/iconos/transparent/icon-skill-man-seva.png'}" alt="Categoría" />
-          <span>${request.category === 'tan_seva' ? 'Tan-Sevā (Oficio Manual)' : 'Man-Sevā (Gestión y Asesoría)'}</span>
+          <span>${request.category === 'tan_seva' ? 'Oficio (Servicio Manual)' : 'Asesoría (Gestión y Orientación)'}</span>
         </div>
       </div>
       <div class="sankalpa-card__signatures">
@@ -1532,7 +1532,7 @@ function renderSankalpaCard(request) {
         </div>
       </div>
       <div style="text-align:center; margin-top:10px; font-size:0.68rem; color:var(--prestige-kamsya); font-family:var(--font-mono); letter-spacing:0.05em;">
-        SANKALPA-ID: ${request.id.toUpperCase()} · ${request.createdAt}
+        PACTO-ID: ${request.id.toUpperCase()} · ${request.createdAt}
       </div>
     </div>
   `;
@@ -1641,7 +1641,7 @@ function renderReviewView() {
             <p class="double-blind-card__comment">"${rRev.comment}"</p>
             ${rRev.badge ? `
               <div class="badges-row mt-xs">
-                <span class="badge" style="display:inline-flex; align-items:center; gap:4px;"><img class="mudra-icon-img" src="${MUDRAS[rRev.badge]?.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="Mudra" /> <span>${MUDRAS[rRev.badge]?.name || ''}</span></span>
+                <span class="badge" style="display:inline-flex; align-items:center; gap:4px;"><img class="mudra-icon-img" src="${MUDRAS[rRev.badge]?.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="Sello" /> <span>${MUDRAS[rRev.badge]?.name || ''}</span></span>
               </div>
             ` : ''}
             <div class="double-blind-card__security mt-xs" style="display:flex; align-items:center; gap:6px;">
@@ -1660,7 +1660,7 @@ function renderReviewView() {
             <p class="double-blind-card__comment">"${pRev.comment}"</p>
             ${pRev.badge ? `
               <div class="badges-row mt-xs">
-                <span class="badge" style="display:inline-flex; align-items:center; gap:4px;"><img class="mudra-icon-img" src="${MUDRAS[pRev.badge]?.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="Mudra" /> <span>${MUDRAS[pRev.badge]?.name || ''}</span></span>
+                <span class="badge" style="display:inline-flex; align-items:center; gap:4px;"><img class="mudra-icon-img" src="${MUDRAS[pRev.badge]?.iconImg || '/iconos/transparent/icon-mudra-maestro.png'}" alt="Sello" /> <span>${MUDRAS[pRev.badge]?.name || ''}</span></span>
               </div>
             ` : ''}
             <div class="double-blind-card__security mt-xs" style="display:flex; align-items:center; gap:6px;">
@@ -1699,7 +1699,7 @@ function renderReviewView() {
             🧪 Simulador de Auditoría
           </div>
           <p style="font-size:0.8rem; color:var(--text-kajal); margin-bottom:var(--space-sm);">
-            Puedes cambiar de rol arriba a <strong>${isProvider ? 'Yajamāna' : 'Sevaka'}</strong> para probar el flujo mutuo, o pulsar este simulador para emitir la evaluación de la contraparte:
+            Puedes cambiar de rol arriba a <strong>${isProvider ? 'Solicitante' : 'Prestador'}</strong> para probar el flujo mutuo, o pulsar este simulador para emitir la evaluación de la contraparte:
           </p>
           <button class="btn btn--geru btn--full btn--sm" id="btnSimulateCounterReview">
             ⚡ Simular Envío de Evaluación de ${counterparty.displayName} (Revelar Ambos)
@@ -1778,11 +1778,11 @@ function renderReviewView() {
         </div>
       </div>
 
-      <!-- Insignias opcionales (Mudrās) -->
+      <!-- Insignias opcionales (Sellos) -->
       <div class="mt-lg" style="text-align:left;">
         <div class="skills-section__title" style="display:flex; align-items:center; gap:8px;">
-          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-ojo-sabiduria.png" alt="Mudras" />
-          <span>Otorgar Insignia de Reconocimiento (Mudrā)</span>
+          <img class="icon-img icon-img--sm" src="/iconos/transparent/icon-mudra-ojo-sabiduria.png" alt="Sellos" />
+          <span>Otorgar Sello de Reconocimiento</span>
         </div>
         <div class="badges-row mt-sm">
           ${Object.values(MUDRAS).map(m => `
@@ -1802,22 +1802,22 @@ function renderReviewView() {
 }
 
 // ═══════════════════════════════════════════════════════
-// VISTA: REGISTRO CON CÓDIGO DĪKṢĀ
+// VISTA: REGISTRO CON CÓDIGO MANTRA
 // ═══════════════════════════════════════════════════════
 function renderRegistrationView() {
   return `
     <div class="text-center" style="padding: var(--space-xl) 0;">
       <div style="margin-bottom:var(--space-sm);">
-        <img class="icon-img icon-img--hero" src="/iconos/transparent/icon-llave-diksha.png" alt="Dīkṣā" />
+        <img class="icon-img icon-img--hero" src="/iconos/transparent/icon-llave-diksha.png" alt="Mantra" />
       </div>
       <h2>Registro por Invitación</h2>
       <p class="text-vibhuti mt-sm" style="font-size:0.85rem; max-width:320px; margin:var(--space-sm) auto;">
-        SevaSetu es una red cerrada de confianza. Necesitas un código de invitación Dīkṣā emitido por un miembro activo con Karma suficiente.
+        SevaSetu es una red cerrada de confianza. Necesitas un código de invitación Mantra emitido por un miembro activo con Karma suficiente.
       </p>
 
       <div class="card mt-lg" style="text-align:left;">
         <div class="form-group">
-          <label>Código de Invitación Dīkṣā</label>
+          <label>Código de Invitación Mantra</label>
           <input type="text" id="dikshaCodeInput" placeholder="Ej: DK-AP-001" class="font-mono" style="text-transform:uppercase; letter-spacing:0.1em; text-align:center; font-size:1.1rem;" />
           <div id="dikshaError" class="form-error hidden">⚠️ Código inválido o ya utilizado</div>
           <div id="dikshaSuccess" class="hidden" style="color:var(--success-tulsi); font-size:0.8rem; margin-top:var(--space-xs); display:flex; align-items:center; gap:4px;">✓ Código válido</div>
@@ -1865,7 +1865,7 @@ function renderRegistrationView() {
 }
 
 // ═══════════════════════════════════════════════════════
-// MODAL: REGISTRO DĪKṢĀ BLOQUEADO
+// MODAL: ACCESO RESTRINGIDO (CÓDIGO MANTRA)
 // ═══════════════════════════════════════════════════════
 function renderRegisterModal() {
   return `
@@ -1874,7 +1874,7 @@ function renderRegisterModal() {
         <div class="modal__title">🔒 Acceso Restringido</div>
         <div class="modal__subtitle">
           SevaSetu es una comunidad cerrada basada en la confianza del padrinazgo. 
-          Para unirte necesitas un código de invitación <strong>Dīkṣā</strong> emitido 
+          Para unirte necesitas un código de invitación <strong>Mantra</strong> emitido 
           por un miembro activo con nivel de Karma suficiente.
         </div>
         <div style="text-align:center; padding: var(--space-md); background: var(--bg-chandan); border-radius:var(--radius-md); border: 1px solid var(--border-mitti);">
@@ -1882,7 +1882,7 @@ function renderRegisterModal() {
             <img class="icon-img icon-img--hero" src="/iconos/transparent/icon-llave-diksha.png" alt="Llave" />
           </div>
           <p class="text-vibhuti" style="font-size:0.82rem;">
-            Cada miembro recibe <strong>+3 llaves Dīkṣā</strong> al subir de nivel de Karma. 
+            Cada miembro recibe <strong>+3 Llaves Mantra</strong> al subir de nivel de Karma. 
             Solicita una a alguien de confianza en tu comunidad.
           </p>
         </div>
@@ -1971,7 +1971,7 @@ function applySolidaryKarmaFlow(activeSeva) {
   provider.karmaPoints += karmaGain;
   provider.completedSevas += 1;
 
-  // Asignar insignias Mudrā si fueron otorgadas
+  // Asignar Sellos si fueron otorgados
   if (requesterRev?.badge && !provider.badges.includes(requesterRev.badge)) {
     provider.badges.push(requesterRev.badge);
   }
@@ -2000,33 +2000,33 @@ function applySolidaryKarmaFlow(activeSeva) {
     date: 'Hoy',
   });
 
-  // Verificar ascenso de nivel (+3 llaves Dīkṣā exactas)
+  // Verificar ascenso de nivel (+3 Llaves Mantra exactas)
   const promo = checkLevelUp(provider, prevPoints);
   if (promo.leveledUp) {
     state.karmaLedger.unshift({
       userId: provider.id,
       event: 'level_promotion',
       points: 0,
-      detail: `Ascenso a Nivel ${promo.newLevel.level} (${promo.newLevel.name}) · +3 Llaves Dīkṣā desbloqueadas`,
+      detail: `Ascenso a Nivel ${promo.newLevel.level} (${promo.newLevel.name}) · +3 Llaves Mantra desbloqueadas`,
       relatedUser: provider.id,
       date: 'Hoy',
     });
     triggerKarmaCelebration();
-    showNotification(`🕉️ ¡Ascenso de Nivel! ${provider.displayName} ahora es ${promo.newLevel.name} (+3 Llaves Dīkṣā otorgadas).`);
+    showNotification(`🕉️ ¡Ascenso de Nivel! ${provider.displayName} ahora es ${promo.newLevel.name} (+3 Llaves Mantra otorgadas).`);
   }
 
-  // Motor de Karma Solidario con el Guru
+  // Motor de Karma Solidario con el Gurú
   if (provider.guruId) {
     const guru = state.users.find(u => u.id === provider.guruId);
     if (guru) {
-      // 1. Bono Gurudakṣiṇā (+25 pts) si el ahijado completa 5 servicios con 5★
+      // 1. Bono Gurú (+25 pts) si el ahijado completa 5 servicios con 5★
       if (provider.completedSevas === 5 && providerRating === 5) {
         guru.karmaPoints += 25;
         state.karmaLedger.unshift({
           userId: guru.id,
           event: 'shishya_bonus',
           points: 25,
-          detail: `Gurudakṣiṇā: Su ahijado ${provider.displayName} completó 5 favores con 5★`,
+          detail: `Bono Gurú: Su ahijado ${provider.displayName} completó 5 favores con 5★`,
           relatedUser: provider.id,
           date: 'Hoy',
         });
@@ -2358,7 +2358,7 @@ function attachEventListeners() {
     });
   }
 
-  // Botón de nueva Sevā (Yajamāna)
+  // Botón de nuevo favor (Solicitante)
   const btnNewSeva = document.getElementById('btnNewSeva');
   if (btnNewSeva) {
     btnNewSeva.addEventListener('click', () => {
@@ -2489,7 +2489,7 @@ function attachEventListeners() {
     });
   }
 
-  // Confirmar Sankalpa
+  // Confirmar Pacto de Honor
   const btnSankalpa = document.getElementById('btnConfirmSankalpa');
   if (btnSankalpa) {
     btnSankalpa.addEventListener('click', () => {
@@ -2499,12 +2499,12 @@ function attachEventListeners() {
           id: 'msg_sankalpa_' + Date.now(),
           sevaId: state.activeSeva.id,
           senderId: 'system',
-          text: '🤝 Acuerdo Sankalpa confirmado por ambas partes. El filtro anti-fuga se ha desactivado para esta conversación.',
+          text: '🤝 Pacto de Honor confirmado por ambas partes. El filtro anti-fuga se ha desactivado para esta conversación.',
           timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }),
           type: 'sankalpa',
         });
         triggerKarmaCelebration();
-        showNotification('✨ ¡Pacto Sagrado Sankalpa sellado! El canal seguro se ha liberado.');
+        showNotification('✨ ¡Pacto de Honor sellado! El canal seguro se ha liberado.');
       }
       render();
     });
@@ -2636,7 +2636,7 @@ function attachEventListeners() {
           id: 'msg_blocked_' + Date.now(),
           sevaId: state.activeSeva?.id || 'demo',
           senderId: 'system',
-          text: `🚫 Mensaje interceptado: Se detectó ${reasonsStr}. Conforme a la política Habeas Data y el filtro anti-fuga de SevaSetu, los datos directos están restringidos hasta sellar el acuerdo de honor digital Sankalpa.`,
+          text: `🚫 Mensaje interceptado: Se detectó ${reasonsStr}. Conforme a la política Habeas Data y el filtro anti-fuga de SevaSetu, los datos directos están restringidos hasta sellar el Pacto de Honor digital.`,
           timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }),
           type: 'blocked',
         });
@@ -2676,14 +2676,14 @@ function attachEventListeners() {
     });
   }
 
-  // Kavacha
+  // Modo Escudo
   const btnKavacha = document.getElementById('btnKavacha');
   if (btnKavacha) {
     btnKavacha.addEventListener('click', () => {
       state.kavachaActive = !state.kavachaActive;
       render();
       if (state.kavachaActive) {
-        showNotification('🛡️ Modo Escudo Kavacha activado. Se ha compartido el enlace de seguimiento con tu contacto de confianza.');
+        showNotification('🛡️ Modo Escudo activado. Se ha compartido el enlace de seguimiento con tu contacto de confianza.');
       }
     });
   }
@@ -2862,7 +2862,7 @@ function attachEventListeners() {
         id: 'msg_contact_' + Date.now(),
         sevaId: newReq.id,
         senderId: 'system',
-        text: `💬 Chat seguro abierto con ${provider.displayName}. Recuerda: el filtro anti-fuga está activo hasta confirmar el acuerdo Sankalpa.`,
+        text: `💬 Chat seguro abierto con ${provider.displayName}. Recuerda: el filtro anti-fuga está activo hasta confirmar el Pacto de Honor.`,
         timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }),
         type: 'sankalpa',
       });
@@ -2881,7 +2881,7 @@ function attachEventListeners() {
     });
   }
 
-  // Validar código Dīkṣā
+  // Validar código Mantra
   const dikshaInput = document.getElementById('dikshaCodeInput');
   if (dikshaInput) {
     dikshaInput.addEventListener('input', () => {
@@ -2927,7 +2927,7 @@ function attachEventListeners() {
       } else if (selected.length < 2) {
         chip.classList.add('active');
       } else {
-        showNotification('⚠️ Solo puedes seleccionar hasta 2 habilidades como Śramaṇa.');
+        showNotification('⚠️ Solo puedes seleccionar hasta 2 habilidades como Aprendiz.');
       }
     });
   });
@@ -2960,7 +2960,7 @@ function attachEventListeners() {
       });
 
       if (!guru || !keyFound) {
-        showNotification('❌ Código Dīkṣā inválido o ya utilizado.');
+        showNotification('❌ Código Mantra inválido o ya utilizado.');
         return;
       }
 
@@ -2970,19 +2970,19 @@ function attachEventListeners() {
       keyFound.status = 'used';
       keyFound.redeemedBy = newUserId;
 
-      // 2. Construir árbol Paramparā heredado del Guru
+      // 2. Construir árbol de linaje heredado del Gurú
       const paramparaChain = [
         ...(guru.parampara || []),
         `${guru.displayName} (${getKarmaLevel(guru.karmaPoints).name})`
       ];
 
-      // 3. Crear el nuevo usuario Śramaṇa
+      // 3. Crear el nuevo usuario Aprendiz (Chela)
       const catalogAll = [...SKILLS_CATALOG.tan_seva, ...SKILLS_CATALOG.man_seva];
       const newUser = {
         id: newUserId,
         displayName: name,
         avatar: '🌱',
-        karmaPoints: 45, // Nivel 1: Śramaṇa (0–99 pts)
+        karmaPoints: 45, // Nivel 1: Chela (0–99 pts)
         karmaLevel: 1,
         completedSevas: 0,
         avgRating: 5.0,
@@ -2999,11 +2999,11 @@ function attachEventListeners() {
           };
         }),
         badges: [],
-        dikshaKeys: [], // Śramaṇa inicia con 0 llaves hasta subir a Śiṣya
+        dikshaKeys: [], // Chela inicia con 0 llaves hasta subir a Sevak
         parampara: paramparaChain,
       };
 
-      // 4. Agregar al Guru como ahijado iniciado
+      // 4. Agregar al Gurú como ahijado iniciado
       if (!guru.shishyas) guru.shishyas = [];
       guru.shishyas.push(newUserId);
 
@@ -3015,17 +3015,17 @@ function attachEventListeners() {
         userId: newUserId,
         event: 'diksha_initiation',
         points: 45,
-        detail: `Iniciación como Śramaṇa bajo el padrinazgo de ${guru.displayName} (Llave ${code})`,
+        detail: `Iniciación como Chela bajo el padrinazgo de ${guru.displayName} (Llave ${code})`,
         relatedUser: guru.id,
         date: 'Hoy',
       });
 
-      // 7. Establecer como usuario actual en rol Śramaṇa
+      // 7. Establecer como usuario actual en rol Aprendiz
       state.currentUser = newUser;
       state.currentRole = 'shramana';
       state.currentView = 'home';
 
-      showNotification(`🎉 ¡Bienvenido/a ${name}! Has sido iniciado/a como Śramaṇa bajo el linaje de ${guru.displayName}.`);
+      showNotification(`🎉 ¡Bienvenido/a ${name}! Has sido iniciado/a como Chela bajo el linaje de ${guru.displayName}.`);
       triggerKarmaCelebration();
       render();
     });

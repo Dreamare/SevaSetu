@@ -26,29 +26,29 @@ El repositorio contiene tanto la especificación conceptual y operativa como el 
 
 ## 🌟 Características Principales del MVP
 
-1. **Registro Exclusivo por Invitación (*Llaves Dīkṣā*)**:
+1. **Registro Exclusivo por Invitación (*Llaves Mantra*)**:
    - Registro restringido para prestadores a menos que ingresen un código de invitación legítimo emitido por un miembro activo.
-   - Generación automática de **+3 invitaciones acumulativas** cada vez que el usuario asciende de nivel de Karma.
-2. **Árbol Genealógico de Linaje (*Paramparā*)**:
-   - Visualización interactiva en cada perfil (`Parama-Guru ➔ Ācārya ➔ Guru Directo ➔ Śiṣya Actual ➔ Discípulos Iniciados`).
+   - Generación automática de **+3 invitaciones acumulativas** cada vez que el usuario asciende de rango de Karma.
+2. **Árbol Genealógico de Linaje**:
+   - Visualización interactiva en cada perfil (`Gurú Mayor ➔ Maestro ➔ Gurú Directo ➔ Discípulo Actual ➔ Ahijados Iniciados`).
    - Trazabilidad comunitaria pública de quién apadrinó a quién.
 3. **Corresponsabilidad Solidaria (*Skin in the Game*)**:
-   - **Gurudakṣiṇā (+25 pts)** para el padrino cuando su ahijado completa 5 servicios con 5★.
+   - **Bono Gurú (+25 pts)** para el padrino cuando su ahijado completa 5 servicios con 5★.
    - **Penalización del 50%** de los puntos perdidos por el ahijado ante calificaciones de 1 o 2 estrellas.
    - **-150 pts y congelamiento de llaves** si el ahijado es expulsado por falta grave.
 4. **Despacho Wave en Tiempo Real estilo Uber**:
    - Notificación emergente con temporizador regresivo de 45 segundos, distancia en km, Karma del solicitante y compensación propuesta.
 5. **Privacidad *Habeas Data* y Filtro Anti-Fuga Multi-Capa**:
    - Los perfiles ocultan totalmente teléfonos, emails y direcciones exactas (solo zona de ~1.5 km y nombre + inicial).
-   - Filtro Regex en tiempo real que intercepta secuencias de 7 a 12 dígitos (con o sin espacios/guiones), correos electrónicos y palabras clave de evasión (`WhatsApp`, `llámame`, `celular`, `por fuera`) hasta que se formaliza el acuerdo *Sankalpa*.
-6. **Acuerdo de Honor Digital (*Sankalpa*) y Cierre con PIN**:
+   - Filtro Regex en tiempo real que intercepta secuencias de 7 a 12 dígitos (con o sin espacios/guiones), correos electrónicos y palabras clave de evasión (`WhatsApp`, `llámame`, `celular`, `por fuera`) hasta que se formaliza el **Pacto de Honor Digital**.
+6. **Pacto de Honor Digital y Cierre con PIN**:
    - Validación obligatoria de PIN de Inicio (4 dígitos) al llegar y PIN de Cierre (4 dígitos) tras efectuar el pago directo por fuera de la aplicación.
-   - Botón de **Modo Escudo (*Kavacha*)** para compartir el seguimiento en vivo con un contacto de confianza.
+   - Botón de **Modo Escudo** para compartir el seguimiento en vivo con un contacto de confianza.
 7. **Evaluación Bilateral Doble Ciego (*Double-Blind Review*)**:
    - Ninguna parte puede leer la reseña recibida hasta que ambas hayan enviado su calificación.
-   - Cuestionario confidencial de 3 preguntas de seguridad comunitaria (*Community Standing*) e insignias rituales (*Mudrās*).
+   - Cuestionario confidencial de 3 preguntas de seguridad comunitaria (*Community Standing*) y **Sellos de Reconocimiento**.
 8. **Conmutador Multi-Rol**:
-   - Alternancia en tiempo real entre **Sevaka (Prestador)**, **Yajamāna (Solicitante)** y **Śramaṇa (Nuevo Invitado)**.
+   - Alternancia en tiempo real entre **Prestador**, **Solicitante** y **Aprendiz**.
 
 ---
 

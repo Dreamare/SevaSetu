@@ -1,18 +1,18 @@
 /* ═══════════════════════════════════════════════════════
    SEVASETU · Datos Semilla y Modelo de Estado
-   Perfiles realistas con linajes Paramparā coherentes
+   Perfiles realistas con linajes coherentes
    ═══════════════════════════════════════════════════════ */
 
 // ─── Niveles de Karma ───
 export const KARMA_LEVELS = [
-  { level: 1, name: 'Śramaṇa', title: 'Aprendiz', min: 0, max: 99, invitations: 0, accumulated: 0, emoji: '🌱', iconImg: '/iconos/transparent/icon-rol-sramana.png' },
-  { level: 2, name: 'Śiṣya', title: 'Discípulo', min: 100, max: 299, invitations: 3, accumulated: 3, emoji: '🌿', iconImg: '/iconos/transparent/icon-rol-sramana.png' },
-  { level: 3, name: 'Sevaka', title: 'Artesano', min: 300, max: 699, invitations: 3, accumulated: 6, emoji: '🛠️', iconImg: '/iconos/transparent/icon-rol-sevaka.png' },
-  { level: 4, name: 'Ācārya', title: 'Maestro', min: 700, max: 1499, invitations: 3, accumulated: 9, emoji: '🏛️', iconImg: '/iconos/transparent/icon-nivel-acarya.png' },
-  { level: 5, name: 'Parama-Guru', title: 'Guardián', min: 1500, max: Infinity, invitations: 3, accumulated: 12, emoji: '🕉️', iconImg: '/iconos/transparent/icon-nivel-acarya.png' },
+  { level: 1, name: 'Chela', title: 'Aprendiz', min: 0, max: 99, invitations: 0, accumulated: 0, emoji: '🌱', iconImg: '/iconos/transparent/icon-rol-sramana.png' },
+  { level: 2, name: 'Sevak', title: 'Discípulo', min: 100, max: 299, invitations: 3, accumulated: 3, emoji: '🌿', iconImg: '/iconos/transparent/icon-rol-sramana.png' },
+  { level: 3, name: 'Artesano', title: 'Artesano', min: 300, max: 699, invitations: 3, accumulated: 6, emoji: '🛠️', iconImg: '/iconos/transparent/icon-rol-sevaka.png' },
+  { level: 4, name: 'Maestro', title: 'Maestro', min: 700, max: 1499, invitations: 3, accumulated: 9, emoji: '🏛️', iconImg: '/iconos/transparent/icon-nivel-acarya.png' },
+  { level: 5, name: 'Gurú Mayor', title: 'Guardián', min: 1500, max: Infinity, invitations: 3, accumulated: 12, emoji: '🕉️', iconImg: '/iconos/transparent/icon-nivel-acarya.png' },
 ];
 
-// ─── Insignias (Mudrās) ───
+// ─── Insignias (Sellos) ───
 export const MUDRAS = {
   manos_maestro: { id: 'manos_maestro', name: 'Manos de Maestro', icon: '🤲', iconImg: '/iconos/transparent/icon-mudra-maestro.png', description: 'Excelencia técnica demostrada' },
   palabra_sagrada: { id: 'palabra_sagrada', name: 'Palabra Sagrada', icon: '📜', iconImg: '/iconos/transparent/icon-mudra-palabra-sagrada.png', description: 'Cumplió exactamente lo pactado' },
@@ -39,7 +39,7 @@ export const SKILLS_CATALOG = {
   ],
 };
 
-// ─── Usuarios Semilla (linajes Paramparā coherentes) ───
+// ─── Usuarios Semilla (linajes coherentes) ───
 export const SEED_USERS = [
   {
     id: 'user_001',
@@ -72,7 +72,7 @@ export const SEED_USERS = [
       { code: 'DK-RM-011', status: 'available' },
       { code: 'DK-RM-012', status: 'available' },
     ],
-    parampara: ['Nodo Fundador'],
+    parampara: ['Fundador del Linaje'],
   },
   {
     id: 'user_002',
@@ -102,7 +102,7 @@ export const SEED_USERS = [
       { code: 'DK-CR-008', status: 'available' },
       { code: 'DK-CR-009', status: 'available' },
     ],
-    parampara: ['Don Rafael M. (Parama-Guru)'],
+    parampara: ['Don Rafael M. (Gurú Mayor)'],
   },
   {
     id: 'user_003',
@@ -129,7 +129,7 @@ export const SEED_USERS = [
       { code: 'DK-EV-005', status: 'available' },
       { code: 'DK-EV-006', status: 'available' },
     ],
-    parampara: ['Don Rafael M. (Parama-Guru)'],
+    parampara: ['Don Rafael M. (Gurú Mayor)'],
   },
   {
     id: 'user_004',
@@ -153,7 +153,7 @@ export const SEED_USERS = [
       { code: 'DK-MT-002', status: 'available' },
       { code: 'DK-MT-003', status: 'available' },
     ],
-    parampara: ['Don Rafael M. (Parama-Guru)', 'Claudia R. (Ācārya)'],
+    parampara: ['Don Rafael M. (Gurú Mayor)', 'Claudia R. (Maestro)'],
   },
   {
     id: 'user_005',
@@ -172,7 +172,7 @@ export const SEED_USERS = [
     ],
     badges: [],
     dikshaKeys: [],
-    parampara: ['Don Rafael M. (Parama-Guru)', 'Claudia R. (Ācārya)'],
+    parampara: ['Don Rafael M. (Gurú Mayor)', 'Claudia R. (Maestro)'],
   },
   {
     id: 'user_006',
@@ -199,7 +199,7 @@ export const SEED_USERS = [
       { code: 'DK-AP-005', status: 'available' },
       { code: 'DK-AP-006', status: 'available' },
     ],
-    parampara: ['Don Rafael M. (Parama-Guru)'],
+    parampara: ['Don Rafael M. (Gurú Mayor)'],
   },
   {
     id: 'user_007',
@@ -223,11 +223,11 @@ export const SEED_USERS = [
       { code: 'DK-SL-002', status: 'available' },
       { code: 'DK-SL-003', status: 'available' },
     ],
-    parampara: ['Don Rafael M. (Parama-Guru)', 'Ernesto V. (Sevaka)'],
+    parampara: ['Don Rafael M. (Gurú Mayor)', 'Ernesto V. (Artesano)'],
   },
 ];
 
-// ─── Solicitudes de Sevā Semilla ───
+// ─── Solicitudes de Servicio Semilla ───
 export const SEED_REQUESTS = [
   {
     id: 'seva_001',
@@ -334,14 +334,14 @@ export const SEED_CHAT_MESSAGES = [
   { id: 'msg_002', sevaId: 'seva_001', senderId: 'user_002', text: 'Claro Ernesto, puedo ir después de las 10. ¿Qué pasó exactamente?', timestamp: '09:34', type: 'text' },
   { id: 'msg_003', sevaId: 'seva_001', senderId: 'user_003', text: 'Se fundió un breaker cuando conecté una regleta. Ahora no hay energía en el estudio.', timestamp: '09:35', type: 'text' },
   { id: 'msg_004', sevaId: 'seva_001', senderId: 'user_002', text: 'Entendido, llevo mi kit. ¿Puedes confirmar el acuerdo para salir?', timestamp: '09:37', type: 'text' },
-  { id: 'msg_005', sevaId: 'seva_001', senderId: 'system', text: '🤝 Acuerdo Sankalpa confirmado por ambas partes', timestamp: '09:40', type: 'sankalpa' },
+  { id: 'msg_005', sevaId: 'seva_001', senderId: 'system', text: '🤝 Pacto de Honor confirmado por ambas partes', timestamp: '09:40', type: 'sankalpa' },
 ];
 
 // ─── Historial de Karma (Ledger) ───
 export const SEED_KARMA_LEDGER = [
   { userId: 'user_002', event: 'seva_completed', points: 20, detail: 'Reparación eléctrica completada · 5★', relatedUser: 'user_003', date: '12 Oct' },
   { userId: 'user_003', event: 'requester_fair_pay', points: 10, detail: 'Pago justo y buen trato como solicitante', relatedUser: 'user_002', date: '12 Oct' },
-  { userId: 'user_001', event: 'shishya_bonus', points: 25, detail: 'Gurudakṣiṇā: Claudia R. completó 5 servicios impecables', relatedUser: 'user_002', date: '8 Oct' },
+  { userId: 'user_001', event: 'shishya_bonus', points: 25, detail: 'Bono Gurú: Claudia R. completó 5 servicios impecables', relatedUser: 'user_002', date: '8 Oct' },
   { userId: 'user_004', event: 'seva_completed', points: 20, detail: 'Reparación de plomería completada · 5★', relatedUser: 'user_006', date: '5 Oct' },
   { userId: 'user_005', event: 'seva_completed', points: 10, detail: 'Formateo de PC completado · 4★', relatedUser: 'user_007', date: '3 Oct' },
 ];
@@ -367,7 +367,7 @@ export function getSkillStatusLabel(status) {
   switch(status) {
     case 'declared': return 'En validación';
     case 'community_proven': return 'Comprobada';
-    case 'acharya_certified': return 'Avalada por Ācārya';
+    case 'acharya_certified': return 'Avalada por Maestro';
     default: return status;
   }
 }
@@ -453,7 +453,7 @@ export function calculateGuruPenalty(shishyaPointsLost) {
   return Math.round(Math.abs(shishyaPointsLost) * 0.5);
 }
 
-// Verifica si un usuario sube de nivel y genera exactamente +3 Llaves Dīkṣā
+// Verifica si un usuario sube de nivel y genera exactamente +3 Llaves Mantra
 export function checkLevelUp(user, previousPoints) {
   const oldLevel = getKarmaLevel(previousPoints);
   const newLevel = getKarmaLevel(user.karmaPoints);
