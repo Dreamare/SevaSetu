@@ -261,16 +261,18 @@ const BOT_KNOWLEDGE = {
       step: 1,
       title: 'El Conmutador de Roles Sagrados',
       badge: '👑 Roles Comunitarios',
+      location: 'Arriba a la derecha',
       view: 'home',
       target: '#roleSwitcher',
       sprite: '/bot/siddhi-cloud-pointing.png',
-      text: '¡Namastē! Soy Siddhi y volaremos juntos en mi nube mágica. Aquí arriba puedes alternar tu vocación: Sevaka (prestador de oficios), Yajamāna (solicitante que encarga favores) y Śramaṇa (nuevo aprendiz iniciado). ¡Cada rol transforma las herramientas de la plataforma!',
+      text: '¡Namastē! Soy Siddhi y volaremos juntos en mi nube mágica. Aquí arriba a la derecha puedes alternar tu vocación: Sevaka (prestador), Yajamāna (solicitante) y Śramaṇa (nuevo aprendiz). ¡Cada rol transforma las herramientas de la plataforma!',
       tip: 'Toca cualquier rol para probar su experiencia adaptada.'
     },
     {
       step: 2,
       title: 'El Mandala Circular de Karma',
       badge: '🕉️ Honor Acumulado',
+      location: 'Zona superior central',
       view: 'home',
       target: '.mandala-gauge',
       sprite: '/bot/siddhi-cloud-wisdom.png',
@@ -281,6 +283,7 @@ const BOT_KNOWLEDGE = {
       step: 3,
       title: 'Trío Bento de Confianza',
       badge: '📊 Métricas Clave',
+      location: 'Panel central',
       view: 'home',
       target: '.bento-metrics-grid',
       sprite: '/bot/siddhi-cloud-pointing.png',
@@ -291,6 +294,7 @@ const BOT_KNOWLEDGE = {
       step: 4,
       title: 'Radar de Oleadas y Acciones Rápidas',
       badge: '📡 Radar Comunitario',
+      location: 'Deck de acciones',
       view: 'home',
       target: '.action-deck',
       sprite: '/bot/siddhi-cloud-pointing.png',
@@ -301,6 +305,7 @@ const BOT_KNOWLEDGE = {
       step: 5,
       title: 'Árbol Sagrado Paramparā (Linaje)',
       badge: '🌱 Cadena de Padrinazgo',
+      location: 'Sección de linaje',
       view: 'home',
       target: '.parampara-thread',
       sprite: '/bot/siddhi-cloud-wisdom.png',
@@ -311,6 +316,7 @@ const BOT_KNOWLEDGE = {
       step: 6,
       title: 'Directorio Comunitario de Linajes',
       badge: '🔍 Explorar Vecinos',
+      location: 'Directorio de habilidades',
       view: 'explore',
       target: '#searchInput',
       sprite: '/bot/siddhi-cloud-pointing.png',
@@ -321,6 +327,7 @@ const BOT_KNOWLEDGE = {
       step: 7,
       title: 'Chat Seguro con Filtro Anti-Fuga',
       badge: '🛡️ Habeas Data y Seguridad',
+      location: 'Cabecera del chat',
       view: 'chat',
       target: '.chat-container',
       sprite: '/bot/siddhi-cloud-wisdom.png',
@@ -331,6 +338,7 @@ const BOT_KNOWLEDGE = {
       step: 8,
       title: 'Pacto Sankalpa y Verificación PIN',
       badge: '📜 Protocolo de 4 Dígitos',
+      location: 'Flujo de servicio',
       view: 'chat',
       target: '.chat-container',
       sprite: '/bot/siddhi-cloud-pointing.png',
@@ -341,6 +349,7 @@ const BOT_KNOWLEDGE = {
       step: 9,
       title: 'Protocolo de Reseñas Doble Ciego',
       badge: '🔒 Teoría de Juegos Imparcial',
+      location: 'Barra superior',
       view: 'home',
       target: '#brandLogoHome',
       sprite: '/bot/siddhi-cloud-celebrating.png',
@@ -613,9 +622,13 @@ function renderFlyingTourGuide() {
           <div class="flying-tour-header">
             <div class="flying-tour-step-badge">
               <span>${currentStep.badge}</span>
+              <span class="flying-tour-location-chip">📍 ${currentStep.location || 'En pantalla'}</span>
               <span class="flying-tour-counter">${stepIdx + 1} / ${BOT_KNOWLEDGE.tour.length}</span>
             </div>
-            <button class="flying-tour-close-btn" id="btnCloseFlyingTour" title="Cerrar Tour">✕</button>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <button class="btn btn--secondary btn--xs" id="btnFocusTourTarget" style="font-size:0.68rem; padding:2px 8px; border-radius:var(--radius-pill); cursor:pointer;" title="Ver y enfocar elemento">📍 Enfocar</button>
+              <button class="flying-tour-close-btn" id="btnCloseFlyingTour" title="Cerrar Tour">✕</button>
+            </div>
           </div>
 
           <h4 class="flying-tour-title">${currentStep.title}</h4>
@@ -2107,6 +2120,7 @@ function attachEventListeners() {
     btnCloseFlying.addEventListener('click', () => {
       state.botGuide.tourActive = false;
       document.querySelectorAll('.tour-target-highlight').forEach(el => el.classList.remove('tour-target-highlight'));
+      document.querySelectorAll('.tour-target-beacon').forEach(el => el.remove());
       render();
     });
   }
@@ -2128,6 +2142,7 @@ function attachEventListeners() {
         state.botGuide.tourActive = false;
         state.botGuide.tourStep = 0;
         document.querySelectorAll('.tour-target-highlight').forEach(el => el.classList.remove('tour-target-highlight'));
+        document.querySelectorAll('.tour-target-beacon').forEach(el => el.remove());
         state.currentView = 'home';
         triggerKarmaCelebration();
         showNotification('🎉 ¡Has completado el Gran Tour Volador con Siddhi! +10 Karma Pts de honor simbólico.');
@@ -2152,16 +2167,47 @@ function attachEventListeners() {
     });
   }
 
-  // Resaltado de Spotlight y Desplazamiento Suave al elemento objetivo
+  // Botón para re-enfocar el elemento activo si el usuario se desplazó
+  const btnFocusTour = document.getElementById('btnFocusTourTarget');
+  if (btnFocusTour) {
+    btnFocusTour.addEventListener('click', () => {
+      const curStep = BOT_KNOWLEDGE.tour[state.botGuide.tourStep];
+      if (curStep && curStep.target) {
+        const targetEl = document.querySelector(curStep.target);
+        if (targetEl) {
+          const rect = targetEl.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          window.scrollTo({ top: Math.max(0, rect.top + scrollTop - 95), behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+  // Resaltado de Spotlight y Desplazamiento Inteligente al elemento objetivo
   if (state.botGuide.tourActive) {
     const curStep = BOT_KNOWLEDGE.tour[state.botGuide.tourStep];
     if (curStep && curStep.target) {
       setTimeout(() => {
+        // Limpiar marcas y balizas previas
         document.querySelectorAll('.tour-target-highlight').forEach(el => el.classList.remove('tour-target-highlight'));
+        document.querySelectorAll('.tour-target-beacon').forEach(el => el.remove());
+
         const targetEl = document.querySelector(curStep.target);
         if (targetEl) {
           targetEl.classList.add('tour-target-highlight');
-          targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          // Crear baliza que señala directamente al elemento
+          const beacon = document.createElement('div');
+          beacon.className = 'tour-target-beacon';
+          beacon.innerHTML = `<span>👉 ¡Aquí!</span>`;
+          targetEl.appendChild(beacon);
+
+          // Posicionamiento inteligente en el tercio superior de la pantalla
+          // para dejar la tarjeta del tour y el resto de la interfaz 100% visible sin taparse
+          const rect = targetEl.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetOffset = rect.top + scrollTop - 95;
+          window.scrollTo({ top: Math.max(0, targetOffset), behavior: 'smooth' });
         }
       }, 100);
     }
