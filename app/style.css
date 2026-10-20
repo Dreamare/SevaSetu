@@ -879,7 +879,7 @@ input:focus, textarea:focus, select:focus {
   line-height: 1.5;
 }
 
-/* ─── TRIO DE MÉTRICAS BENTO ─── */
+/* ─── TRIO DE MÉTRICAS BENTO MODERNO (INSPIRADO EN UI BOUTIQUE) ─── */
 .bento-metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -890,44 +890,352 @@ input:focus, textarea:focus, select:focus {
 .bento-metric-card {
   background: var(--surface-card);
   border: 1px solid var(--border-delicate);
-  border-radius: var(--radius-md);
-  padding: var(--space-md) var(--space-sm);
+  border-radius: var(--radius-lg);
+  padding: 14px 10px;
   text-align: center;
   box-shadow: var(--shadow-subtle);
-  transition: transform var(--duration-fast) var(--ease-spring);
+  transition: all var(--duration-fast) var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--prestige-kamsya), transparent);
+  opacity: 0;
+  transition: opacity var(--duration-fast);
 }
 
 .bento-metric-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-geru);
+  transform: translateY(-3px);
+  border-color: var(--prestige-kamsya);
+  box-shadow: var(--shadow-card);
+}
+
+.bento-metric-card:hover::before {
+  opacity: 1;
 }
 
 .bento-metric-card__value {
   font-family: var(--font-mono);
-  font-size: 1.35rem;
-  font-weight: 700;
+  font-size: 1.45rem;
+  font-weight: 800;
   color: var(--primary-nila);
   line-height: 1.1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
+  letter-spacing: -0.02em;
 }
 
 .bento-metric-card__label {
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.64rem;
+  font-weight: 700;
   text-transform: uppercase;
   color: var(--text-vibhuti);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   margin-top: 4px;
 }
 
-/* ─── DECK DE ACCIONES RÁPIDAS (BENTO TILES) ─── */
+/* ─── BOTÓN DE SABIDURÍA DEL GUÍA SIDDHI ─── */
+.siddhi-wisdom-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(166, 124, 55, 0.1);
+  border: 1px solid rgba(166, 124, 55, 0.35);
+  color: var(--primary-nila);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: var(--space-sm);
+  transition: all var(--duration-fast) var(--ease-spring);
+  box-shadow: var(--shadow-subtle);
+}
+
+.siddhi-wisdom-trigger:hover {
+  background: rgba(166, 124, 55, 0.2);
+  border-color: var(--prestige-kamsya);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.siddhi-wisdom-trigger img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.siddhi-wisdom-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--prestige-kamsya);
+  color: #FFF;
+  margin-left: 4px;
+}
+
+/* ─── MEDIDOR VISUAL DE PROGRESO DE NIVEL ─── */
+.level-progress-meter {
+  max-width: 320px;
+  margin: var(--space-xs) auto var(--space-sm);
+  width: 100%;
+}
+
+.level-progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: rgba(35, 57, 77, 0.08);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.level-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--prestige-kamsya) 0%, var(--accent-geru) 50%, var(--success-tulsi) 100%);
+  transition: width 1s var(--ease-spring);
+  box-shadow: 0 0 8px rgba(184, 90, 58, 0.4);
+}
+
+.level-progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: var(--text-vibhuti);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* ─── TARJETA DE ACTIVIDAD DE PRĀṆA & SESIONES (WAVE AREA CHART) ─── */
+.prana-wave-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-delicate);
+  border-radius: var(--radius-xl);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-md);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.prana-wave-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.prana-wave-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.prana-wave-subtitle {
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--text-vibhuti);
+}
+
+.prana-wave-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+  line-height: 1.15;
+}
+
+.prana-wave-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(56, 102, 75, 0.1);
+  border: 1px solid rgba(56, 102, 75, 0.3);
+  color: var(--success-tulsi);
+  font-weight: 700;
+  font-size: 0.72rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.prana-wave-chart-wrap {
+  position: relative;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.prana-wave-svg {
+  width: 100%;
+  height: 85px;
+  overflow: visible;
+}
+
+.prana-node {
+  fill: var(--bg-chandan);
+  stroke: var(--prestige-kamsya);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  transition: all var(--duration-fast);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.prana-node--active {
+  fill: #FFF;
+  stroke: var(--accent-geru);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 10px rgba(184, 90, 58, 0.8));
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pranaNodePulse 2.2s infinite ease-in-out;
+}
+
+@keyframes pranaNodePulse {
+  0%, 100% {
+    transform: scale(0.95);
+    stroke-width: 2.5;
+  }
+  50% {
+    transform: scale(1.25);
+    stroke-width: 3.5;
+    filter: drop-shadow(0 0 12px rgba(184, 90, 58, 1));
+  }
+}
+
+.prana-traveling-pulse {
+  pointer-events: none;
+}
+
+.prana-axis-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--text-vibhuti);
+  font-weight: 600;
+  margin-top: 4px;
+  padding: 0 4px;
+}
+
+.prana-axis-labels span.active {
+  color: var(--accent-geru);
+  font-weight: 700;
+}
+
+.prana-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-delicate);
+}
+
+.prana-kpi-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface-khadi);
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-mitti);
+}
+
+.prana-kpi-chip .kpi-icon {
+  font-size: 0.85rem;
+}
+
+.prana-kpi-chip .kpi-text {
+  font-size: 0.68rem;
+  color: var(--text-kajal);
+  line-height: 1.2;
+}
+
+/* ─── RADAR DE BIENESTAR VISUAL AVANZADO ─── */
+.radar-sonar-display {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radar-sonar-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(251, 248, 243, 0.25);
+  pointer-events: none;
+}
+
+.radar-sonar-ring.ring-s1 { width: 36px; height: 36px; }
+.radar-sonar-ring.ring-s2 { width: 72px; height: 72px; border-color: rgba(184, 90, 58, 0.35); }
+.radar-sonar-ring.ring-s3 { width: 110px; height: 110px; border-color: rgba(212, 175, 55, 0.25); animation: karmaRingPulse 3s infinite ease-out; }
+
+.radar-sonar-center {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--grad-geru);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #FFF;
+  box-shadow: 0 0 20px rgba(184, 90, 58, 0.8);
+  position: relative;
+  z-index: 2;
+}
+
+.radar-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.radar-chip {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(251, 248, 243, 0.12);
+  border: 1px solid rgba(251, 248, 243, 0.25);
+  color: #FFF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.radar-chip:hover, .radar-chip.active {
+  background: var(--accent-geru);
+  border-color: #FFF;
+  box-shadow: 0 0 10px rgba(184, 90, 58, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ─── DECK DE ACCIONES RÁPIDAS (BENTO TILES VISUALES) ─── */
 .action-deck {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   margin-bottom: var(--space-lg);
 }
 
@@ -938,18 +1246,18 @@ input:focus, textarea:focus, select:focus {
 }
 
 .action-tile {
-  background: var(--grad-card);
+  background: var(--surface-card);
   border: 1px solid var(--border-delicate);
   border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+  padding: 16px 18px;
   box-shadow: var(--shadow-card);
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
+  align-items: center;
+  gap: 14px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: all var(--duration-normal) var(--ease-smooth);
+  transition: all var(--duration-normal) var(--ease-spring);
 }
 
 .action-tile:hover {
@@ -958,55 +1266,92 @@ input:focus, textarea:focus, select:focus {
   border-color: var(--prestige-kamsya);
 }
 
+.action-tile__icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--surface-khadi);
+  border: 1px solid var(--border-mitti);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.action-tile:hover .action-tile__icon-box {
+  transform: scale(1.1);
+  background: #FFF;
+}
+
+.action-tile__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.action-tile__title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+  line-height: 1.2;
+}
+
+.action-tile__badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(35, 57, 77, 0.08);
+  color: var(--primary-nila);
+  margin-top: 4px;
+}
+
+.action-tile__arrow {
+  color: var(--prestige-kamsya);
+  font-size: 1.2rem;
+  transition: transform var(--duration-fast);
+}
+
+.action-tile:hover .action-tile__arrow {
+  transform: translateX(4px);
+}
+
 .action-tile--hero {
-  background: var(--grad-nila);
+  background: var(--grad-nila-card);
   color: var(--bg-chandan);
   border: 1px solid rgba(224, 213, 193, 0.3);
   box-shadow: var(--shadow-elevated), var(--glow-nila);
 }
 
-.action-tile--hero h3,
-.action-tile--hero p {
-  color: var(--bg-chandan);
-}
-
-.action-tile--hero p {
-  opacity: 0.85;
-}
-
-.action-tile__icon-box {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--radius-md);
-  background: rgba(35, 57, 77, 0.06);
-  border: 1px solid var(--border-delicate);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  flex-shrink: 0;
+.action-tile--hero .action-tile__title {
+  color: #FFF;
 }
 
 .action-tile--hero .action-tile__icon-box {
-  background: rgba(251, 248, 243, 0.12);
+  background: rgba(251, 248, 243, 0.15);
   border-color: rgba(251, 248, 243, 0.25);
 }
 
-.action-tile__body {
-  flex: 1;
+.action-tile--hero .action-tile__badge {
+  background: rgba(184, 90, 58, 0.25);
+  color: var(--bg-chandan);
+  border: 1px solid rgba(184, 90, 58, 0.4);
 }
 
-.action-tile__title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 2px;
+.action-tile--hero p {
+  opacity: 0.88;
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .action-tile__desc {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-vibhuti);
-  line-height: 1.45;
+  line-height: 1.35;
+  margin-top: 2px;
 }
 
 /* ─── BOTONES PRIMARIOS Y SECUNDARIOS ─── */
@@ -1585,8 +1930,8 @@ input:focus, textarea:focus, select:focus {
   font-weight: 600;
   text-align: center;
   max-width: 90%;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
 }
 
 .chat-bubble--blocked {
@@ -1880,8 +2225,16 @@ input:focus, textarea:focus, select:focus {
   font-size: 0.85rem;
   font-style: italic;
   color: var(--text-kajal);
-  line-height: 1.45;
+  line-height: 1.5;
   margin: var(--space-xs) 0;
+  padding-left: 10px;
+  border-left: 3px solid rgba(166, 124, 55, 0.45);
+}
+
+.double-blind-card .badge {
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: 0.74rem;
 }
 
 .double-blind-card__security {
@@ -1958,8 +2311,8 @@ input:focus, textarea:focus, select:focus {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
   font-size: 0.78rem;
   font-weight: 600;
   margin: 3px;
@@ -1986,12 +2339,50 @@ input:focus, textarea:focus, select:focus {
   color: var(--text-vibhuti);
 }
 
+/* ─── TARJETAS DE TERAPIAS HOMOLOGADAS (SIN ÓVALOS DEFORMES) ─── */
+.therapy-detail-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: var(--surface-khadi);
+  border: 1.5px solid var(--border-mitti);
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--duration-fast);
+  width: 100%;
+  text-align: left;
+}
+
+.therapy-detail-card:hover {
+  border-color: var(--prestige-kamsya);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-1px);
+}
+
+.therapy-detail-card.skill-tag--proven {
+  border-color: rgba(56, 102, 75, 0.5);
+  background: rgba(56, 102, 75, 0.03);
+}
+
+.therapy-detail-card.skill-tag--certified {
+  border-color: rgba(166, 124, 55, 0.55);
+  background: rgba(166, 124, 55, 0.04);
+}
+
+.therapy-detail-card.skill-tag--declared {
+  border-style: dashed;
+  border-color: var(--border-mitti);
+}
+
 /* ─── MODALES ─── */
-.modal-overlay {
+.modal-overlay,
+.modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 200;
-  background: rgba(25, 42, 58, 0.6);
+  z-index: 500;
+  background: rgba(25, 42, 58, 0.72);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
@@ -2001,17 +2392,20 @@ input:focus, textarea:focus, select:focus {
   animation: fadeIn 0.25s var(--ease-smooth);
 }
 
-.modal {
-  background: var(--grad-card);
-  border: 1px solid var(--border-delicate);
+.modal,
+.modal-sheet {
+  background: var(--bg-chandan);
+  border: 1.5px solid var(--border-mitti);
   border-radius: var(--radius-xl);
   padding: var(--space-xl);
-  max-width: 440px;
+  max-width: 560px;
   width: 100%;
   box-shadow: var(--shadow-modal);
   animation: modalIn 0.35s var(--ease-spring);
   max-height: 90vh;
+  max-height: 90dvh;
   overflow-y: auto;
+  position: relative;
 }
 
 @keyframes modalIn {
@@ -2376,7 +2770,7 @@ input:focus, textarea:focus, select:focus {
   margin-top: 2px;
 }
 
-/* ─── LLAVES DĪKṢĀ ─── */
+/* ─── LLAVES DĪKṢĀ CON COPIADO RÁPIDO ─── */
 .diksha-section {
   background: var(--surface-card);
   border: 1px solid var(--border-delicate);
@@ -2384,29 +2778,188 @@ input:focus, textarea:focus, select:focus {
   padding: var(--space-md);
 }
 
-.diksha-key {
+.diksha-keys-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.diksha-key-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--surface-khadi);
+  border: 1px solid var(--border-mitti);
+  transition: all var(--duration-fast);
+}
+
+.diksha-key-card--available {
+  border-color: rgba(184, 90, 58, 0.4);
+  background: rgba(184, 90, 58, 0.04);
+}
+
+.diksha-key-card--available:hover {
+  border-color: var(--accent-geru);
+  box-shadow: 0 3px 10px rgba(184, 90, 58, 0.12);
+}
+
+.diksha-key-card--used {
+  opacity: 0.65;
+  background: rgba(90, 93, 88, 0.04);
+  border-style: dashed;
+}
+
+.diksha-key-code-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.diksha-key-code {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--primary-nila);
+  letter-spacing: 0.05em;
+}
+
+.diksha-key-redeemed {
+  font-size: 0.74rem;
+  color: var(--text-vibhuti);
+}
+
+.diksha-key-badge-used {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-vibhuti);
+  padding: 2px 8px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.btn-copy-diksha-key {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 5px 12px;
   border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  margin: 4px;
-}
-
-.diksha-key--available {
-  background: rgba(184, 90, 58, 0.08);
+  background: #FFF;
   border: 1px solid var(--accent-geru);
   color: var(--accent-geru);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  box-shadow: 0 1px 3px rgba(184, 90, 58, 0.15);
 }
 
-.diksha-key--used {
-  background: rgba(90, 93, 88, 0.08);
-  border: 1px dashed var(--border-mitti);
+.btn-copy-diksha-key:hover {
+  background: var(--accent-geru);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(184, 90, 58, 0.25);
+}
+
+.btn-copy-diksha-key.copied {
+  background: var(--success-tulsi);
+  border-color: var(--success-tulsi);
+  color: #fff;
+}
+
+/* ─── RESEÑAS Y COMENTARIOS SIN ÓVALOS DEFORMES ─── */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.review-item-card {
+  background: var(--surface-khadi);
+  border: 1px solid var(--border-mitti);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-subtle);
+  transition: border-color var(--duration-fast);
+}
+
+.review-item-card:hover {
+  border-color: var(--prestige-kamsya);
+}
+
+.review-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.review-author-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+}
+
+.review-author-role {
+  font-size: 0.75rem;
   color: var(--text-vibhuti);
-  text-decoration: line-through;
+  margin-left: 4px;
+}
+
+.review-stars-display {
+  color: var(--prestige-kamsya);
+  letter-spacing: 2px;
+  font-size: 0.95rem;
+}
+
+.review-quote {
+  font-size: 0.84rem;
+  font-style: italic;
+  color: var(--text-kajal);
+  line-height: 1.5;
+  margin: 6px 0 10px;
+  padding-left: 10px;
+  border-left: 3px solid rgba(166, 124, 55, 0.45);
+}
+
+.review-footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-delicate);
+}
+
+.review-modality-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: rgba(35, 57, 77, 0.06);
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  color: var(--primary-nila);
+  font-weight: 600;
+}
+
+.review-mudra-seal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(166, 124, 55, 0.1);
+  border: 1px solid var(--prestige-kamsya);
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--primary-nila);
+  white-space: nowrap;
 }
 
 /* ─── FORMULARIOS EDITORIALES ─── */
@@ -2569,21 +3122,23 @@ input:focus, textarea:focus, select:focus {
    BOT COMPANION INTERACTIVO: "SIDDHI" (ESTILO GHIBLI / VÉDICO)
    ═══════════════════════════════════════════════════════ */
 
-#botCompanionWidget {
-  position: fixed;
-  bottom: 80px;
-  right: 18px;
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  pointer-events: auto;
+#botCompanionWidget,
+.bot-floating-trigger {
+  position: fixed !important;
+  bottom: 84px !important;
+  right: 18px !important;
+  z-index: 200 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  pointer-events: auto !important;
 }
 
 @media (max-width: 480px) {
-  #botCompanionWidget {
-    bottom: 74px;
-    right: 12px;
+  #botCompanionWidget,
+  .bot-floating-trigger {
+    bottom: 74px !important;
+    right: 12px !important;
   }
 }
 
@@ -2623,29 +3178,51 @@ input:focus, textarea:focus, select:focus {
   animation: pulseSoft 1.5s infinite;
 }
 
-/* Botón disparador del Avatar Siddhi */
-.bot-trigger-btn {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  position: relative;
+.bot-speech-pill__close {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  padding: 0 4px;
   cursor: pointer;
-  padding: 0;
-  background: #fbf8f3;
-  border: 3px solid var(--accent-geru);
-  box-shadow: 0 8px 26px rgba(184, 90, 58, 0.38), 0 0 0 4px rgba(212, 175, 55, 0.28);
-  animation: floatGhibli 3.6s ease-in-out infinite;
-  transition: transform var(--duration-fast) var(--ease-spring), box-shadow var(--duration-fast);
-  overflow: visible;
+  margin-left: 4px;
 }
 
-.bot-trigger-btn:hover {
-  transform: scale(1.1) translateY(-4px);
-  box-shadow: 0 12px 32px rgba(184, 90, 58, 0.5), 0 0 0 6px rgba(212, 175, 55, 0.45);
+.bot-speech-pill__close:hover {
+  color: #fff;
 }
 
-.bot-trigger-btn:active {
-  transform: scale(0.96);
+/* Botón disparador del Avatar Siddhi */
+.bot-trigger-btn,
+.bot-avatar-button {
+  width: 60px !important;
+  height: 60px !important;
+  max-width: 60px !important;
+  max-height: 60px !important;
+  border-radius: 50% !important;
+  position: relative !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  background: #fbf8f3 !important;
+  border: 3px solid var(--accent-geru) !important;
+  box-shadow: 0 8px 24px rgba(184, 90, 58, 0.38), 0 0 0 3px rgba(212, 175, 55, 0.28) !important;
+  animation: floatGhibli 3.6s ease-in-out infinite !important;
+  transition: transform var(--duration-fast) var(--ease-spring), box-shadow var(--duration-fast) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.bot-trigger-btn:hover,
+.bot-avatar-button:hover {
+  transform: scale(1.1) translateY(-3px) !important;
+  box-shadow: 0 12px 28px rgba(184, 90, 58, 0.5), 0 0 0 5px rgba(212, 175, 55, 0.45) !important;
+}
+
+.bot-trigger-btn:active,
+.bot-avatar-button:active {
+  transform: scale(0.96) !important;
 }
 
 /* Halo místico giratorio */
@@ -2659,30 +3236,35 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Imagen circular de Siddhi */
-.bot-trigger-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
+.bot-trigger-img,
+.bot-avatar-img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 60px !important;
+  max-height: 60px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  display: block !important;
 }
 
 /* Indicador de estado activo (loto verde) */
-.bot-status-badge {
-  position: absolute;
-  bottom: 0px;
-  right: -2px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--success-tulsi);
-  border: 2px solid #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  color: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+.bot-status-badge,
+.bot-halo-badge {
+  position: absolute !important;
+  bottom: 0px !important;
+  right: 0px !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  background: var(--success-tulsi) !important;
+  border: 1.5px solid #fff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 10px !important;
+  color: #fff !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
+  z-index: 2 !important;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -2690,41 +3272,37 @@ input:focus, textarea:focus, select:focus {
    ═══════════════════════════════════════════════════════ */
 
 .bot-dialog-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(25, 42, 58, 0.62);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 300;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 16px;
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(25, 42, 58, 0.68) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
   animation: fadeIn 0.25s ease-out;
 }
 
-@media (min-width: 580px) {
-  .bot-dialog-overlay {
-    align-items: center;
-  }
-}
-
 .bot-dialog-card {
-  width: 100%;
-  max-width: 480px;
-  max-height: 85vh;
+  width: 100% !important;
+  max-width: 480px !important;
+  max-height: 85vh !important;
+  max-height: 85dvh !important;
   background: var(--surface-card);
   background-image: radial-gradient(circle at 100% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 40%), url('/fondo.jpg');
   background-repeat: repeat;
   background-size: 320px 320px;
-  border: 2px solid var(--accent-geru);
-  border-radius: var(--radius-xl);
+  border: 2px solid var(--accent-geru) !important;
+  border-radius: var(--radius-xl) !important;
   box-shadow: 0 20px 50px rgba(25, 42, 58, 0.45), 0 0 0 1px rgba(212, 175, 55, 0.35);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
   animation: bouncePopIn 0.35s var(--ease-spring);
-  position: relative;
+  position: relative !important;
+  margin: auto !important;
 }
 
 /* Velo de lectura para la ventana */
@@ -2744,6 +3322,7 @@ input:focus, textarea:focus, select:focus {
   flex-direction: column;
   overflow-y: auto;
   max-height: 85vh;
+  max-height: 85dvh;
 }
 
 /* Header con Siddhi animado */
@@ -2758,25 +3337,37 @@ input:focus, textarea:focus, select:focus {
   position: relative;
 }
 
-.bot-dialog-avatar-box {
-  width: 68px;
-  height: 68px;
-  border-radius: var(--radius-md);
-  border: 2px solid var(--prestige-kamsya);
-  overflow: hidden;
-  background: #fbf8f3;
-  flex-shrink: 0;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+.bot-dialog-avatar-box,
+.bot-dialog-avatar-wrap {
+  width: 60px !important;
+  height: 60px !important;
+  max-width: 60px !important;
+  max-height: 60px !important;
+  border-radius: var(--radius-md) !important;
+  border: 2px solid var(--prestige-kamsya) !important;
+  overflow: hidden !important;
+  background: #fbf8f3 !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-.bot-dialog-avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.bot-dialog-avatar-img,
+.bot-dialog-avatar {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 60px !important;
+  max-height: 60px !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: inherit !important;
   transition: transform 0.3s ease;
 }
 
-.bot-dialog-avatar-box:hover .bot-dialog-avatar-img {
+.bot-dialog-avatar-box:hover .bot-dialog-avatar-img,
+.bot-dialog-avatar-wrap:hover .bot-dialog-avatar {
   transform: scale(1.08);
 }
 
@@ -3056,7 +3647,7 @@ input:focus, textarea:focus, select:focus {
   transition: all 0.3s ease !important;
 }
 
-/* Regla estricta para elementos circulares (Mandala, avatares, sellos): NUNCA cuadrados */
+/* Regla estricta para elementos circulares o pills: NUNCA forzados a rectangulares */
 .mandala-gauge.tour-target-highlight,
 .profile-avatar.tour-target-highlight,
 .user-avatar-circle.tour-target-highlight,
@@ -3064,6 +3655,12 @@ input:focus, textarea:focus, select:focus {
 .mandala-avatar-frame.tour-target-highlight {
   border-radius: 50% !important;
   outline-offset: 5px !important;
+}
+
+#btnOpenArbitro.tour-target-highlight,
+.role-switcher.tour-target-highlight {
+  border-radius: var(--radius-pill) !important;
+  outline-offset: 3px !important;
 }
 
 @keyframes pulseTourTarget {
@@ -3077,22 +3674,113 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
-/* Siddhi en Nube Voladora independiente (vuela al lado del elemento) */
+/* Siddhi en Nube Voladora Independiente: vuela físicamente a cada sección explicada */
 .flying-siddhi-companion {
   position: fixed;
-  z-index: 360;
+  z-index: 9999;
   pointer-events: none;
-  transition: top 0.5s cubic-bezier(0.25, 1, 0.5, 1), left 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+  transition: top 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), left 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.4s ease;
   will-change: top, left;
-  opacity: 0;
+  opacity: 1 !important;
+  display: block;
+}
+
+.flying-siddhi-companion.no-transition {
+  transition: none !important;
+}
+
+/* ─── Puntero Calibrado de Foco y Dirección hacia el Objetivo ─── */
+.siddhi-pointer-callout {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  background: #FFFDF9;
+  border: 1.5px solid var(--accent-geru);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 16px rgba(184, 90, 58, 0.4), 0 0 12px rgba(212, 175, 55, 0.5);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--primary-nila);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 12;
+  transition: all 0.3s ease;
+}
+
+.pointer-arrow-glyph {
+  font-size: 0.95rem;
+  color: var(--accent-geru);
+  line-height: 1;
+  display: inline-block;
+  filter: drop-shadow(0 1px 2px rgba(184, 90, 58, 0.3));
+  animation: pointerArrowPulse 1.2s infinite alternate ease-in-out;
+}
+
+.pointer-label-text {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.68rem;
+}
+
+@keyframes pointerArrowPulse {
+  0% { transform: scale(0.92); }
+  100% { transform: scale(1.22); }
+}
+
+/* Orientaciones del Puntero Calibrado */
+.siddhi-pointer-callout.point-down-left {
+  bottom: -6px;
+  left: -18px;
+  animation: bounceDownLeft 1.8s infinite ease-in-out;
+}
+.siddhi-pointer-callout.point-down-right {
+  bottom: -6px;
+  right: -18px;
+  animation: bounceDownRight 1.8s infinite ease-in-out;
+}
+.siddhi-pointer-callout.point-up-right {
+  top: -10px;
+  right: -22px;
+  border-color: var(--prestige-kamsya);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.55);
+  animation: bounceUpRight 1.8s infinite ease-in-out;
+}
+.siddhi-pointer-callout.point-up-left {
+  top: -10px;
+  left: -22px;
+  border-color: var(--prestige-kamsya);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.55);
+  animation: bounceUpLeft 1.8s infinite ease-in-out;
+}
+
+@keyframes bounceDownLeft {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-3px, 3px); }
+}
+@keyframes bounceDownRight {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(3px, 3px); }
+}
+@keyframes bounceUpRight {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(3px, -3px); }
+}
+@keyframes bounceUpLeft {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-3px, -3px); }
 }
 
 .flying-cloud-character {
   position: relative;
-  width: 96px;
-  height: 96px;
+  width: 104px;
+  height: 104px;
   pointer-events: none;
   animation: flyingCloudBob 3.2s ease-in-out infinite;
+  filter: drop-shadow(0 14px 28px rgba(184, 90, 58, 0.5));
 }
 
 @keyframes flyingCloudBob {
@@ -3178,15 +3866,15 @@ input:focus, textarea:focus, select:focus {
   100% { opacity: 0; transform: translateY(22px) translateX(14px) scale(1.2); }
 }
 
-/* Contenedor flotante del Tour: REGRESA A LA MITAD DE LA PANTALLA (CENTRO HORIZONTAL) */
+/* Contenedor flotante del Tour: CENTRADO INFERIOR */
 .flying-tour-guide {
   position: fixed;
-  bottom: 22px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  width: 520px;
+  width: 530px;
   max-width: calc(100vw - 32px);
-  z-index: 350;
+  z-index: 9990;
   display: flex;
   flex-direction: column;
   pointer-events: auto;
@@ -3204,32 +3892,30 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
-/* Tarjeta del Tour: Sin el sprite en su borde, limpia y elegante */
+/* Tarjeta del Tour: Nítida, limpia y con contraste garantizado */
 .flying-tour-card {
-  background: var(--surface-card);
-  background-image: radial-gradient(circle at 95% 5%, rgba(212, 175, 55, 0.12) 0%, transparent 45%), url('/fondo.jpg');
-  background-repeat: repeat;
-  background-size: 320px 320px;
+  background: #FFFDF9;
   border: 2px solid var(--accent-geru);
   border-radius: var(--radius-xl);
-  box-shadow: 0 16px 42px rgba(25, 42, 58, 0.38), 0 0 0 1px rgba(212, 175, 55, 0.35);
-  padding: 15px 20px;
+  box-shadow: 0 20px 48px rgba(25, 42, 58, 0.36), 0 0 0 1px rgba(212, 175, 55, 0.4);
+  padding: 18px 22px;
   position: relative;
-  overflow: hidden;
+  overflow: visible !important;
 }
 
 .flying-tour-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(251, 248, 243, 0.96);
+  background: radial-gradient(circle at 95% 8%, rgba(212, 175, 55, 0.12) 0%, transparent 48%), #FFFDF9;
+  border-radius: inherit;
   pointer-events: none;
   z-index: 0;
 }
 
 .flying-tour-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .flying-tour-header {
@@ -3247,7 +3933,7 @@ input:focus, textarea:focus, select:focus {
   background: rgba(35, 57, 77, 0.08);
   border: 1px solid var(--border-mitti);
   border-radius: var(--radius-pill);
-  padding: 3px 10px;
+  padding: 4px 12px;
   font-size: 0.74rem;
   font-weight: 700;
   color: var(--primary-nila);
@@ -3285,30 +3971,33 @@ input:focus, textarea:focus, select:focus {
 
 .flying-tour-title {
   font-family: var(--font-display);
-  font-size: 1.08rem;
-  color: var(--primary-nila);
-  margin-bottom: 4px;
+  font-size: 1.16rem;
+  font-weight: 800;
+  color: #162B3D;
+  margin-bottom: 6px;
   line-height: 1.25;
 }
 
 .flying-tour-text {
-  font-size: 0.84rem;
-  color: var(--text-kajal);
-  line-height: 1.45;
-  margin-bottom: 8px;
+  font-size: 0.88rem;
+  color: #1A242F;
+  line-height: 1.55;
+  margin-bottom: 10px;
+  font-weight: 480;
 }
 
 .flying-tour-tip {
-  background: rgba(166, 124, 55, 0.08);
+  background: rgba(166, 124, 55, 0.1);
   border-left: 3px solid var(--prestige-kamsya);
   border-radius: var(--radius-sm);
-  padding: 5px 10px;
-  font-size: 0.74rem;
-  color: var(--text-kajal);
+  padding: 8px 12px;
+  font-size: 0.76rem;
+  color: #162B3D;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 12px;
+  gap: 8px;
+  margin-bottom: 14px;
 }
 
 .flying-tour-actions {
@@ -3360,6 +4049,428 @@ input:focus, textarea:focus, select:focus {
     font-size: 0.78rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SISTEMA VISUAL WELLNESS, MODALIDADES, AHIṂSĀ Y ÁRBITRO ADVERSARIAL
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Selector Obligatorio de Modalidades de Servicio ─── */
+.modality-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+@media (max-width: 640px) {
+  .modality-selector-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modality-card {
+  background: var(--surface-card);
+  border: 1.5px solid var(--border-mitti);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--duration-normal) var(--ease-spring);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modality-card:hover {
+  border-color: var(--prestige-kamsya);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.modality-card--active {
+  border-color: var(--primary-nila);
+  background: linear-gradient(145deg, #FAF6EE 0%, #F5EFE3 100%);
+  box-shadow: 0 0 0 2px var(--primary-nila), var(--shadow-card);
+}
+
+.modality-card__icon {
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.modality-card__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-nila);
+  line-height: 1.2;
+}
+
+.modality-card__desc {
+  font-size: 0.74rem;
+  color: var(--text-vibhuti);
+  line-height: 1.35;
+}
+
+.modality-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-mitti);
+  background: var(--surface-khadi);
+  color: var(--primary-nila);
+}
+
+.modality-pill--domicilio {
+  background: rgba(184, 90, 58, 0.1);
+  border-color: rgba(184, 90, 58, 0.3);
+  color: var(--accent-geru);
+}
+
+.modality-pill--estudio {
+  background: rgba(56, 102, 75, 0.1);
+  border-color: rgba(56, 102, 75, 0.3);
+  color: var(--success-tulsi);
+}
+
+.modality-pill--virtual {
+  background: rgba(35, 57, 77, 0.1);
+  border-color: rgba(35, 57, 77, 0.3);
+  color: var(--primary-nila);
+}
+
+/* ─── Protocolo de Respeto Sagrado (Ahiṃsā) ─── */
+.ahimsa-box {
+  background: linear-gradient(140deg, #FDFBF7 0%, #F7F1E6 100%);
+  border: 1.5px solid var(--prestige-kamsya);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin: var(--space-md) 0;
+  box-shadow: inset 0 1px 3px rgba(166, 124, 55, 0.08);
+}
+
+.ahimsa-box__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border-mitti);
+}
+
+.ahimsa-box__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--primary-nila);
+  font-weight: 700;
+}
+
+.ahimsa-box__precepts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ahimsa-precept-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-kajal);
+  line-height: 1.4;
+}
+
+.ahimsa-precept-bullet {
+  color: var(--accent-geru);
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.ahimsa-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(251, 248, 243, 0.9);
+  border: 1px solid var(--border-mitti);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-nila);
+  transition: all var(--duration-fast);
+}
+
+.ahimsa-checkbox-label:hover {
+  background: #FFF;
+  border-color: var(--primary-nila);
+}
+
+.ahimsa-checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  cursor: pointer;
+  accent-color: var(--accent-geru);
+  flex-shrink: 0;
+}
+
+/* ─── Tarjeta y Radar de Bienestar ─── */
+.wellness-radar-card {
+  background: var(--grad-nila-card);
+  color: var(--bg-chandan);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: var(--space-lg);
+  box-shadow: var(--shadow-elevated), var(--glow-nila);
+  position: relative;
+  overflow: hidden;
+}
+
+.wellness-radar-card::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(184, 90, 58, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.wellness-radar-btn {
+  background: var(--grad-geru);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 14px rgba(184, 90, 58, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.wellness-radar-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(184, 90, 58, 0.55);
+}
+
+/* ─── Árbol de Linaje Paramparā Visual ─── */
+.parampara-lineage-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: var(--space-sm) 0;
+  padding-left: 12px;
+  border-left: 2px solid var(--prestige-kamsya);
+}
+
+.parampara-lineage-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--primary-nila);
+}
+
+.parampara-lineage-step .step-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-khadi);
+  border: 1px solid var(--border-mitti);
+}
+
+.parampara-lineage-step.current-step {
+  font-weight: 700;
+  color: var(--accent-geru);
+}
+
+/* ─── Tarjeta del Acuerdo Sankalpa en Chat ─── */
+.sankalpa-chat-card {
+  background: var(--surface-card);
+  border: 1.5px solid var(--prestige-kamsya);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin: var(--space-sm) 0;
+  box-shadow: var(--shadow-card);
+}
+
+.sankalpa-chat-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-mitti);
+}
+
+.sankalpa-chat-card__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+
+.sankalpa-chat-card__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.sankalpa-chat-card__label {
+  font-size: 0.68rem;
+  color: var(--text-vibhuti);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sankalpa-chat-card__value {
+  font-weight: 700;
+  color: var(--primary-nila);
+}
+
+/* ─── Modal del Árbitro Adversarial de Bienestar ─── */
+.arbitro-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(25, 42, 58, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+}
+
+.arbitro-modal-dialog {
+  background: var(--bg-chandan);
+  border: 1.5px solid var(--prestige-kamsya);
+  border-radius: var(--radius-lg);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-modal);
+}
+
+.arbitro-modal-header {
+  background: var(--primary-nila);
+  color: var(--bg-chandan);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arbitro-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.arbitro-test-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-mitti);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all var(--duration-fast);
+}
+
+.arbitro-test-card.pass {
+  border-left: 4px solid var(--success-tulsi);
+}
+
+.arbitro-test-card.fail {
+  border-left: 4px solid var(--danger-sindoor);
+}
+
+.arbitro-test-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arbitro-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.arbitro-badge--pass {
+  background: rgba(56, 102, 75, 0.15);
+  color: var(--success-tulsi);
+}
+
+.arbitro-badge--fail {
+  background: rgba(168, 56, 59, 0.15);
+  color: var(--danger-sindoor);
+}
+
+.arbitro-badge--pending {
+  background: rgba(166, 124, 55, 0.15);
+  color: var(--prestige-kamsya);
+}
+
+/* ─── Simulador de Consulta Virtual en Vivo ─── */
+.virtual-session-simulator {
+  background: #111a22;
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  text-align: center;
+  margin: var(--space-md) 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.virtual-call-audio-waves {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 40px;
+  margin: 16px 0;
+}
+
+.audio-wave-bar {
+  width: 4px;
+  background: var(--kamsya-bright);
+  border-radius: var(--radius-pill);
+  animation: wavePulse 1.2s infinite ease-in-out;
+}
+
+.audio-wave-bar:nth-child(1) { height: 12px; animation-delay: 0.1s; }
+.audio-wave-bar:nth-child(2) { height: 24px; animation-delay: 0.25s; }
+.audio-wave-bar:nth-child(3) { height: 38px; animation-delay: 0.4s; }
+.audio-wave-bar:nth-child(4) { height: 20px; animation-delay: 0.15s; }
+.audio-wave-bar:nth-child(5) { height: 32px; animation-delay: 0.35s; }
+.audio-wave-bar:nth-child(6) { height: 16px; animation-delay: 0.5s; }
+
+@keyframes wavePulse {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
 
 
 
